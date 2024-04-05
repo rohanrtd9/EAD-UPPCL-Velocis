@@ -46,7 +46,6 @@ function DistrictList() {
                 <PencilSquareIcon className="h-5 w-5 ms-2" />
               </td>
             </tr>
-            
           </tbody>
         </table>
       </div>
