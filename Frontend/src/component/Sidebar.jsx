@@ -18,8 +18,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import uppclLogo from "./../assets/logo.jpeg";
-import { Link,NavLink } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 
 export function Sidebar() {
@@ -89,7 +88,7 @@ export function Sidebar() {
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                District Masters
+                 <Link to="/district">District Masters </Link>
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
