@@ -18,9 +18,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import uppclLogo from "./../assets/logo.jpeg";
-import { Link,NavLink } from "react-router-dom";
-
-
+import { Link, NavLink } from "react-router-dom";
 
 export function Sidebar() {
   const [open, setOpen] = React.useState(0);
@@ -30,17 +28,19 @@ export function Sidebar() {
   };
 
   return (
-    <Card className="min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <Card className="min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 sideBar">
       <div className="mb-2 p-4">
         <img className="mx-auto w-60" src={uppclLogo} alt="logo" />
       </div>
       <List>
-        <ListItem>
-          <ListItemPrefix>
-            <ComputerDesktopIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Dashboard
-        </ListItem>
+        <NavLink to="/" activeClassName="activeNav">
+          <ListItem>
+            <ListItemPrefix>
+              <ComputerDesktopIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Dashboard
+          </ListItem>
+        </NavLink>
         <Accordion
           open={open === 1}
           icon={
@@ -67,60 +67,86 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                <Link className="active" to="/zone">Zone Masters </Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                <Link to="/circle">Circle Masters </Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Division Masters
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                District Masters
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Substation Masters
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Incomming Feeder Master data
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Outgoing Feeder Master data
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                33 KV & above consumer master
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Transformer master
-              </ListItem>
+              <NavLink to="/zone" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Zone Masters
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/circle" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Circle Masters
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Division Masters
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  District Masters
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Substation Masters
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Incomming Feeder Master data
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Outgoing Feeder Master data
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  33 KV & above consumer master
+                </ListItem>
+              </NavLink>
+
+              <NavLink to="/" activeClassName="activeNav">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Transformer master
+                </ListItem>
+              </NavLink>
             </List>
           </AccordionBody>
         </Accordion>
