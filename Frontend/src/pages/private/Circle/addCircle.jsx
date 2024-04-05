@@ -2,14 +2,14 @@ import Header from "../../../component/Header";
 import Input from "../../../component/Input";
 import Button from "../../../component/Button";
 
-function AddZone() {
+function AddCircle() {
   return (
     <>
       <Header
-        title="Add Zone"
+        title="Add Circle"
         action={{
-          button: "Zone List",
-          path: "/zone",
+          button: "Circle List",
+          path: "/circle",
         }}
       />
 
@@ -21,14 +21,19 @@ function AddZone() {
           <Input label="Discom Name" />
         </div>
         <div className="relative z-0 w-full mb-5 group">
-          <Input label="Zone Name" />
+          <Input label="Zone (Distribustion) Name" />
         </div>
         <div className="relative z-0 w-full mb-5 group">
-          <Input label="Zone Code" />
+          <Input label="Circle Name" />
         </div>
+
+        <div className="relative z-0 w-full mb-5 group">
+          <Input label="Circle Code" />
+        </div>
+
         <Button title={"Save"} />
       </div>
     </>
   );
 }
-export default AddZone;
+export default AddCircle;

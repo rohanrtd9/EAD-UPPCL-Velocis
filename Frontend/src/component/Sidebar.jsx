@@ -5,8 +5,6 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
   Accordion,
   AccordionHeader,
   AccordionBody,
@@ -20,6 +18,9 @@ import {
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import uppclLogo from "./../assets/logo.jpeg";
+import { Link,NavLink } from "react-router-dom";
+
+
 
 export function Sidebar() {
   const [open, setOpen] = React.useState(0);
@@ -70,13 +71,13 @@ export function Sidebar() {
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                Zone Masters
+                <Link className="active" to="/zone">Zone Masters </Link>
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                Circle Masters
+                <Link to="/circle">Circle Masters </Link>
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
