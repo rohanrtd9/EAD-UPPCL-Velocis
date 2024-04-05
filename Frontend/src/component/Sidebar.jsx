@@ -33,7 +33,7 @@ export function Sidebar() {
         <img className="mx-auto w-60" src={uppclLogo} alt="logo" />
       </div>
       <List>
-        <NavLink to="/" activeClassName="activeNav">
+        <NavLink to="/" activeclassname="activeNav">
           <ListItem>
             <ListItemPrefix>
               <ComputerDesktopIcon className="h-5 w-5" />
@@ -67,7 +67,7 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <NavLink to="/zone" activeClassName="activeNav">
+              <NavLink to="/zone" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -76,7 +76,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/circle" activeClassName="activeNav">
+              <NavLink to="/circle" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -85,7 +85,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeClassName="activeNav">
+              <NavLink to="/division" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -94,7 +94,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeClassName="activeNav">
+              <NavLink to="/district" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -103,7 +103,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeClassName="activeNav">
+              <NavLink to="/substations" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -112,7 +112,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeClassName="activeNav">
+              <NavLink to="/" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -121,7 +121,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeClassName="activeNav">
+              <NavLink to="/" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -130,7 +130,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeClassName="activeNav">
+              <NavLink to="/" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -139,7 +139,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeClassName="activeNav">
+              <NavLink to="/transformer" activeclassname="activeNav">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />

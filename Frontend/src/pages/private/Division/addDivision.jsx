@@ -1,14 +1,14 @@
 import Header from "../../../component/Header";
-import { input, btn, label } from "../../../utils/tailwindClasses";
+import { btn, input, label } from "../../../utils/tailwindClasses";
 
-function AddCircle() {
+function AddDivision() {
   return (
     <>
       <Header
-        title="Add Circle"
+        title="Add Division"
         action={{
-          button: "Circle List",
-          path: "/circle",
+          button: "Division List",
+          path: "/division",
         }}
       />
 
@@ -26,16 +26,21 @@ function AddCircle() {
         </div>
         <div className="relative z-0 w-full mb-5 group">
           <input className={input} placeholder=" " />
-          <label className={label}>Circle Name</label>
+          <label className={label}>Circle (Distribustion) Name</label>
         </div>
 
         <div className="relative z-0 w-full mb-5 group">
           <input className={input} placeholder=" " />
-          <label className={label}>Circle Code</label>
+          <label className={label}>Division (Distribustion) Name</label>
+        </div>
+
+        <div className="relative z-0 w-full mb-5 group">
+          <input className={input} placeholder=" " />
+          <label className={label}>Division Code</label>
         </div>
         <button className={btn}>Save</button>
       </div>
     </>
   );
 }
-export default AddCircle;
+export default AddDivision;

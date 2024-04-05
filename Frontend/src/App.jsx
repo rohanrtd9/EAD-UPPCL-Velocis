@@ -7,6 +7,15 @@ import AddZone from "./pages/private/Zone/addZone";
 import AddCircle from "./pages/private/Circle/addCircle";
 import CircleList from "./pages/private/Circle/circleList";
 
+import DivisionList from "./pages/private/Division/divisionList";
+import AddDivision from "./pages/private/Division/addDivision";
+import DistrictList from "./pages/private/District/districtList";
+import AddDistrict from "./pages/private/District/addDistrict";
+
+import TransformerList from "./pages/private/Transformer/TransformerList";
+import SubstationList from "./pages/private/Substation/SubstationList";
+import AddSubstation from "./pages/private/Substation/AddSubstation";
+
 function App() {
   return (
     <BrowserRouter>
@@ -15,9 +24,22 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/zone" element={<ZoneList />} />
           <Route path="/addZone" element={<AddZone />} />
-
           <Route path="/circle" element={<CircleList />} />
+
           <Route path="/addCircle" element={<AddCircle />} />
+          {/* Disivion Route  */}
+          <Route path="/division" element={<DivisionList />} />
+          <Route path="/addDivision" element={<AddDivision />} />
+
+          {/* District Route  */}
+          <Route path="/district" element={<DistrictList />} />
+          <Route path="/addDistrict" element={<AddDistrict />} />
+
+          <Route path="/transformer" element={<TransformerList />} />
+
+          {/* Substation Master */}
+          <Route path="/substations" element={<SubstationList />} />
+          <Route path="/AddSubstation" element={<AddSubstation />} />
         </Routes>
       </Layout>
     </BrowserRouter>

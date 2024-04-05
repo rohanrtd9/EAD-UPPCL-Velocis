@@ -3,14 +3,14 @@ import Input from "../../../component/Input";
 import Button from "../../../component/Button";
 import { btn, input, label } from "../../../utils/tailwindClasses";
 
-function AddZone() {
+function AddDistrict() {
   return (
     <>
       <Header
-        title="Add Zone"
+        title="Add District"
         action={{
-          button: "Zone List",
-          path: "/zone",
+          button: "District List",
+          path: "/district",
         }}
       />
 
@@ -20,19 +20,15 @@ function AddZone() {
       >
         <div className="relative z-0 w-full mb-5 group">
           <input className={input} placeholder=" " />
-          <label className={label}>Discom Name</label>
+          <label className={label}>District</label>
         </div>
         <div className="relative z-0 w-full mb-5 group">
           <input className={input} placeholder=" " />
-          <label className={label}>Zone Name</label>
-        </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input className={input} placeholder=" " />
-          <label className={label}>Zone Code</label>
+          <label className={label}>District Code</label>
         </div>
         <button className={btn}>Save</button>
       </div>
     </>
   );
 }
-export default AddZone;
+export default AddDistrict;
