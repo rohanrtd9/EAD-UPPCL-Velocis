@@ -18,6 +18,15 @@ import AddSubstation from "./pages/private/Substation/AddSubstation";
 import IncomingFeederMasterData from "./pages/private/IncomingFeederData/IncomingFeederMasterData";
 import OutgoingFeederMasterData from "./pages/private/OutgoingFeederData/OutgoingFeederMasterData";
 import KV33ConsumerFeederData from "./pages/private/KV33ConsumerFeederData/KV33ConsumerFeederData";
+import SubstationMeteringStatusReport from "./pages/private/Report/SubstationMeteringStatusReport";
+import MonthlyLineLossReport from "./pages/private/Report/MonthlyLineLossReport";
+import DivisionWiseLineLossReport from "./pages/private/Report/DivisionWiseLineLossReport";
+import DivisionWiseIndependentFeederMeteringStatusReport from "./pages/private/Report/DivisionWiseIndependentFeederMeteringStatusReport";
+import SubstationEnergyReceipt from "./pages/private/Report/SubstationEnergyReceipt";
+import KV33AboveFeederMasterEnergyReceipt from "./pages/private/Report/KV33AboveFeederMasterEnergyReceipt";
+import MasterSubstationWithBayPoint from "./pages/private/Report/MasterSubstationWithBayPoint";
+import KV33MasterBayPoint from "./pages/private/Report/KV33MasterBayPoint";
+import DistributionTransmissionTransaction from "./pages/private/Report/DistributionTransmissionTransaction";
 
 function App() {
   return (
@@ -60,7 +69,44 @@ function App() {
             path="/kv33ConsumerFeederMaster"
             element={<KV33ConsumerFeederData />}
           />
+          {/* Reports */}
+          <Route
+            path="/substation-metering-status-report"
+            element={<SubstationMeteringStatusReport />}
+          />
+          <Route
+            path="/monthly-line-loss-report"
+            element={<MonthlyLineLossReport />}
+          />
+          <Route
+            path="/division-wise-line-loss-report"
+            element={<DivisionWiseLineLossReport />}
+          />
+          <Route
+            path="/division-wise-independent-feeder-metering-status-report"
+            element={<DivisionWiseIndependentFeederMeteringStatusReport />}
+          />
+          <Route
+            path="/substation-energy-receipt"
+            element={<SubstationEnergyReceipt />}
+          />
+          <Route
+            path="/33kv-above-feeder-master-energy-receipt"
+            element={<KV33AboveFeederMasterEnergyReceipt />}
+          />
+          <Route
+            path="master-substation-with-bay-point"
+            element={<MasterSubstationWithBayPoint />}
+          />
 
+          <Route
+            path="33kv-master-bay-point"
+            element={<KV33MasterBayPoint />}
+          />
+          <Route
+            path="distribution-transmission-transaction"
+            element={<DistributionTransmissionTransaction />}
+          />
           <Route path="*" element={<p>404</p>} />
         </Routes>
       </Layout>

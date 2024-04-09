@@ -192,18 +192,84 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Monthly
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Annually
-              </ListItem>
+              <NavLink
+                to={"/substation-metering-status-report"}
+                activeclassname="activeNav"
+              >
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Substation Metering Status Report
+                </ListItem>
+              </NavLink>
+              <NavLink to={"/monthly-line-loss-report"}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Monthly Line Loss Report
+                </ListItem>
+              </NavLink>
+
+              <NavLink to={"/division-wise-line-loss-report"}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Line Loss Report (Independent Feeders)
+                </ListItem>
+              </NavLink>
+              <NavLink
+                to={"division-wise-independent-feeder-metering-status-report"}
+              >
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Sub-Station Metering Status Report (Independent Feeder)
+                </ListItem>
+              </NavLink>
+              <NavLink to={"/substation-energy-receipt"}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Substation Energy Receipt Month Wise
+                </ListItem>
+              </NavLink>
+              <NavLink to={"/33kv-above-feeder-master-energy-receipt"}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  33KV & Above Energy Receipt Month Wise
+                </ListItem>
+              </NavLink>
+              <NavLink to={"/master-substation-with-bay-point"}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Substation Master With Feeder Bay Point
+                </ListItem>
+              </NavLink>
+              <NavLink to={"/33kv-master-bay-point"}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  33KV & Above Feeder With Bay Point
+                </ListItem>
+              </NavLink>
+              <NavLink to={"/distribution-transmission-transaction"}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Distribution and Transmission Transaction Month Wise
+                </ListItem>
+              </NavLink>
             </List>
           </AccordionBody>
         </Accordion>
