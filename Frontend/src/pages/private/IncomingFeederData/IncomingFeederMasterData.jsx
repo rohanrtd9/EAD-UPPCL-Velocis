@@ -1,18 +1,16 @@
 import Header from "../../../component/Header";
-import { TrashIcon } from "@heroicons/react/24/solid";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 
-const TransformerList = () => {
+function IncomingFeederMasterData() {
   return (
     <>
       <Header
-        title="Transformers"
+        title="Incoming Feeder Master Data"
         action={{
-          button: "",
-          path: "/AddTransformer",
+          button: "Add Incoming Feeder Master Data",
+          path: "/substations",
         }}
       />
-
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -21,20 +19,20 @@ const TransformerList = () => {
                 S.No.
               </th>
               <th scope="col" className="px-6 py-3">
-                T_ID
+                Division
               </th>
               <th scope="col" className="px-6 py-3">
-                Distriburation Sub-Station
+                Distribution Sub-Station Name
               </th>
               <th scope="col" className="px-6 py-3">
-                Transformer Capacity (MVA)
+                Feeder Name
               </th>
               <th scope="col" className="px-6 py-3">
-                Quantity of Transformer
+                Feeder Voltage
               </th>
 
               <th scope="col" className="px-6 py-3">
-                Action
+                Active / InActive
               </th>
             </tr>
           </thead>
@@ -46,21 +44,29 @@ const TransformerList = () => {
               >
                 1
               </td>
-              <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">UPPCL-PVL</td>
-              <td className="px-6 py-4">10 000</td>
-              <td className="px-6 py-4">1.00</td>
-
-              <td className="px-6 py-4 flex">
-                <TrashIcon className="h-5 w-5" />
-                <PencilSquareIcon className="h-5 w-5 ms-2" />
+              <td className="px-6 py-4">VIKAS NAGAR</td>
+              <td className="px-6 py-4">SINGHPUR</td>
+              <td className="px-6 py-4">INC-2</td>
+              <td className="px-6 py-4">11</td>
+              <td className="px-6 py-4 flex">Active</td>
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <td
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                2
               </td>
+              <td className="px-6 py-4">VIKAS NAGAR</td>
+              <td className="px-6 py-4">SINGHPUR</td>
+              <td className="px-6 py-4">INC-1</td>
+              <td className="px-6 py-4">11</td>
+              <td className="px-6 py-4 flex">Active</td>
             </tr>
           </tbody>
         </table>
       </div>
     </>
   );
-};
-
-export default TransformerList;
+}
+export default IncomingFeederMasterData;

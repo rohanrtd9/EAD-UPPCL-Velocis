@@ -112,7 +112,10 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeclassname="activeNav">
+              <NavLink
+                to="/incomingFeederMasterData"
+                activeclassname="activeNav"
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -121,7 +124,10 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeclassname="activeNav">
+              <NavLink
+                to="/outgoingFeederMaterData"
+                activeclassname="activeNav"
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -130,7 +136,10 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/" activeclassname="activeNav">
+              <NavLink
+                to="/kv33ConsumerFeederMaster"
+                activeclassname="activeNav"
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />

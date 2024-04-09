@@ -3,14 +3,16 @@ import Button from "./Button";
 
 function Header({ title, action }) {
   const { button, path } = action;
-  console.log(title)
+  console.log(title);
   return (
     <div className="mb-3">
       <div className="flex justify-between items-center mb-3 p-4">
         <p className="font-semibold">{title}</p>
-        <Link to={path}>
-          <Button title={button} />
-        </Link>
+        {button !== "" && (
+          <Link to={path}>
+            <Button title={button} />
+          </Link>
+        )}
       </div>
       <hr />
     </div>

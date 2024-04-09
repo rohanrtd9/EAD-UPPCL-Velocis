@@ -15,6 +15,9 @@ import AddDistrict from "./pages/private/District/addDistrict";
 import TransformerList from "./pages/private/Transformer/TransformerList";
 import SubstationList from "./pages/private/Substation/SubstationList";
 import AddSubstation from "./pages/private/Substation/AddSubstation";
+import IncomingFeederMasterData from "./pages/private/IncomingFeederData/IncomingFeederMasterData";
+import OutgoingFeederMasterData from "./pages/private/OutgoingFeederData/OutgoingFeederMasterData";
+import KV33ConsumerFeederData from "./pages/private/KV33ConsumerFeederData/KV33ConsumerFeederData";
 
 function App() {
   return (
@@ -40,6 +43,25 @@ function App() {
           {/* Substation Master */}
           <Route path="/substations" element={<SubstationList />} />
           <Route path="/AddSubstation" element={<AddSubstation />} />
+
+          {/* Incoming Feeder Master Data */}
+          <Route
+            path="/incomingFeederMasterData"
+            element={<IncomingFeederMasterData />}
+          />
+          {/* Outgoing Feeder Master Data */}
+          <Route
+            path="/outgoingFeederMaterData"
+            element={<OutgoingFeederMasterData />}
+          />
+
+          {/* 33KV & Above Consumer Feeder Master */}
+          <Route
+            path="/kv33ConsumerFeederMaster"
+            element={<KV33ConsumerFeederData />}
+          />
+
+          <Route path="*" element={<p>404</p>} />
         </Routes>
       </Layout>
     </BrowserRouter>

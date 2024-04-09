@@ -1,13 +1,11 @@
 import Header from "../../../component/Header";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
-
-const SubstationList = () => {
+function KV33ConsumerFeederData() {
   return (
     <>
       <Header
-        title="Substations"
+        title="33KV & Above Consumer Feeder Master"
         action={{
           button: "Add Substation",
           path: "/AddSubstation",
@@ -62,6 +60,5 @@ const SubstationList = () => {
       </div>
     </>
   );
-};
-
-export default SubstationList;
+}
+export default KV33ConsumerFeederData;
