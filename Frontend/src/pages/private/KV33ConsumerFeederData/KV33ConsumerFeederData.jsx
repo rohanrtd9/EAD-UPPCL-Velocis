@@ -7,7 +7,7 @@ function KV33ConsumerFeederData() {
       <Header
         title="33KV & Above Consumer Feeder Master"
         action={{
-          button: "Add",
+          button: "",
           path: "/AddSubstation",
         }}
       />

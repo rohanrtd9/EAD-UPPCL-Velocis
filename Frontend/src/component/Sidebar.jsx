@@ -11,18 +11,17 @@ import {
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
-  PowerIcon,
   DocumentCheckIcon,
   BoltIcon,
   ComputerDesktopIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import uppclLogo from "./../assets/logo.jpeg";
-import { Link, NavLink } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 export function Sidebar() {
   const [open, setOpen] = React.useState(0);
-
+  const { pathname } = useLocation();
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
@@ -33,7 +32,7 @@ export function Sidebar() {
         <img className="mx-auto w-60" src={uppclLogo} alt="logo" />
       </div>
       <List>
-        <NavLink to="/" activeclassname="activeNav">
+        <NavLink to="/">
           <ListItem>
             <ListItemPrefix>
               <ComputerDesktopIcon className="h-5 w-5" />
@@ -67,16 +66,22 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <NavLink to="/zone" activeclassname="activeNav">
+              <NavLink
+                to="/zone"
+                className={pathname === "/addZone" && "active"}
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
-                  Zone Masters
+                  Zone Masters{console.log(pathname)}
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/circle" activeclassname="activeNav">
+              <NavLink
+                to="/circle"
+                className={pathname === "/addCircle" && "active"}
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -85,7 +90,10 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/division" activeclassname="activeNav">
+              <NavLink
+                to="/division"
+                className={pathname === "/addDivision" && "active"}
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -94,7 +102,10 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/district" activeclassname="activeNav">
+              <NavLink
+                to="/district"
+                className={pathname === "/addDistrict" && "active"}
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -103,7 +114,10 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/substations" activeclassname="activeNav">
+              <NavLink
+                to="/substations"
+                className={pathname === "/AddSubstation" && "active"}
+              >
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -112,10 +126,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink
-                to="/incomingFeederMasterData"
-                activeclassname="activeNav"
-              >
+              <NavLink to="/incomingFeederMasterData">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -124,10 +135,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink
-                to="/outgoingFeederMaterData"
-                activeclassname="activeNav"
-              >
+              <NavLink to="/outgoingFeederMaterData">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -136,10 +144,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink
-                to="/kv33ConsumerFeederMaster"
-                activeclassname="activeNav"
-              >
+              <NavLink to="/kv33ConsumerFeederMaster">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -148,7 +153,7 @@ export function Sidebar() {
                 </ListItem>
               </NavLink>
 
-              <NavLink to="/transformer" activeclassname="activeNav">
+              <NavLink to="/transformer">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -192,10 +197,7 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <NavLink
-                to={"/substation-metering-status-report"}
-                activeclassname="activeNav"
-              >
+              <NavLink to={"/substation-metering-status-report"}>
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />

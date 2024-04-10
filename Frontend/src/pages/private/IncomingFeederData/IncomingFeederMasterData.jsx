@@ -7,7 +7,7 @@ function IncomingFeederMasterData() {
       <Header
         title="Incoming Feeder Master Data"
         action={{
-          button: "Add Incoming Feeder Master Data",
+          button: "",
           path: "/substations",
         }}
       />
