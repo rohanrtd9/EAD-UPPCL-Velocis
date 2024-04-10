@@ -14,19 +14,22 @@ function AddDistrict() {
         }}
       />
 
-      <div
-        className="mt-10 max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 
-        dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mx-auto"
-      >
-        <div className="relative z-0 w-full mb-5 group">
-          <input className={input} placeholder=" " />
-          <label className={label}>District</label>
+      <div className="mt-5 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow grid grid-cols-3 gap-6">
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>District Name</label>
+          </div>
         </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input className={input} placeholder=" " />
-          <label className={label}>District Code</label>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>District Code</label>
+          </div>
         </div>
-        <button className={btn}>Save</button>
+        <div className="col-span-3 flex justify-between">
+          <button className={btn + " w-1/5"}>Submit</button>
+        </div>
       </div>
     </>
   );

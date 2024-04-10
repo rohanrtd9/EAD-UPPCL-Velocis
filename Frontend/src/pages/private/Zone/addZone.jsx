@@ -1,7 +1,5 @@
 import Header from "../../../component/Header";
-import Input from "../../../component/Input";
-import Button from "../../../component/Button";
-import { btn, input, label } from "../../../utils/tailwindClasses";
+import { btn, input, label, select } from "../../../utils/tailwindClasses";
 
 function AddZone() {
   return (
@@ -13,24 +11,34 @@ function AddZone() {
           path: "/zone",
         }}
       />
-
-      <div
-        className="mt-10 max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 
-        dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mx-auto"
-      >
-        <div className="relative z-0 w-full mb-5 group">
-          <input className={input} placeholder=" " />
-          <label className={label}>Discom Name</label>
+      <div className="mt-5 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow grid grid-cols-3 gap-6">
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label}>Discom</label>
+            <select className={select} defaultValue="">
+              <option>Select a Discom</option>
+              <option value="US">Purvanchal</option>
+              <option value="CA">Canada</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+            </select>
+          </div>
         </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input className={input} placeholder=" " />
-          <label className={label}>Zone Name</label>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>Zone Name</label>
+          </div>
         </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input className={input} placeholder=" " />
-          <label className={label}>Zone Code</label>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>Zone Code</label>
+          </div>
         </div>
-        <button className={btn}>Save</button>
+        <div className="col-span-3 flex justify-between">
+          <button className={btn + " w-1/5"}>Submit</button>
+        </div>
       </div>
     </>
   );

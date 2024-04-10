@@ -12,75 +12,84 @@ function AddSubstation() {
           path: "/substations",
         }}
       />
-
-      <div className="mt-10 w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mx-auto grid grid-cols-3 gap-6">
+      <div className="mt-5 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow grid grid-cols-3 gap-6">
         <div className="col-span-1">
-          <div className="relative z-0 w-full mb-5 group">
+          <div className="relative z-0 w-full group">
+            <label className={label}>Division Name</label>
             <select className={select} defaultValue="">
-              <option>Select a Division</option>
-              <option value="US">United States</option>
+              <option>Select Division</option>
+              <option value="US">Purvanchal</option>
               <option value="CA">Canada</option>
               <option value="FR">France</option>
               <option value="DE">Germany</option>
             </select>
           </div>
-          <div className="relative z-0 w-full mb-5 group">
-            <input className={input} placeholder="" />
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label}>
+              Voltage level of Distribution Substation (KV)
+            </label>
+            <select className={select} defaultValue="">
+              <option>Select</option>
+              <option value="US">Purvanchal</option>
+              <option value="CA">Canada</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label}>Month</label>
+            <select className={select} defaultValue="">
+              <option>Select</option>
+              <option value="US">Purvanchal</option>
+              <option value="CA">Canada</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label}>Year</label>
+            <select className={select} defaultValue="">
+              <option>Select</option>
+              <option value="US">Purvanchal</option>
+              <option value="CA">Canada</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
             <label className={label}>Distribution Sub-Station Name</label>
           </div>
-          <div className="relative z-0 w-full mb-5 group">
-            <input className={input} placeholder="" />
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
             <label className={label}>Distribution Sub-Station Code</label>
           </div>
         </div>
-
         <div className="col-span-1">
-          <div className="relative z-0 w-full mb-5 group">
-            <select className={select} defaultValue="">
-              <option>
-                Select Voltage level of Distribution Substation (KV)
-              </option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
-            </select>
-          </div>
-          <div className="relative z-0 w-full mb-5 group">
-            <input className={input} placeholder="" />
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
             <label className={label}>Junior Engineer Name</label>
           </div>
-          <div className="relative z-0 w-full mb-5 group">
-            <input className={input} placeholder="" />
-            <label className={label}>Junior Engineer Mobile No.</label>
-          </div>
         </div>
-
         <div className="col-span-1">
-          <div className="relative z-0 w-full mb-5 group">
-            <select className={select} defaultValue="">
-              <option>Select Month</option>
-              <option value="US">Jan</option>
-              <option value="CA">Feb</option>
-              <option value="FR">Mar</option>
-              <option value="DE">Apr</option>
-            </select>
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>Junior Engineer Number</label>
           </div>
-          <div className="relative z-0 w-full mb-5 group">
-            <select className={select} defaultValue="">
-              <option>Select Year</option>
-              <option value="US">2020</option>
-              <option value="CA">2021</option>
-              <option value="FR">2022</option>
-              <option value="DE">2023</option>
-              <option value="DE">2024</option>
-            </select>
-          </div>
-          <Button title={"Save"} />
         </div>
-      </div>
-      <div className="py-3">
-        <hr />
+        <div className="col-span-3 flex justify-between">
+          <button className={btn + " w-1/5"}>Submit</button>
+        </div>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -1,15 +1,11 @@
-import {
-  PencilIcon,
-  PencilSquareIcon,
-  TrashIcon,
-} from "@heroicons/react/24/solid";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 import Header from "../../../component/Header";
 
 function ZoneList() {
   return (
     <>
       <Header
-        title="Zone List"
+        title="Zone (Distribution)"
         action={{
           button: "Add Zone",
           path: "/addZone",

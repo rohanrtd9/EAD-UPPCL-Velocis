@@ -29,7 +29,7 @@ export function Sidebar() {
 
   return (
     <Card className="min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 sideBar">
-      <div className="mb-2 p-4">
+      <div className="mb-2 p-2">
         <img className="mx-auto w-60" src={uppclLogo} alt="logo" />
       </div>
       <List>
@@ -273,13 +273,6 @@ export function Sidebar() {
             </List>
           </AccordionBody>
         </Accordion>
-
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Log Out
-        </ListItem>
       </List>
     </Card>
   );
