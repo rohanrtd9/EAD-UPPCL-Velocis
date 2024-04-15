@@ -3,7 +3,7 @@ import { btn, btnGrey, input, label, select } from "../utils/tailwindClasses";
 
 function Header({ title, action }) {
   const { button, path } = action;
-  console.log(title);
+  //console.log(title);
   return (
     <div className="mb-3 bg-gray-200 mt-3">
       <div className="flex justify-between items-center p-4">

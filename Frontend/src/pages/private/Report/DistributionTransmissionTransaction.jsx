@@ -6,6 +6,7 @@ import {
   btnSuccess,
   btnGrey,
 } from "../../../utils/tailwindClasses";
+import Table, { Tbody, Td, Th, Thead, Tr } from "../../../component/Table";
 
 function DistributionTransmissionTransaction() {
   return (
@@ -40,30 +41,24 @@ function DistributionTransmissionTransaction() {
           </div>
         </div>
       </div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="p-3">
-                S.No.
-              </th>
-              <th className="p-3">District</th>
-              <th className="p-3">Primary Substations (Transmission)</th>
-              <th className="p-3">T-D Point Name (Transmission Bay)</th>
-              <th className="p-3">Mapped Distribution Division</th>
-              <th className="p-3">Mapped Distribution Circle</th>
-              <th className="p-3">Mapped Distribution Zone</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="p-3" colSpan={7}>
-                No record
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>S.No.</Th>
+            <Th>District</Th>
+            <Th>Primary Substations (Transmission)</Th>
+            <Th>T-D Point Name (Transmission Bay)</Th>
+            <Th>Mapped Distribution Division</Th>
+            <Th>Mapped Distribution Circle</Th>
+            <Th>Mapped Distribution Zone</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td colspan={7}>No record</Td>
+          </Tr>
+        </Tbody>
+      </Table>
     </>
   );
 }

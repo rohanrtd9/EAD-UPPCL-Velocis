@@ -19,9 +19,25 @@ import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import uppclLogo from "./../assets/logo.jpeg";
 import { useLocation, NavLink } from "react-router-dom";
 
+const CustomLink = ({ to, title, activeLink }) => {
+  const { pathname } = useLocation();
+  return (
+    <NavLink
+      to={to}
+      className={activeLink && pathname === activeLink && "active"}
+    >
+      <ListItem>
+        <ListItemPrefix>
+          <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+        </ListItemPrefix>
+        {title}
+      </ListItem>
+    </NavLink>
+  );
+};
+
 export function Sidebar() {
   const [open, setOpen] = React.useState(0);
-  const { pathname } = useLocation();
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
@@ -66,101 +82,47 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <NavLink
-                to="/zone"
-                className={pathname === "/addZone" && "active"}
-              >
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Zone Masters{console.log(pathname)}
-                </ListItem>
-              </NavLink>
+              <CustomLink
+                to={"/zone"}
+                activeLink={"/addZone"}
+                title={"Zone Masters"}
+              />
+              <CustomLink
+                to={"/circle"}
+                activeLink={"/addCircle"}
+                title={"Circle Masters"}
+              />
 
-              <NavLink
-                to="/circle"
-                className={pathname === "/addCircle" && "active"}
-              >
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Circle Masters
-                </ListItem>
-              </NavLink>
+              <CustomLink
+                to={"/division"}
+                activeLink={"/addDivision"}
+                title={"Division Masters"}
+              />
+              <CustomLink
+                to={"/district"}
+                activeLink={"/addDistrict"}
+                title={"District Masters"}
+              />
+              <CustomLink
+                to={"/substations"}
+                activeLink={"/AddSubstation"}
+                title={"Substation Masters"}
+              />
+              <CustomLink
+                to={"/incomingFeederMasterData"}
+                title={"Incomming Feeder Master data"}
+              />
+              <CustomLink
+                to={"/outgoingFeederMaterData"}
+                title={"Outgoing Feeder Master data"}
+              />
 
-              <NavLink
-                to="/division"
-                className={pathname === "/addDivision" && "active"}
-              >
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Division Masters
-                </ListItem>
-              </NavLink>
+              <CustomLink
+                to={"/kv33ConsumerFeederMaster"}
+                title={"33 KV & above consumer master"}
+              />
 
-              <NavLink
-                to="/district"
-                className={pathname === "/addDistrict" && "active"}
-              >
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  District Masters
-                </ListItem>
-              </NavLink>
-
-              <NavLink
-                to="/substations"
-                className={pathname === "/AddSubstation" && "active"}
-              >
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Substation Masters
-                </ListItem>
-              </NavLink>
-
-              <NavLink to="/incomingFeederMasterData">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Incomming Feeder Master data
-                </ListItem>
-              </NavLink>
-
-              <NavLink to="/outgoingFeederMaterData">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Outgoing Feeder Master data
-                </ListItem>
-              </NavLink>
-
-              <NavLink to="/kv33ConsumerFeederMaster">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  33 KV & above consumer master
-                </ListItem>
-              </NavLink>
-
-              <NavLink to="/transformer">
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Transformer master
-                </ListItem>
-              </NavLink>
+              <CustomLink to={"/transformer"} title={"Transformer master"} />
             </List>
           </AccordionBody>
         </Accordion>
@@ -197,81 +159,44 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <NavLink to={"/substation-metering-status-report"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Substation Metering Status Report
-                </ListItem>
-              </NavLink>
-              <NavLink to={"/monthly-line-loss-report"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Monthly Line Loss Report
-                </ListItem>
-              </NavLink>
-
-              <NavLink to={"/division-wise-line-loss-report"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Line Loss Report (Independent Feeders)
-                </ListItem>
-              </NavLink>
-              <NavLink
-                to={"division-wise-independent-feeder-metering-status-report"}
-              >
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Sub-Station Metering Status Report (Independent Feeder)
-                </ListItem>
-              </NavLink>
-              <NavLink to={"/substation-energy-receipt"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Substation Energy Receipt Month Wise
-                </ListItem>
-              </NavLink>
-              <NavLink to={"/33kv-above-feeder-master-energy-receipt"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  33KV & Above Energy Receipt Month Wise
-                </ListItem>
-              </NavLink>
-              <NavLink to={"/master-substation-with-bay-point"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Substation Master With Feeder Bay Point
-                </ListItem>
-              </NavLink>
-              <NavLink to={"/33kv-master-bay-point"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  33KV & Above Feeder With Bay Point
-                </ListItem>
-              </NavLink>
-              <NavLink to={"/distribution-transmission-transaction"}>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                  </ListItemPrefix>
-                  Distribution and Transmission Transaction Month Wise
-                </ListItem>
-              </NavLink>
+              <CustomLink
+                to={"/substation-metering-status-report"}
+                title={"Substation Metering Status Report"}
+              />
+              <CustomLink
+                to={"/monthly-line-loss-report"}
+                title={"Monthly Line Loss Report"}
+              />
+              <CustomLink
+                to={"/division-wise-line-loss-report"}
+                title={"Line Loss Report (Independent Feeders)"}
+              />
+              <CustomLink
+                to={"/division-wise-independent-feeder-metering-status-report"}
+                title={
+                  "Sub-Station Metering Status Report (Independent Feeder)"
+                }
+              />
+              <CustomLink
+                to={"/substation-energy-receipt"}
+                title={"Substation Energy Receipt Month Wise"}
+              />
+              <CustomLink
+                to={"/33kv-above-feeder-master-energy-receipt"}
+                title={"33KV & Above Energy Receipt Month Wise"}
+              />
+              <CustomLink
+                to={"/master-substation-with-bay-point"}
+                title={"Substation Master With Feeder Bay Point"}
+              />
+              <CustomLink
+                to={"/33kv-master-bay-point"}
+                title={"33KV & Above Feeder With Bay Point"}
+              />
+              <CustomLink
+                to={"/distribution-transmission-transaction"}
+                title={"Distribution and Transmission Transaction Month Wise"}
+              />
             </List>
           </AccordionBody>
         </Accordion>
