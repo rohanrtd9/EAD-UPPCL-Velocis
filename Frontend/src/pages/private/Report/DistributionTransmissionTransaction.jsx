@@ -23,10 +23,6 @@ function DistributionTransmissionTransaction() {
             <label className={label}>Energy Account Month</label>
             <select className={select} defaultValue="">
               <option>Select Month</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -35,10 +31,6 @@ function DistributionTransmissionTransaction() {
             <label className={label}>Year</label>
             <select className={select} defaultValue="">
               <option>Select</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>

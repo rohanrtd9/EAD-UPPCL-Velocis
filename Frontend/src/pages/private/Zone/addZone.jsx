@@ -1,4 +1,5 @@
 import Header from "../../../component/Header";
+import { discom } from "../../../utils/constant";
 import { btn, input, label, select } from "../../../utils/tailwindClasses";
 
 function AddZone() {
@@ -17,10 +18,9 @@ function AddZone() {
             <label className={label}>Discom</label>
             <select className={select} defaultValue="">
               <option>Select a Discom</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              {discom.map((dis) => (
+                <option key={dis.id}>{dis.name}</option>
+              ))}
             </select>
           </div>
         </div>

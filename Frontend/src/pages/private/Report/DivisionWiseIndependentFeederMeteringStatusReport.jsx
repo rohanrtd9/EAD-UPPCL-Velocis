@@ -1,4 +1,5 @@
 import Header from "../../../component/Header";
+import { discom } from "../../../utils/constant";
 import {
   label,
   select,
@@ -23,11 +24,9 @@ function DivisionWiseIndependentFeederMeteringStatusReport() {
           <div className="relative z-0 w-full mb-5 group">
             <label className={label}>Discom</label>
             <select className={select} defaultValue="">
-              <option>Select a Discom</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              {discom.map((dis) => (
+                <option key={dis.id}>{dis.name}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -37,10 +36,6 @@ function DivisionWiseIndependentFeederMeteringStatusReport() {
             <label className={label}>Zone</label>
             <select className={select} defaultValue="">
               <option>Select Zone</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -49,10 +44,6 @@ function DivisionWiseIndependentFeederMeteringStatusReport() {
             <label className={label}>Circle</label>
             <select className={select} defaultValue="">
               <option>Select Circle</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -61,10 +52,6 @@ function DivisionWiseIndependentFeederMeteringStatusReport() {
             <label className={label}>Division</label>
             <select className={select} defaultValue="">
               <option>Select Division</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -73,10 +60,6 @@ function DivisionWiseIndependentFeederMeteringStatusReport() {
             <label className={label}>Month</label>
             <select className={select} defaultValue="">
               <option>Select Month</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -85,10 +68,6 @@ function DivisionWiseIndependentFeederMeteringStatusReport() {
             <label className={label}>Year</label>
             <select className={select} defaultValue="">
               <option>Select Year</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>

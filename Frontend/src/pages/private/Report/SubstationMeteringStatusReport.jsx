@@ -1,4 +1,5 @@
 import Header from "../../../component/Header";
+import { discom } from "../../../utils/constant";
 import {
   label,
   select,
@@ -24,10 +25,9 @@ function SubstationMeteringStatusReport() {
             <label className={label}>Discom</label>
             <select className={select} defaultValue="">
               <option>Select a Discom</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              {discom.map((dis) => (
+                <option key={dis.id}>{dis.name}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -37,10 +37,6 @@ function SubstationMeteringStatusReport() {
             <label className={label}>Zone</label>
             <select className={select} defaultValue="">
               <option>Select Zone</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -49,10 +45,6 @@ function SubstationMeteringStatusReport() {
             <label className={label}>Circle</label>
             <select className={select} defaultValue="">
               <option>Select Circle</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -61,22 +53,13 @@ function SubstationMeteringStatusReport() {
             <label className={label}>Division</label>
             <select className={select} defaultValue="">
               <option>Select Division</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full mb-5 group">
             <label className={label}>Name of Substation</label>
-            <select className={select} defaultValue="">
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
-            </select>
+            <select className={select} defaultValue=""></select>
           </div>
         </div>
         <div className="col-span-1">
@@ -84,10 +67,6 @@ function SubstationMeteringStatusReport() {
             <label className={label}>Month</label>
             <select className={select} defaultValue="">
               <option>Select Month</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -96,10 +75,6 @@ function SubstationMeteringStatusReport() {
             <label className={label}>Year</label>
             <select className={select} defaultValue="">
               <option>Select Year</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>

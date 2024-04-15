@@ -1,6 +1,7 @@
 import Header from "../../../component/Header";
 import Button from "../../../component/Button";
 import { btn, input, label, select } from "../../../utils/tailwindClasses";
+import { discom } from "../../../utils/constant";
 
 function AddSubstation() {
   return (
@@ -18,10 +19,9 @@ function AddSubstation() {
             <label className={label}>Division Name</label>
             <select className={select} defaultValue="">
               <option>Select Division</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              {discom.map((dis) => (
+                <option key={dis.id}>{dis.name}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -32,10 +32,6 @@ function AddSubstation() {
             </label>
             <select className={select} defaultValue="">
               <option>Select</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -44,10 +40,6 @@ function AddSubstation() {
             <label className={label}>Month</label>
             <select className={select} defaultValue="">
               <option>Select</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -56,10 +48,6 @@ function AddSubstation() {
             <label className={label}>Year</label>
             <select className={select} defaultValue="">
               <option>Select</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>

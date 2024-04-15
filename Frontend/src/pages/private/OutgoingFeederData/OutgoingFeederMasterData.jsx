@@ -1,4 +1,5 @@
 import Header from "../../../component/Header";
+import { discom } from "../../../utils/constant";
 import {
   label,
   select,
@@ -24,10 +25,9 @@ function OutgoingFeederMasterData() {
             <label className={label}>Discom</label>
             <select className={select} defaultValue="">
               <option>Select a Discom</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              {discom.map((dis) => (
+                <option key={dis.id}>{dis.name}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -37,10 +37,6 @@ function OutgoingFeederMasterData() {
             <label className={label}>Zone</label>
             <select className={select} defaultValue="">
               <option>Select Zone</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -49,10 +45,6 @@ function OutgoingFeederMasterData() {
             <label className={label}>Division</label>
             <select className={select} defaultValue="">
               <option>Select Division</option>
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
             </select>
           </div>
         </div>
@@ -60,10 +52,7 @@ function OutgoingFeederMasterData() {
           <div className="relative z-0 w-full group">
             <label className={label}>Name of Substation</label>
             <select className={select} defaultValue="">
-              <option value="US">Purvanchal</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              <option value="">select substation</option>
             </select>
           </div>
         </div>
