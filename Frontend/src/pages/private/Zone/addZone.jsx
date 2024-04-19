@@ -1,3 +1,4 @@
+import FormPanel from "../../../component/FormPanel";
 import Header from "../../../component/Header";
 import { discom } from "../../../utils/constant";
 import { btn, input, label, select } from "../../../utils/tailwindClasses";
@@ -12,7 +13,7 @@ function AddZone() {
           path: "/zone",
         }}
       />
-      <div className="mt-5 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow grid grid-cols-3 gap-6">
+      <FormPanel>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
             <label className={label}>Discom</label>
@@ -39,7 +40,7 @@ function AddZone() {
         <div className="col-span-3 flex justify-between">
           <button className={btn + " w-1/5"}>Submit</button>
         </div>
-      </div>
+      </FormPanel>
     </>
   );
 }

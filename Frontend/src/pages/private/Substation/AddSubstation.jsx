@@ -2,6 +2,7 @@ import Header from "../../../component/Header";
 import Button from "../../../component/Button";
 import { btn, input, label, select } from "../../../utils/tailwindClasses";
 import { discom } from "../../../utils/constant";
+import FormPanel from "../../../component/FormPanel";
 
 function AddSubstation() {
   return (
@@ -13,7 +14,7 @@ function AddSubstation() {
           path: "/substations",
         }}
       />
-      <div className="mt-5 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow grid grid-cols-3 gap-6">
+      <FormPanel>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
             <label className={label}>Division Name</label>
@@ -78,7 +79,7 @@ function AddSubstation() {
         <div className="col-span-3 flex justify-between">
           <button className={btn + " w-1/5"}>Submit</button>
         </div>
-      </div>
+      </FormPanel>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

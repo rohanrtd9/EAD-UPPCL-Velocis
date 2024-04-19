@@ -7,6 +7,7 @@ import {
   btnSuccess,
   btnGrey,
 } from "../../../utils/tailwindClasses";
+import FormPanel from "./../../../component/FormPanel";
 
 function SubstationEnergyReceipt() {
   return (
@@ -18,11 +19,10 @@ function SubstationEnergyReceipt() {
           path: "/substations",
         }}
       />
-
-      <div className="mt-10 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow mx-auto grid grid-cols-3 gap-6">
+      <FormPanel>
         <div className="col-span-1">
           <div className="relative z-0 w-full mb-5 group">
-            <label className={label}>Discom</label>
+            <label className={label}>Discomsss</label>
             <select className={select} defaultValue="">
               <option>Select a Discom</option>
               {discom.map((dis) => (
@@ -31,7 +31,6 @@ function SubstationEnergyReceipt() {
             </select>
           </div>
         </div>
-
         <div className="col-span-1">
           <div className="relative z-0 w-full mb-5 group">
             <label className={label}>Zone</label>
@@ -93,7 +92,7 @@ function SubstationEnergyReceipt() {
           <button className={btnSuccess + " w-1/5"}>Export</button>
           <button className={btnGrey + " w-1/5"}>Reset</button>
         </div>
-      </div>
+      </FormPanel>
     </>
   );
 }

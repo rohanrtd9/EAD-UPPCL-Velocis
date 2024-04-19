@@ -1,3 +1,4 @@
+import FormPanel from "../../../component/FormPanel";
 import Header from "../../../component/Header";
 import { discom } from "../../../utils/constant";
 import {
@@ -19,7 +20,7 @@ function SubstationMeteringStatusReport() {
         }}
       />
 
-      <div className="mt-10 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow mx-auto grid grid-cols-3 gap-6">
+      <FormPanel>
         <div className="col-span-1">
           <div className="relative z-0 w-full mb-5 group">
             <label className={label}>Discom</label>
@@ -84,7 +85,7 @@ function SubstationMeteringStatusReport() {
           <button className={btnSuccess + " w-1/5"}>Export</button>
           <button className={btnGrey + " w-1/5"}>Reset</button>
         </div>
-      </div>
+      </FormPanel>
     </>
   );
 }

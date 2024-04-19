@@ -2,31 +2,74 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Layout from "./component/Layout";
 import Dashboard from "./pages/private/dashboard";
-import ZoneList from "./pages/private/Zone/zoneList";
-import AddZone from "./pages/private/Zone/addZone";
-import AddCircle from "./pages/private/Circle/addCircle";
-import CircleList from "./pages/private/Circle/circleList";
-
-import DivisionList from "./pages/private/Division/divisionList";
-import AddDivision from "./pages/private/Division/addDivision";
-import DistrictList from "./pages/private/District/districtList";
-import AddDistrict from "./pages/private/District/addDistrict";
-
-import TransformerList from "./pages/private/Transformer/TransformerList";
-import SubstationList from "./pages/private/Substation/SubstationList";
-import AddSubstation from "./pages/private/Substation/AddSubstation";
-import IncomingFeederMasterData from "./pages/private/IncomingFeederData/IncomingFeederMasterData";
-import OutgoingFeederMasterData from "./pages/private/OutgoingFeederData/OutgoingFeederMasterData";
-import KV33ConsumerFeederData from "./pages/private/KV33ConsumerFeederData/KV33ConsumerFeederData";
-import SubstationMeteringStatusReport from "./pages/private/Report/SubstationMeteringStatusReport";
-import MonthlyLineLossReport from "./pages/private/Report/MonthlyLineLossReport";
-import DivisionWiseLineLossReport from "./pages/private/Report/DivisionWiseLineLossReport";
-import DivisionWiseIndependentFeederMeteringStatusReport from "./pages/private/Report/DivisionWiseIndependentFeederMeteringStatusReport";
-import SubstationEnergyReceipt from "./pages/private/Report/SubstationEnergyReceipt";
-import KV33AboveFeederMasterEnergyReceipt from "./pages/private/Report/KV33AboveFeederMasterEnergyReceipt";
-import MasterSubstationWithBayPoint from "./pages/private/Report/MasterSubstationWithBayPoint";
-import KV33MasterBayPoint from "./pages/private/Report/KV33MasterBayPoint";
-import DistributionTransmissionTransaction from "./pages/private/Report/DistributionTransmissionTransaction";
+import Shimmer from "./component/Shimmer";
+import React, { Suspense } from "react";
+const ZoneList = React.lazy(() => import("./pages/private/Zone/zoneList"));
+const AddZone = React.lazy(() => import("./pages/private/Zone/addZone"));
+const AddCircle = React.lazy(() => import("./pages/private/Circle/addCircle"));
+const CircleList = React.lazy(() =>
+  import("./pages/private/Circle/circleList")
+);
+const DivisionList = React.lazy(() =>
+  import("./pages/private/Division/divisionList")
+);
+const AddDivision = React.lazy(() =>
+  import("./pages/private/Division/addDivision")
+);
+const DistrictList = React.lazy(() =>
+  import("./pages/private/District/districtList")
+);
+const AddDistrict = React.lazy(() =>
+  import("./pages/private/District/addDistrict")
+);
+const TransformerList = React.lazy(() =>
+  import("./pages/private/Transformer/TransformerList")
+);
+const SubstationList = React.lazy(() =>
+  import("./pages/private/Substation/SubstationList")
+);
+const AddSubstation = React.lazy(() =>
+  import("./pages/private/Substation/AddSubstation")
+);
+const IncomingFeederMasterData = React.lazy(() =>
+  import("./pages/private/IncomingFeederData/IncomingFeederMasterData")
+);
+const OutgoingFeederMasterData = React.lazy(() =>
+  import("./pages/private/OutgoingFeederData/OutgoingFeederMasterData")
+);
+const KV33ConsumerFeederData = React.lazy(() =>
+  import("./pages/private/KV33ConsumerFeederData/KV33ConsumerFeederData")
+);
+const SubstationMeteringStatusReport = React.lazy(() =>
+  import("./pages/private/Report/SubstationMeteringStatusReport")
+);
+const MonthlyLineLossReport = React.lazy(() =>
+  import("./pages/private/Report/MonthlyLineLossReport")
+);
+const DivisionWiseLineLossReport = React.lazy(() =>
+  import("./pages/private/Report/DivisionWiseLineLossReport")
+);
+const DivisionWiseIndependentFeederMeteringStatusReport = React.lazy(() =>
+  import(
+    "./pages/private/Report/DivisionWiseIndependentFeederMeteringStatusReport"
+  )
+);
+const SubstationEnergyReceipt = React.lazy(() =>
+  import("./pages/private/Report/SubstationEnergyReceipt")
+);
+const KV33AboveFeederMasterEnergyReceipt = React.lazy(() =>
+  import("./pages/private/Report/KV33AboveFeederMasterEnergyReceipt")
+);
+const MasterSubstationWithBayPoint = React.lazy(() =>
+  import("./pages/private/Report/MasterSubstationWithBayPoint")
+);
+const KV33MasterBayPoint = React.lazy(() =>
+  import("./pages/private/Report/KV33MasterBayPoint")
+);
+const DistributionTransmissionTransaction = React.lazy(() =>
+  import("./pages/private/Report/DistributionTransmissionTransaction")
+);
+const Error404 = React.lazy(() => import("./pages/private/Error/404"));
 
 function App() {
   return (
@@ -34,80 +77,212 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/zone" element={<ZoneList />} />
-          <Route path="/addZone" element={<AddZone />} />
-          <Route path="/circle" element={<CircleList />} />
+          <Route
+            path="/zone"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <ZoneList />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/addZone"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddZone />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/circle"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <CircleList />
+              </Suspense>
+            }
+          />
 
-          <Route path="/addCircle" element={<AddCircle />} />
+          <Route
+            path="/addCircle"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddCircle />
+              </Suspense>
+            }
+          />
           {/* Disivion Route  */}
-          <Route path="/division" element={<DivisionList />} />
-          <Route path="/addDivision" element={<AddDivision />} />
+          <Route
+            path="/division"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <DivisionList />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/addDivision"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddDivision />
+              </Suspense>
+            }
+          />
 
           {/* District Route  */}
-          <Route path="/district" element={<DistrictList />} />
-          <Route path="/addDistrict" element={<AddDistrict />} />
+          <Route
+            path="/district"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <DistrictList />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/addDistrict"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddDistrict />
+              </Suspense>
+            }
+          />
 
-          <Route path="/transformer" element={<TransformerList />} />
+          <Route
+            path="/transformer"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <TransformerList />
+              </Suspense>
+            }
+          />
 
           {/* Substation Master */}
-          <Route path="/substations" element={<SubstationList />} />
-          <Route path="/AddSubstation" element={<AddSubstation />} />
+          <Route
+            path="/substations"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <SubstationList />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/AddSubstation"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddSubstation />
+              </Suspense>
+            }
+          />
 
           {/* Incoming Feeder Master Data */}
           <Route
             path="/incomingFeederMasterData"
-            element={<IncomingFeederMasterData />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <IncomingFeederMasterData />
+              </Suspense>
+            }
           />
           {/* Outgoing Feeder Master Data */}
           <Route
             path="/outgoingFeederMaterData"
-            element={<OutgoingFeederMasterData />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <OutgoingFeederMasterData />
+              </Suspense>
+            }
           />
 
           {/* 33KV & Above Consumer Feeder Master */}
           <Route
             path="/kv33ConsumerFeederMaster"
-            element={<KV33ConsumerFeederData />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <KV33ConsumerFeederData />
+              </Suspense>
+            }
           />
           {/* Reports */}
           <Route
             path="/substation-metering-status-report"
-            element={<SubstationMeteringStatusReport />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <SubstationMeteringStatusReport />
+              </Suspense>
+            }
           />
           <Route
             path="/monthly-line-loss-report"
-            element={<MonthlyLineLossReport />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <MonthlyLineLossReport />
+              </Suspense>
+            }
           />
           <Route
             path="/division-wise-line-loss-report"
-            element={<DivisionWiseLineLossReport />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <DivisionWiseLineLossReport />
+              </Suspense>
+            }
           />
           <Route
             path="/division-wise-independent-feeder-metering-status-report"
-            element={<DivisionWiseIndependentFeederMeteringStatusReport />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <DivisionWiseIndependentFeederMeteringStatusReport />
+              </Suspense>
+            }
           />
           <Route
             path="/substation-energy-receipt"
-            element={<SubstationEnergyReceipt />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <SubstationEnergyReceipt />
+              </Suspense>
+            }
           />
           <Route
             path="/33kv-above-feeder-master-energy-receipt"
-            element={<KV33AboveFeederMasterEnergyReceipt />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <KV33AboveFeederMasterEnergyReceipt />
+              </Suspense>
+            }
           />
           <Route
             path="master-substation-with-bay-point"
-            element={<MasterSubstationWithBayPoint />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <MasterSubstationWithBayPoint />
+              </Suspense>
+            }
           />
 
           <Route
             path="33kv-master-bay-point"
-            element={<KV33MasterBayPoint />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <KV33MasterBayPoint />
+              </Suspense>
+            }
           />
           <Route
             path="distribution-transmission-transaction"
-            element={<DistributionTransmissionTransaction />}
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <DistributionTransmissionTransaction />
+              </Suspense>
+            }
           />
-          <Route path="*" element={<p>404</p>} />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <Error404 />
+              </Suspense>
+            }
+          />
         </Routes>
       </Layout>
     </BrowserRouter>
