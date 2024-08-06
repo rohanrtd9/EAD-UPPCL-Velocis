@@ -34,8 +34,15 @@ const AddSubstation = React.lazy(() =>
 const IncomingFeederMasterData = React.lazy(() =>
   import("./pages/private/IncomingFeederData/IncomingFeederMasterData")
 );
+
+const AddIncomingFeederMasterData = React.lazy(() =>
+  import("./pages/private/IncomingFeederData/AddIncomingFeederMasterData")
+);
 const OutgoingFeederMasterData = React.lazy(() =>
   import("./pages/private/OutgoingFeederData/OutgoingFeederMasterData")
+);
+const AddOutgoingFeederMasterData = React.lazy(() =>
+  import("./pages/private/OutgoingFeederData/AddOutgoingFeederMasterData")
 );
 const KV33ConsumerFeederData = React.lazy(() =>
   import("./pages/private/KV33ConsumerFeederData/KV33ConsumerFeederData")
@@ -101,7 +108,6 @@ function App() {
               </Suspense>
             }
           />
-
           <Route
             path="/addCircle"
             element={
@@ -127,7 +133,6 @@ function App() {
               </Suspense>
             }
           />
-
           {/* District Route  */}
           <Route
             path="/district"
@@ -145,7 +150,6 @@ function App() {
               </Suspense>
             }
           />
-
           <Route
             path="/transformer"
             element={
@@ -154,7 +158,6 @@ function App() {
               </Suspense>
             }
           />
-
           {/* Substation Master */}
           <Route
             path="/substations"
@@ -172,7 +175,6 @@ function App() {
               </Suspense>
             }
           />
-
           {/* Incoming Feeder Master Data */}
           <Route
             path="/incomingFeederMasterData"
@@ -182,12 +184,30 @@ function App() {
               </Suspense>
             }
           />
+          {/* Add Incoming Feeder Master Data */}
+          <Route
+            path="/AddIncomingFeederMasterData"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddIncomingFeederMasterData />
+              </Suspense>
+            }
+          />
           {/* Outgoing Feeder Master Data */}
           <Route
             path="/outgoingFeederMaterData"
             element={
               <Suspense fallback={<Shimmer />}>
                 <OutgoingFeederMasterData />
+              </Suspense>
+            }
+          />
+          {/* Add Outgoing Feeder Master Data */}
+          <Route
+            path="/AddOutgoingFeederMasterData"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddOutgoingFeederMasterData />
               </Suspense>
             }
           />
@@ -258,7 +278,6 @@ function App() {
               </Suspense>
             }
           />
-
           <Route
             path="33kv-master-bay-point"
             element={

@@ -1,14 +1,15 @@
 import Header from "../../../component/Header";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 import Table, { Tbody, Td, Th, Thead, Tr } from "../../../component/Table";
 
 function IncomingFeederMasterData() {
   return (
     <>
       <Header
-        title="Incoming Feeder Master Data"
+        title="Distribution Incoming Feeder Master Data"
         action={{
-          button: "",
-          path: "/substations",
+          button: "Add Incoming Feeder",
+          path: "/AddIncomingFeederMasterData",
         }}
       />
       <Table>
@@ -19,6 +20,7 @@ function IncomingFeederMasterData() {
             <Th>Distribution Sub-Station Name</Th>
             <Th>Feeder Name</Th>
             <Th>Feeder Voltage</Th>
+            <Th>Action</Th>
             <Th>Active / InActive</Th>
           </Tr>
         </Thead>
@@ -29,7 +31,11 @@ function IncomingFeederMasterData() {
             <Td>SINGHPUR</Td>
             <Td>INC-2</Td>
             <Td>11</Td>
-            <Td>Active</Td>
+            <Td flex={true}>
+              <TrashIcon className="h-5 mt-3 w-5" />
+              <PencilSquareIcon className="h-5 mt-3 w-5 ms-2" />
+            </Td>
+            <Td>ACTIVE</Td>
           </Tr>
         </Tbody>
       </Table>

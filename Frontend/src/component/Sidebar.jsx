@@ -110,10 +110,12 @@ export function Sidebar() {
               />
               <CustomLink
                 to={"/incomingFeederMasterData"}
+                activeLink={"/AddIncomingFeederMasterData"}
                 title={"Incomming Feeder Master data"}
               />
               <CustomLink
                 to={"/outgoingFeederMaterData"}
+                activeLink={"/AddOutgoingFeederMasterData"}
                 title={"Outgoing Feeder Master data"}
               />
 

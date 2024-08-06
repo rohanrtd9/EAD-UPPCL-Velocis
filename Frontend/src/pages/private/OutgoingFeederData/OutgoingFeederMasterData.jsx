@@ -13,10 +13,10 @@ function OutgoingFeederMasterData() {
   return (
     <>
       <Header
-        title="Outgoing Feeder Master Data"
+        title="Distribution Outgoing Feeder Master Data"
         action={{
-          button: "",
-          path: "/substations",
+          button: "Add Outgoing Feeder",
+          path: "/AddOutgoingFeederMasterData",
         }}
       />
 
@@ -43,6 +43,14 @@ function OutgoingFeederMasterData() {
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full mb-5 group">
+            <label className={label}>Circle</label>
+            <select className={select} defaultValue="">
+              <option>Select Circle</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full mb-5 group">
             <label className={label}>Division</label>
             <select className={select} defaultValue="">
               <option>Select Division</option>
@@ -53,7 +61,7 @@ function OutgoingFeederMasterData() {
           <div className="relative z-0 w-full group">
             <label className={label}>Name of Substation</label>
             <select className={select} defaultValue="">
-              <option value="">select substation</option>
+              <option value="">Select Substation</option>
             </select>
           </div>
         </div>
