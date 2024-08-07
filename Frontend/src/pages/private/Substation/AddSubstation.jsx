@@ -10,7 +10,7 @@ function AddSubstation() {
       <Header
         title="Add Substation"
         action={{
-          button: "Substations",
+          button: "Substations List",
           path: "/substations",
         }}
       />
@@ -32,7 +32,7 @@ function AddSubstation() {
               Voltage level of Distribution Substation (KV)
             </label>
             <select className={select} defaultValue="">
-              <option>Select</option>
+              <option>--Select--</option>
             </select>
           </div>
         </div>
@@ -40,7 +40,7 @@ function AddSubstation() {
           <div className="relative z-0 w-full group">
             <label className={label}>Month</label>
             <select className={select} defaultValue="">
-              <option>Select</option>
+              <option>--Select--</option>
             </select>
           </div>
         </div>
@@ -48,7 +48,7 @@ function AddSubstation() {
           <div className="relative z-0 w-full group">
             <label className={label}>Year</label>
             <select className={select} defaultValue="">
-              <option>Select</option>
+              <option>--Select--</option>
             </select>
           </div>
         </div>
