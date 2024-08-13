@@ -22,9 +22,9 @@ export const comparePassword = async (password, hashPassword) => {
 } 
 
 
-export const generateToken = async (id,role,DIVISION_NAME,CIRCLE_NAME,ZONE_NAME,DISCOM_NAME) => {
+export const generateToken = async (id,role,hirerchy) => {
     try{
-        const token = JWT.sign({loginID:id,role,DIVISION_NAME,CIRCLE_NAME,ZONE_NAME,DISCOM_NAME}, process.env.JWT_SECRET, {
+        const token = JWT.sign({loginID:id,role,hirerchy}, process.env.JWT_SECRET, {
             expiresIn: 8640
         });
         return token;

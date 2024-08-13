@@ -5,9 +5,14 @@ import {createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle,exportC
 import {createDivision,updateDivision,getDivisions,deleteDivision,exportDivisionController} from "../controllers/TMDivisionController.js";
 import {createDistrict,updateDistrict,getDistricts,deleteDistricts,exportDistrictController} from "../controllers/TMDistrictController.js";
 import {createSubstation,updateSubstation,getSubstations,deleteSubstation,exportSubstationsController} from "../controllers/TMSubstationController.js";
- 
+import {loginController,changePasswordController} from "../controllers/userController.js";
+
 
 const router = express.Router();
+
+router.post("/login",  loginController);
+router.post('/change-password', changePasswordController);
+
 
 // Zones route
 //router.post("/export-zone",  exportZoneController);

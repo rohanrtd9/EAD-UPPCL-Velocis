@@ -11,10 +11,16 @@ import { createIncommingFeeder, deleteIncommingFeeder, getIncommingFeeders, upda
 import { createOutgoingFeeder, deleteOutgoingFeeder, getOutgoingFeeders, updateOutgoingFeeder } from "../controllers/DMOutgoingFeederController.js";
 import { createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder } from "../controllers/DMIndependentFeederController.js";
  
+import {loginController,changePasswordController} from "../controllers/userController.js";
 
 
 
 const router = express.Router();
+
+router.post("/login",  loginController);
+router.post('/change-password', changePasswordController);
+
+
 
 // router.get("/dm-substation/list",  listDMSubStationController);
 router.get("/dm-subdivision/list",  listDMSubdivisionController);
