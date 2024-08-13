@@ -92,7 +92,6 @@ export function Sidebar() {
                 activeLink={"/addCircle"}
                 title={"Circle Masters"}
               />
-
               <CustomLink
                 to={"/division"}
                 activeLink={"/addDivision"}
@@ -118,14 +117,22 @@ export function Sidebar() {
                 activeLink={"/AddOutgoingFeederMasterData"}
                 title={"Outgoing Feeder Master data"}
               />
-
               <CustomLink
                 to={"/kv33ConsumerFeederMaster"}
                 activeLink={"/AddKV33ConsumerFeederData"}
                 title={"33 KV & above consumer master"}
               />
-
               <CustomLink to={"/transformer"} title={"Transformer master"} />
+              <CustomLink
+                to={"/SubstationDataList"}
+                activeLink={"/AddSubstationData"}
+                title={"Name Of Substation - Transmission"}
+              />
+              <CustomLink
+                to={"/FeederBayDataList"}
+                activeLink={"/AddFeederBayData"}
+                title={"Name Of Feeder/Bay - Transmission"}
+              />
             </List>
           </AccordionBody>
         </Accordion>
