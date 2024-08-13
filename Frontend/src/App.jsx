@@ -51,6 +51,25 @@ const KV33ConsumerFeederData = React.lazy(() =>
 const AddKV33ConsumerFeederData = React.lazy(() =>
   import("./pages/private/KV33ConsumerFeederData/AddKV33ConsumerFeederData")
 );
+
+// Transmission Tabs Here
+
+const AddFeederBayData = React.lazy(() =>
+  import("./pages/private/Transmission/FeederBay/AddFeederBayData")
+);
+
+const FeederBayDataList = React.lazy(() =>
+  import("./pages/private/Transmission/FeederBay/FeederBayDataList")
+);
+
+const AddSubstationData = React.lazy(() =>
+  import("./pages/private/Transmission/SubStation/AddSubstationData")
+);
+
+const SubstationDataList = React.lazy(() =>
+  import("./pages/private/Transmission/SubStation/SubstationDataList")
+);
+
 const SubstationMeteringStatusReport = React.lazy(() =>
   import("./pages/private/Report/SubstationMeteringStatusReport")
 );
@@ -230,6 +249,39 @@ function App() {
             element={
               <Suspense fallback={<Shimmer />}>
                 <AddKV33ConsumerFeederData />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/FeederBayDataList"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <FeederBayDataList />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/AddFeederBayData"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddFeederBayData />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/SubstationDataList"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <SubstationDataList />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/AddSubstationData"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddSubstationData />
               </Suspense>
             }
           />
