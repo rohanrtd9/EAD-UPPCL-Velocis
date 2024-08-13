@@ -121,6 +121,7 @@ export function Sidebar() {
 
               <CustomLink
                 to={"/kv33ConsumerFeederMaster"}
+                activeLink={"/AddKV33ConsumerFeederData"}
                 title={"33 KV & above consumer master"}
               />
 

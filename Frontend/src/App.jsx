@@ -47,6 +47,10 @@ const AddOutgoingFeederMasterData = React.lazy(() =>
 const KV33ConsumerFeederData = React.lazy(() =>
   import("./pages/private/KV33ConsumerFeederData/KV33ConsumerFeederData")
 );
+
+const AddKV33ConsumerFeederData = React.lazy(() =>
+  import("./pages/private/KV33ConsumerFeederData/AddKV33ConsumerFeederData")
+);
 const SubstationMeteringStatusReport = React.lazy(() =>
   import("./pages/private/Report/SubstationMeteringStatusReport")
 );
@@ -73,6 +77,7 @@ const MasterSubstationWithBayPoint = React.lazy(() =>
 const KV33MasterBayPoint = React.lazy(() =>
   import("./pages/private/Report/KV33MasterBayPoint")
 );
+
 const DistributionTransmissionTransaction = React.lazy(() =>
   import("./pages/private/Report/DistributionTransmissionTransaction")
 );
@@ -211,7 +216,6 @@ function App() {
               </Suspense>
             }
           />
-
           {/* 33KV & Above Consumer Feeder Master */}
           <Route
             path="/kv33ConsumerFeederMaster"
@@ -221,6 +225,15 @@ function App() {
               </Suspense>
             }
           />
+          <Route
+            path="/AddKV33ConsumerFeederData"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddKV33ConsumerFeederData />
+              </Suspense>
+            }
+          />
+
           {/* Reports */}
           <Route
             path="/substation-metering-status-report"

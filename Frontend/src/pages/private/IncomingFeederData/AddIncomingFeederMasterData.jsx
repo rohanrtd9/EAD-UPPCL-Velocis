@@ -34,6 +34,18 @@ function AddDivision() {
             <label className={label}>Feeder Name</label>
             <select className={select} defaultValue="">
               <option>--Select--</option>
+              <option>INC-1</option>
+              <option>INC-2</option>
+              <option>INC-3</option>
+              <option>INC-4</option>
+              <option>INC-5</option>
+              <option>INC-6</option>
+              <option>INC-7</option>
+              <option>INC-8</option>
+              <option>INC-9</option>
+              <option>INC-10</option>
+              <option>INC-11</option>
+              <option>INC-12</option>
             </select>
           </div>
         </div>
