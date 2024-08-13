@@ -1,48 +1,49 @@
-const express = require("express");
+import express from "express";
+import dotenv from 'dotenv';
+import distributionsRoutes from './routes/distributionRoutes.js';
+import transmissionRoutes from './routes/transmissionRoutes.js';
+import connectDB from "./config/conn.js";
+import cors from 'cors';
+import path from 'path';
+import fs from 'fs';
+
+
+// import os from 'os';
+// import axios from 'axios';
+
+dotenv.config();
 const app = express();
-const cors = require("cors");
-const path = require("path");
+app.use(express.json());
+connectDB();
 
-// Configuration
-require("dotenv").config();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5000;
 
-// DB
-const connectDb = require("./db/dbConnect"); // Import the database connection function
-connectDb(); // Connect to MongoDB Atlas instance
+const __dirname = path.resolve(path.dirname('')); 
+const filePath = path.join(__dirname,'./uploads');
+if (!fs.existsSync(filePath)) {
+fs.mkdirSync(filePath);
+}
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Middleware
-app.use(express.json({ limit: "100mb" }));
+
+
 app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 
-// Serve static files for the built React app
-app.use(express.static("dist"));
-
-// Set appropriate headers to curb CORS error
-// Add your CORS handling logic here
-
-// Apply ValidateToken middleware to all routes
-// Add your token validation middleware here
-
-// Custom routes
-// Add your API routes here
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err); // Log the error for debugging purposes
-  res.json({
-    status: STATUS_INTERNAL_SERVER_ERROR,
-    message: "Internal Server Error.",
-  });
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, XMLHttpRequest, ngsw-bypass, Lng, Lang');
+    next();
 });
 
-// Download file route
-// Add your file download route here
-
-// Default route to serve the React app
-app.get("*", (req, res) => {
-  res.sendFile("index.html", { root: path.join(__dirname, "/dist") });
+app.use('/api/distribution',  distributionsRoutes  );
+app.use('/api/transmission',  transmissionRoutes  );
+app.all('*', (req, res) => {
+    res.send({message:"can't find the requested url"});
 });
 
-// Start the server
-app.listen(port, "0.0.0.0", () => console.log(`Listening on port ${port}`));
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
