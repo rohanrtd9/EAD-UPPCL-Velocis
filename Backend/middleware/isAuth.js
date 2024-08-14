@@ -9,7 +9,7 @@ export const isAuth = async (req, res, next) => {
         req.encodedUser = decoded;
         next();
     }catch(err){
-        return res.status(400).send({message:"error in token",status:false,statusCode:400,errorMessage:err});
+        return res.status(400).send({message:"Error in token, Re login",status:false,statusCode:400,errorMessage:err});
      
         // res.status(401).send({message: 'Invalid token'});
         //const errormsg = new Error(err.message);
