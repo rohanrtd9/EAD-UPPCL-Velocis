@@ -53,7 +53,7 @@ export function Sidebar() {
             <ListItemPrefix>
               <ComputerDesktopIcon className="h-5 w-5" />
             </ListItemPrefix>
-            Dashboard
+            Distribution Dashboard
           </ListItem>
         </NavLink>
         <Accordion
@@ -76,7 +76,7 @@ export function Sidebar() {
                 <PresentationChartBarIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
-                Masters
+                Distribution Masters
               </Typography>
             </AccordionHeader>
           </ListItem>
@@ -123,26 +123,60 @@ export function Sidebar() {
                 title={"33 KV & above consumer master"}
               />
               <CustomLink to={"/transformer"} title={"Transformer master"} />
+            </List>
+          </AccordionBody>
+        </Accordion>
+
+        <Accordion
+          open={open === 4}
+          icon={
+            <ChevronDownIcon
+              strokeWidth={2.5}
+              className={`mx-auto h-4 w-4 transition-transform ${
+                open === 4 ? "rotate-180" : ""
+              }`}
+            />
+          }
+        >
+          <ListItem className="p-0" selected={open === 4}>
+            <AccordionHeader
+              onClick={() => handleOpen(4)}
+              className="border-b-0 p-3"
+            >
+              <ListItemPrefix>
+                <PresentationChartBarIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Distribution - Transaction
+              </Typography>
+            </AccordionHeader>
+          </ListItem>
+          <AccordionBody className="py-1">
+            <List className="p-0">
               <CustomLink
-                to={"/SubstationDataList"}
-                activeLink={"/AddSubstationData"}
-                title={"Name Of Substation - Transmission"}
+                to={"/AddTransactionStatusByAdmin"}
+                title={"Add Substation Metering Status By Admin"}
               />
               <CustomLink
-                to={"/FeederBayDataList"}
-                activeLink={"/AddFeederBayData"}
-                title={"Name Of Feeder/Bay - Transmission"}
+                to={"/EditTransactionStatusByAdmin"}
+                title={"Edit Substation Metering Status By Admin"}
+              />
+              <CustomLink
+                to={"/AddMeterStatusByAdmin"}
+                title={
+                  "Add 33KV & Above Consumer Feeder Metering Status By Admin"
+                }
+              />
+              <CustomLink
+                to={"/EditMeterStatusByAdmin"}
+                title={
+                  "Edit 33KV & Above Consumer Feeder Metering Status By Admin"
+                }
               />
             </List>
           </AccordionBody>
         </Accordion>
 
-        <ListItem>
-          <ListItemPrefix>
-            <BoltIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Transactions
-        </ListItem>
         <Accordion
           open={open === 2}
           icon={
@@ -163,7 +197,7 @@ export function Sidebar() {
                 <DocumentCheckIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal">
-                Report
+                Distribution Report
               </Typography>
             </AccordionHeader>
           </ListItem>
@@ -206,6 +240,54 @@ export function Sidebar() {
               <CustomLink
                 to={"/distribution-transmission-transaction"}
                 title={"Distribution and Transmission Transaction Month Wise"}
+              />
+            </List>
+          </AccordionBody>
+        </Accordion>
+        <NavLink to="/TransMisstionDashboard">
+          <ListItem>
+            <ListItemPrefix>
+              <ComputerDesktopIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Transmission Dashboard
+          </ListItem>
+        </NavLink>
+
+        <Accordion
+          open={open === 3}
+          icon={
+            <ChevronDownIcon
+              strokeWidth={2.5}
+              className={`mx-auto h-4 w-4 transition-transform ${
+                open === 3 ? "rotate-180" : ""
+              }`}
+            />
+          }
+        >
+          <ListItem className="p-0" selected={open === 3}>
+            <AccordionHeader
+              onClick={() => handleOpen(3)}
+              className="border-b-0 p-3"
+            >
+              <ListItemPrefix>
+                <PresentationChartBarIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Transmission Master
+              </Typography>
+            </AccordionHeader>
+          </ListItem>
+          <AccordionBody className="py-1">
+            <List className="p-0">
+              <CustomLink
+                to={"/SubstationDataList"}
+                activeLink={"/AddFeederBayData"}
+                title={"Name Of Substation"}
+              />
+              <CustomLink
+                to={"/FeederBayDataList"}
+                activeLink={"/AddFeederBayData"}
+                title={"Name Of Feeder/Bay"}
               />
             </List>
           </AccordionBody>
