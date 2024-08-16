@@ -1,4 +1,4 @@
-S.No.,Zone,Circle,Division,Substation,Feeder/Bay,Energy Meter Serial No.,Interface Type,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
+S.No.,Zone,Circle,Division,Substation,FeederBay,Energy Meter Serial No.,InterfaceType,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
 1,NORTH-EAST,ETC Azamgarh,ETD Mau,132KV S/S MOHAMMDABAD,33 KV MAU WEST BAY,V0197654,T-D,June,2024,0,4704,MAU WEST BADAGAON_40103,6308.7,EDD I MAU,POORVANCHAL
 2,NORTH-EAST,ETC Azamgarh,ETD Mau,132KV S/S MOHAMMDABAD,33 KV MOHAMDABAD FEEDER,14192567,T-D,June,2024,0,4997,,,,
 3,NORTH-EAST,ETC Azamgarh,ETD Mau,132KV S/S MOHAMMDABAD,33 KV JACK BUS FEEDER,13195285,T-D,June,2024,0,0,,,,

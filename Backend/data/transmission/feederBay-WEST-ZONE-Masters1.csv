@@ -1,4 +1,4 @@
-S.No.,Zone,Circle,Division,Substation,Feeder/Bay,Energy Meter Serial No.,Interface Type,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
+S.No.,Zone,Circle,Division,Substation,FeederBay,Energy Meter Serial No.,InterfaceType,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
 1,WEST,ETC Meerut,ETD Meerut-II,132KV S/S SALAVA,33 KV Sardhana Nahar.,10059070,T-D,June,2024,0,3254,SARDHANA_110742,3254,EDD II MEERUT,PASCHIMANCHAL
 2,WEST,ETC Meerut,ETD Meerut-II,132KV S/S SALAVA,33 KV BHAMOORI BAY.,10059214,T-D,June,2024,0,4486,,,,
 3,WEST,ETC Meerut,ETD Meerut-II,132KV S/S SALAVA,33 KV SALAWA BAY.,10059223,T-D,June,2024,0,2908,SALAWA_110742,2908,EDD II MEERUT,PASCHIMANCHAL

@@ -5,6 +5,7 @@ import {createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle,exportC
 import {createDivision,updateDivision,getDivisions,deleteDivision,exportDivisionController} from "../controllers/TMDivisionController.js";
 import {createDistrict,updateDistrict,getDistricts,deleteDistricts,exportDistrictController} from "../controllers/TMDistrictController.js";
 import {createSubstation,updateSubstation,getSubstations,deleteSubstation,exportSubstationsController} from "../controllers/TMSubstationController.js";
+import {exportFeedersController,createBays,updateBay,getbaylist,deleteBay} from "../controllers/TMFeederBayController.js"
 import {loginController,changePasswordController} from "../controllers/userController.js";
 
 
@@ -49,6 +50,13 @@ router.post("/add-substation",  createSubstation);
 router.put("/edit-substation",  updateSubstation);
 router.post("/list-substation",  getSubstations);
 router.delete("/delete-substation",  deleteSubstation);
+
+//FeedersBay route
+//router.post("/export-bay",  exportFeedersController);
+router.post("/add-bay",  createBays);
+router.put("/edit-bay",  updateBay);
+router.post("/bay-list",  getbaylist);
+router.delete("/delete-bay",  deleteBay);
 
 
 export default router;

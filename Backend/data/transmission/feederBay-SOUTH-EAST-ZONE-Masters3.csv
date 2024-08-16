@@ -1,4 +1,4 @@
-S.No.,Zone,Circle,Division,Substation,Feeder/Bay,Energy Meter Serial No.,Interface Type,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
+S.No.,Zone,Circle,Division,Substation,FeederBay,Energy Meter Serial No.,InterfaceType,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
 1,SOUTH-EAST,ETC Prayagraj-I,ETD Fatehpur,132KV S/S BINDAKI,TBC,Y0197639,T-D,June,2024,0,14.8,,,,
 2,SOUTH-EAST,ETC Prayagraj-I,ETD Fatehpur,132KV S/S BINDAKI,JONIHA,ABB04320,T-D,June,2024,0,1916,,,,
 3,SOUTH-EAST,ETC Prayagraj-I,ETD Fatehpur,132KV S/S BINDAKI,BAHUA,ABB04322,T-D,June,2024,0,6745,,,,

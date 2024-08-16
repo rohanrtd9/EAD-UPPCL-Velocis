@@ -1,4 +1,4 @@
-S.No.,Zone,Circle,Division,Substation,Feeder/Bay,Energy Meter Serial No.,Interface Type,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
+S.No.,Zone,Circle,Division,Substation,FeederBay,Energy Meter Serial No.,InterfaceType,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
 1,CENTRAL,ETC Gonda,ETD Behraich,132KV S/S NANPARA,40 MVA TRANSFORMER 1,UP0025A,T-D,June,2024,0,8411.28,,,,
 2,CENTRAL,ETC Gonda,ETD Behraich,132KV S/S NANPARA,40 MVA TRANSFORMER 2,UP1756A,T-D,June,2024,0,8671.2,,,,
 3,CENTRAL,ETC Gonda,ETD Behraich,132KV S/S NANPARA,40 MVA TRANSFORMER 3,UPGE4336A,T-D,June,2024,0,8302.68,,,,

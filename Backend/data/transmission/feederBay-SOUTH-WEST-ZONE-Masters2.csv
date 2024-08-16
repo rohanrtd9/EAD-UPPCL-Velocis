@@ -1,4 +1,4 @@
-S.No.,Zone,Circle,Division,Substation,Feeder/Bay,Energy Meter Serial No.,Interface Type,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
+S.No.,Zone,Circle,Division,Substation,FeederBay,Energy Meter Serial No.,InterfaceType,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
 1,SOUTH-WEST,ETC Agra,ETD Agra-I,132KV S/S BHEEMNAGARI,33 KV JACK BUS,7041855,T-D,June,2024,0,0,,,,
 2,SOUTH-WEST,ETC Agra,ETD Agra-I,132KV S/S BHEEMNAGARI,33 KV JALMA,7041849,T-D,June,2024,0,6810.2,,,,
 3,SOUTH-WEST,ETC Agra,ETD Agra-I,132KV S/S BHEEMNAGARI,33 KV VIBHAV NAGAR,7041846,T-D,June,2024,0,8777.6,,,,
