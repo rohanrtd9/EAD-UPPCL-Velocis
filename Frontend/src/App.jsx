@@ -1,55 +1,86 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Layout from "./component/Layout";
-import Dashboard from "./pages/private/dashboard";
+import TransMisstionDashboard from "./pages/private/Transmission/dashboard";
+import Dashboard from "./pages/private/Distribution/dashboard";
 import Shimmer from "./component/Shimmer";
 import React, { Suspense } from "react";
-const ZoneList = React.lazy(() => import("./pages/private/Zone/zoneList"));
-const AddZone = React.lazy(() => import("./pages/private/Zone/addZone"));
-const AddCircle = React.lazy(() => import("./pages/private/Circle/addCircle"));
+const ZoneList = React.lazy(() =>
+  import("./pages/private/Distribution/Zone/zoneList")
+);
+const AddZone = React.lazy(() =>
+  import("./pages/private/Distribution/Zone/addZone")
+);
+const AddCircle = React.lazy(() =>
+  import("./pages/private/Distribution/Circle/addCircle")
+);
 const CircleList = React.lazy(() =>
-  import("./pages/private/Circle/circleList")
+  import("./pages/private/Distribution/Circle/circleList")
 );
 const DivisionList = React.lazy(() =>
-  import("./pages/private/Division/divisionList")
+  import("./pages/private/Distribution/Division/divisionList")
 );
 const AddDivision = React.lazy(() =>
-  import("./pages/private/Division/addDivision")
+  import("./pages/private/Distribution/Division/addDivision")
 );
 const DistrictList = React.lazy(() =>
-  import("./pages/private/District/districtList")
+  import("./pages/private/Distribution/District/districtList")
 );
 const AddDistrict = React.lazy(() =>
-  import("./pages/private/District/addDistrict")
+  import("./pages/private/Distribution/District/addDistrict")
 );
 const TransformerList = React.lazy(() =>
-  import("./pages/private/Transformer/TransformerList")
+  import("./pages/private/Distribution/Transformer/TransformerList")
 );
 const SubstationList = React.lazy(() =>
-  import("./pages/private/Substation/SubstationList")
+  import("./pages/private/Distribution/Substation/SubstationList")
 );
 const AddSubstation = React.lazy(() =>
-  import("./pages/private/Substation/AddSubstation")
+  import("./pages/private/Distribution/Substation/AddSubstation")
 );
 const IncomingFeederMasterData = React.lazy(() =>
-  import("./pages/private/IncomingFeederData/IncomingFeederMasterData")
+  import(
+    "./pages/private/Distribution/IncomingFeederData/IncomingFeederMasterData"
+  )
 );
 
 const AddIncomingFeederMasterData = React.lazy(() =>
-  import("./pages/private/IncomingFeederData/AddIncomingFeederMasterData")
+  import(
+    "./pages/private/Distribution/IncomingFeederData/AddIncomingFeederMasterData"
+  )
 );
 const OutgoingFeederMasterData = React.lazy(() =>
-  import("./pages/private/OutgoingFeederData/OutgoingFeederMasterData")
+  import(
+    "./pages/private/Distribution/OutgoingFeederData/OutgoingFeederMasterData"
+  )
 );
 const AddOutgoingFeederMasterData = React.lazy(() =>
-  import("./pages/private/OutgoingFeederData/AddOutgoingFeederMasterData")
+  import(
+    "./pages/private/Distribution/OutgoingFeederData/AddOutgoingFeederMasterData"
+  )
 );
 const KV33ConsumerFeederData = React.lazy(() =>
-  import("./pages/private/KV33ConsumerFeederData/KV33ConsumerFeederData")
+  import(
+    "./pages/private/Distribution/KV33ConsumerFeederData/KV33ConsumerFeederData"
+  )
 );
 
 const AddKV33ConsumerFeederData = React.lazy(() =>
-  import("./pages/private/KV33ConsumerFeederData/AddKV33ConsumerFeederData")
+  import(
+    "./pages/private/Distribution/KV33ConsumerFeederData/AddKV33ConsumerFeederData"
+  )
+);
+
+// Distribution Trasaction route here
+
+const AddTransactionStatusByAdmin = React.lazy(() =>
+  import("./pages/private/Distribution/Transaction/AddTransactionStatusByAdmin")
+);
+
+const EditTransactionStatusByAdmin = React.lazy(() =>
+  import(
+    "./pages/private/Distribution/Transaction/EditTransactionStatusByAdmin"
+  )
 );
 
 // Transmission Tabs Here
@@ -71,34 +102,38 @@ const SubstationDataList = React.lazy(() =>
 );
 
 const SubstationMeteringStatusReport = React.lazy(() =>
-  import("./pages/private/Report/SubstationMeteringStatusReport")
+  import("./pages/private/Distribution/Report/SubstationMeteringStatusReport")
 );
 const MonthlyLineLossReport = React.lazy(() =>
-  import("./pages/private/Report/MonthlyLineLossReport")
+  import("./pages/private/Distribution/Report/MonthlyLineLossReport")
 );
 const DivisionWiseLineLossReport = React.lazy(() =>
-  import("./pages/private/Report/DivisionWiseLineLossReport")
+  import("./pages/private/Distribution/Report/DivisionWiseLineLossReport")
 );
 const DivisionWiseIndependentFeederMeteringStatusReport = React.lazy(() =>
   import(
-    "./pages/private/Report/DivisionWiseIndependentFeederMeteringStatusReport"
+    "./pages/private/Distribution/Report/DivisionWiseIndependentFeederMeteringStatusReport"
   )
 );
 const SubstationEnergyReceipt = React.lazy(() =>
-  import("./pages/private/Report/SubstationEnergyReceipt")
+  import("./pages/private/Distribution/Report/SubstationEnergyReceipt")
 );
 const KV33AboveFeederMasterEnergyReceipt = React.lazy(() =>
-  import("./pages/private/Report/KV33AboveFeederMasterEnergyReceipt")
+  import(
+    "./pages/private/Distribution/Report/KV33AboveFeederMasterEnergyReceipt"
+  )
 );
 const MasterSubstationWithBayPoint = React.lazy(() =>
-  import("./pages/private/Report/MasterSubstationWithBayPoint")
+  import("./pages/private/Distribution/Report/MasterSubstationWithBayPoint")
 );
 const KV33MasterBayPoint = React.lazy(() =>
-  import("./pages/private/Report/KV33MasterBayPoint")
+  import("./pages/private/Distribution/Report/KV33MasterBayPoint")
 );
 
 const DistributionTransmissionTransaction = React.lazy(() =>
-  import("./pages/private/Report/DistributionTransmissionTransaction")
+  import(
+    "./pages/private/Distribution/Report/DistributionTransmissionTransaction"
+  )
 );
 const Error404 = React.lazy(() => import("./pages/private/Error/404"));
 
@@ -107,6 +142,10 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Routes>
+          <Route
+            path="/TransMisstionDashboard"
+            element={<TransMisstionDashboard />}
+          />
           <Route path="/" element={<Dashboard />} />
           <Route
             path="/zone"
@@ -276,12 +315,28 @@ function App() {
               </Suspense>
             }
           />
-
           <Route
             path="/AddSubstationData"
             element={
               <Suspense fallback={<Shimmer />}>
                 <AddSubstationData />
+              </Suspense>
+            }
+          />
+          {/* Distribution Transaction Route Here */}
+          <Route
+            path="/AddTransactionStatusByAdmin"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <AddTransactionStatusByAdmin />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/EditTransactionStatusByAdmin"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <EditTransactionStatusByAdmin />
               </Suspense>
             }
           />
