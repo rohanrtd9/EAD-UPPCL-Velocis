@@ -108,7 +108,7 @@ export const getCircles = async (req, res) => {
         { $match: { isDeleted: 0 } },
         { $lookup: {
             from: 'dm-zones',
-            localField: 'zone_ID',
+            localField: 'zone_Id',
             foreignField: '_id',
             as: 'zoneDetails'
         }},
@@ -121,7 +121,7 @@ export const getCircles = async (req, res) => {
         limit: Number(limit)
     };
 
-    const result = await zonesModel.aggregatePaginate(aggregateQuery, options);
+    const result = await circlesModel.aggregatePaginate(aggregateQuery, options);
 
 
 

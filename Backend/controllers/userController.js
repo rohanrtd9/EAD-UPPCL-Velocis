@@ -47,12 +47,12 @@ export const loginController = async (req,res,next) => {
         return res.status(404).send({message:"User not found",status:false,statusCode:404,user:{}});
     }else{
 
-    /* const isMatch = await user.comparePassword(password);
-
+    const isMatch = await user.comparePassword(password);
+    console.log('aaaaa',isMatch);    
     if (isMatch) {
     } else {
       return res.status(400).send({message:"Invalid password",status:400,user:{}});
-    } */
+    }
 
 
         var matchedField = '';
@@ -202,31 +202,29 @@ export const loginController = async (req,res,next) => {
     else if (loginType ==  'admin'){  
 
 
-        const user = await divisionModel.findOne({divisionName:username});
+        const user = await divisionModel.findOne({divisionName:username,isAdmin:1});
    
         if (!user) {
             return res.status(404).send({message:"User not found",status:false,statusCode:404,user:{}});
         }else{
     
-        /* const isMatch = await user.comparePassword(password);
+       const isMatch = await user.comparePassword(password);
     
-        if (isMatch) {
+        /*  if (isMatch) {
         } else {
           return res.status(400).send({message:"Invalid password",status:400,user:{}});
         } */
     
     
-            var matchedField = '';
+            var matchedField = 'admin';
             
-            if (user.substationName === username) {
-                matchedField = 'admin'; // add connection, bills
-            }
+           
     
         }
         
         
         
-            var hirerchy = '';
+            var hirerchy = {};
         
     
         /* const isMatch = await comparePassword(password,user.password);
