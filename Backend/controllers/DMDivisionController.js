@@ -51,8 +51,6 @@ export const exportDivisionController = async (req,res,next) => {
 }
 }
 
-
-
 export const createDivision = async (req, res) => {
   try {
       const { discom_ID,zone_ID,circle_ID, divisionName,divisionCode } = req.body;

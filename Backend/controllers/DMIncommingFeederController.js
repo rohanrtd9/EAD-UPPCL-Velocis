@@ -1,5 +1,55 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import csvParser from 'csv-parser';
 import incommingModel from "../models/distributionIncommingModel.js";
 
+export const importIncomingFeederController = async (req,res,next) => {
+
+  try{
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    
+    const results = [];
+    const filePath = path.join(__dirname, '../data/distribution/incomingFeeder/IncomingFeeder.csv');
+    
+    fs.createReadStream(filePath)
+    .pipe(csvParser())
+    .on('data',  async(data) => {
+      try {       
+        
+          let payload = {
+             "discomName":data['discomName'],
+             "zoneName":data['zoneName'],
+             "circleName":data['circleName'],
+            "divisionName":data['divisionName'],
+            "substationName":data['substationName'],
+            "feederName":data['feederName'],
+            "feederVoltage":data['feederVoltage'],
+            "meterMake":data['meterMake'],
+            "meterSLNo":data['meterSLNo'],
+            "overAllMF":data['overAllMF'],
+            "status":data['status']
+          }
+          let incomingfeeder =  await  incommingModel.create(payload);                       
+              
+
+      } catch (error) {
+        console.error('Error processing data:', error);
+        // Optionally, you can add error handling logic here.
+      }
+    })
+    .on('end', () => {
+      //console.log(results)
+     res.status(200).json({ message: "Successfully processed", results });
+    });
+
+
+}catch(error){
+    return res.status(500).send({message:"Export issue "+error,status:false,statusCode:500,user:[],errorMessage:error});
+}
+}
 
 
 export const getIncommingFeeders = async (req, res) => {
@@ -10,7 +60,7 @@ export const getIncommingFeeders = async (req, res) => {
       const options = {
           page: page,
           limit: limit,
-          sort: { substationName: 1 } // Sort by discomName in ascending order
+          sort: { _id: -1 } // Sort by discomName in ascending order
       };
       const result = await incommingModel.paginate(query, options);
       return res.status(200).json({status:200,result:result});
@@ -21,9 +71,6 @@ export const getIncommingFeeders = async (req, res) => {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing ', error });
   }
 }
-
-
-
 
 export const createIncommingFeeder = async (req,res) => {
   try {
@@ -56,7 +103,6 @@ export const updateIncommingFeeder = async (req,res) => {
   }
 }
 
-
 export const deleteIncommingFeeder = async (req,res) => {
   try {
 
@@ -75,8 +121,6 @@ export const deleteIncommingFeeder = async (req,res) => {
     return res.status(500).send({ result:{},statusCode:"500", message: 'error occured in deleting ',error });
   }
 }
-
-
 
 
 // export const listDMSubStationController = async(req,res,next)=>{

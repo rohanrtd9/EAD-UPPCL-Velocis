@@ -142,14 +142,14 @@ export const getSubstations = async (req, res) => {
   try {
 
     const {page, limit,divisionName} = req.body; 
-    var query = { isDeleted: 0 };
+    var query = {  }; // { isDeleted: 0 };
     if(divisionName){
       query = { isDeleted: 0, divisionName:divisionName}; // Only fetch non-deleted discoms
     }
       const options = {
           page: page,
           limit: limit,
-          sort: { substationName: 1 } // Sort by discomName in ascending order
+          sort: { _id: -1 } // Sort by discomName in ascending order
       };
       const result = await substationModel.paginate(query, options);
       return res.status(200).json({status:200,result:result});
