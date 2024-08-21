@@ -5,6 +5,8 @@ import fs from 'fs';
 import csvParser from 'csv-parser';
 import discomModel from "../models/discomModel.js";
 import zonesModel from "../models/distributionZoneModel.js";
+import { Parser } from 'json2csv';
+
 //import substationModel from "../models/substationModel.js";
 
 export const exportZonesController = async (req,res,next) => {
@@ -55,9 +57,9 @@ export const exportZonesController = async (req,res,next) => {
 
 export const createZone = async (req, res) => {
   try {
-      const { discom_ID, zoneName } = req.body;
-      if (!discom_ID || !zoneName) {
-          return res.status(400).send({ result: {}, statusCode: '400', message: 'discom_ID and zoneName are required' });
+      const { discom_ID, zoneName,zoneCode } = req.body;
+      if (!discom_ID || !zoneName || !zoneCode) {
+          return res.status(400).send({ result: {}, statusCode: '400', message: 'discom_ID, zoneCode and zoneName are required' });
       }
       const result = await zonesModel.create(req.body);
       return res.status(200).send({ result, statusCode: '200', message: 'Created successfully' });
@@ -68,9 +70,9 @@ export const createZone = async (req, res) => {
 
 export const updateZone = async (req, res) => {
   try {
-      const { id, discom_ID, zoneName } = req.body;
-      if (!id || !discom_ID || !zoneName) {
-          return res.status(400).send({ result: {}, statusCode: '400', message: 'ID, discom_ID, and zoneName are required' });
+      const { id, discom_ID, zoneName,zoneCode } = req.body;
+      if (!id || !discom_ID || !zoneName || !zoneCode) {
+          return res.status(400).send({ result: {}, statusCode: '400', message: 'ID, discom_ID, zoneCode and zoneName are required' });
       }
       const resultCheck = await zonesModel.findById(id);
       if (!resultCheck) {
@@ -159,6 +161,46 @@ export const getDiscomZones = async (req, res) => {
       return res.status(200).json({ statusCode: 200, result });
   } catch (error) {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones', error });
+  }
+}
+
+export const exportZoneToCsv  = async (req, res) => {
+   
+  
+  try {
+    // Define your aggregation query
+    const aggregateQuery = await zonesModel.aggregate([
+      { $match: { isDeleted: 0 } },
+      {
+        $lookup: {
+          from: 'discoms',
+            localField: 'discom_ID',
+            foreignField: '_id',
+            as: 'discomDetails'
+        },
+      },
+      { $unwind: '$discomDetails' },
+      { $sort: { zoneName: 1 } }
+    ]);
+
+    // Convert the result to CSV format
+    // const fields = [ 'circleName', 'zoneDetails.zoneName']; // Adjust the fields as per your data
+    const fields = [
+      { label: 'Zone Name', value: 'zoneName' },
+      { label: 'Discom Name', value: 'discomDetails.discomName' }
+    ];
+    const opts = { fields };
+    const parser = new Parser(opts);
+    const csv = parser.parse(aggregateQuery);
+    // Set headers to indicate that this is a file download
+    res.header('Content-Type', 'text/csv');
+    res.attachment('Zones_export.csv');
+
+    // Send the CSV data as a response
+    res.send(csv);
+  }
+  catch (error) {
+      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
   }
 }
 

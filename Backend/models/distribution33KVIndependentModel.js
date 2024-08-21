@@ -18,11 +18,12 @@ const independentFeederSchema = new mongoose.Schema({
         default: 0
     },
     transmissionsDetails: [{
-        district: String,
-        substationName: String,
+        actionName:String,
         zone: String,
         circle: String,
         division: String,
+        district: String,
+        substationName: String,
         tdInterfacePoint: String
         }]
 });

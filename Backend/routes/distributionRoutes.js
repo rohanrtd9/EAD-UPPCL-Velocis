@@ -3,13 +3,13 @@ import { isAuth } from "../middleware/isAuth.js";
 import {exportController,createSubstation,updateSubstation,getSubstations,deleteSubstation} from "../controllers/DMSubstationController.js";
 import {listDMSubdivisionController} from "../controllers/DMSubdivisionController.js";
 import {exportDistrictController,createDistrict,updateDistrict,getDistricts,deleteDistricts} from "../controllers/DMDistrictsController.js";
-import {exportZonesController,createZone,updateZone,deleteZone,getZones,getDiscomZones} from "../controllers/DMZonesController.js";
-import {exportCircleController,createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle} from "../controllers/DMCircleController.js";
+import {exportZonesController,createZone,updateZone,deleteZone,getZones,getDiscomZones,exportZoneToCsv} from "../controllers/DMZonesController.js";
+import {exportCircleController,createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle,exportCircleToCsv} from "../controllers/DMCircleController.js";
 import {exportDiscomController,addDiscom,editDiscom,listDiscoms,softDeleteDiscom} from "../controllers/DiscomController.js";
-import {exportDivisionController,createDivision,updateDivision,getDivisions,getCircleDivisions,deleteDivision} from "../controllers/DMDivisionController.js";
+import {exportDivisionController,createDivision,updateDivision,getDivisions,getCircleDivisions,deleteDivision,exportDivisionToCsv} from "../controllers/DMDivisionController.js";
 import { createIncommingFeeder, deleteIncommingFeeder, getIncommingFeeders, updateIncommingFeeder } from "../controllers/DMIncommingFeederController.js";
 import { createOutgoingFeeder, deleteOutgoingFeeder, getOutgoingFeeders, updateOutgoingFeeder } from "../controllers/DMOutgoingFeederController.js";
-import { createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder } from "../controllers/DMIndependentFeederController.js";
+import { createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder } from "../controllers/DM33KVIndependentFeederController.js";
  
 import {loginController,changePasswordController} from "../controllers/userController.js";
 
@@ -37,6 +37,8 @@ router.put("/edit-zone",  updateZone);
 router.post("/list-zone",  getZones);
 router.post("/list-discom-zone",  getDiscomZones);
 router.delete("/delete-zone",  deleteZone);
+router.post("/export-zone-to-csv",  exportZoneToCsv); 
+
 
 //router.post("/export-circle",  exportCircleController);
 router.post("/add-circle",  createCircle);
@@ -44,6 +46,8 @@ router.put("/edit-circle",  updateCircle);
 router.post("/list-circle",  getCircles);
 router.post("/list-zone-circle",  getZoneCircles);
 router.delete("/delete-circle",  deleteCircle);
+router.post("/export-circle-to-csv",  exportCircleToCsv); 
+
 
 
 //router.post("/export-division",  exportDivisionController);
@@ -52,6 +56,7 @@ router.put("/edit-division",  updateDivision);
 router.post("/list-division",  getDivisions);
 router.post("/list-circle-division",  getCircleDivisions);
 router.delete("/delete-division",  deleteDivision);
+router.post("/export-division-to-csv",  exportDivisionToCsv); 
 
 
 //router.post("/export-district",  exportDistrictController);
@@ -77,10 +82,10 @@ router.put("/edit-outgoing-feeder",  updateOutgoingFeeder);
 router.delete("/delete-outgoing-feeder",  deleteOutgoingFeeder);
 router.post("/list-outgoing-feeder",  getOutgoingFeeders);
 
-router.post("/add-independent-feeder",  createIndependentFeeder);
-router.put("/edit-independent-feeder",  updateIndependentFeeder);
-router.delete("/delete-independent-feeder",  deleteIndependentFeeder);
-router.post("/list-independent-feeder",  getIndependentFeeders);
+router.post("/add-33KVIndependent-feeder",  createIndependentFeeder);
+router.put("/edit-33KVIndependent-feeder",  updateIndependentFeeder);
+router.delete("/delete-33KVIndependent-feeder",  deleteIndependentFeeder);
+router.post("/list-33KVIndependent-feeder",  getIndependentFeeders);
 
 
 export default router;

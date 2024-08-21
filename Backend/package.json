@@ -22,6 +22,7 @@
     "esm": "^3.2.25",
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
+    "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.2",
     "mongoose-aggregate-paginate-v2": "^1.1.1",

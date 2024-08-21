@@ -3,9 +3,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import csvParser from 'csv-parser';
+import discomModel from "../models/discomModel.js";
 import circlesModel from "../models/distributionCirclesModel.js";
 import substationModel from "../models/distributionSubstationModel.js";
 import zonesModel from "../models/distributionZoneModel.js";
+import { Parser } from 'json2csv';
 
 export const exportCircleController = async (req,res,next) => {
 
@@ -55,9 +57,9 @@ export const exportCircleController = async (req,res,next) => {
 
 export const createCircle = async (req, res) => {
   try {
-      const { zone_Id, circleName } = req.body;
-      if (!zone_Id || !circleName) {
-          return res.status(400).send({ result: {}, statusCode: '400', message: 'zone_Id and circleName are required' });
+      const { discom_Id,zone_Id, circleName,circleCode } = req.body;
+      if (!discom_Id || !zone_Id || !circleName || !circleCode) {
+          return res.status(400).send({ result: {}, statusCode: '400', message: 'All fields are required' });
       }
       const result = await circlesModel.create(req.body);
       return res.status(200).send({ result, statusCode: '200', message: 'Created successfully' });
@@ -68,8 +70,8 @@ export const createCircle = async (req, res) => {
 
 export const updateCircle = async (req, res) => {
   try {
-      const { id, zone_ID, circleName } = req.body;
-      if (!id || !zone_ID || !circleName) {
+      const { id,discom_Id, zone_ID, circleName,circleCode } = req.body;
+      if (!id || !discom_Id || !zone_ID || !circleName || !circleCode) {
           return res.status(400).send({ result: {}, statusCode: '400', message: 'ID, zone_ID, and circleName are required' });
       }
       const resultCheck = await circlesModel.findById(id);
@@ -107,43 +109,18 @@ export const getCircles = async (req, res) => {
       const aggregateQuery = circlesModel.aggregate([
         { $match: { isDeleted: 0 } },
         { $lookup: {
+            from: 'discoms',
+            localField: 'discom_Id',
+            foreignField: '_id',
+            as: 'discomDetails'
+        }},
+        { $lookup: {
             from: 'dm-zones',
-            localField: 'zone_ID',
+            localField: 'zone_Id',
             foreignField: '_id',
             as: 'zoneDetails'
         }},
-        { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
-        { $sort: { circleName: 1 } }
-    ]);
-
-    const options = {
-        page: Number(page),
-        limit: Number(limit)
-    };
-
-    const result = await zonesModel.aggregatePaginate(aggregateQuery, options);
-
-
-
-      return res.status(200).json({ statusCode: 200, result });
-  } catch (error) {
-      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in circle listing', error });
-  }
-}
-
-export const getZoneCircles = async (req, res) => {
-  try {
-      const { page = 1, limit = 10,zone_ID  } = req.body;
-     
-      const aggregateQuery = circlesModel.aggregate([
-        { $match: { isDeleted: 0, zone_Id: new mongoose.Types.ObjectId(zone_ID) } },
-        { $lookup: {
-          from: 'dm-zones',
-          localField: 'zone_ID',
-          foreignField: '_id',
-          as: 'zoneDetails'
-      }},
-        
+        { $unwind: { path: '$discomDetails', preserveNullAndEmptyArrays: true } },
         { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
         { $sort: { circleName: 1 } }
     ]);
@@ -159,6 +136,85 @@ export const getZoneCircles = async (req, res) => {
 
       return res.status(200).json({ statusCode: 200, result });
   } catch (error) {
+      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in circle listing', error });
+  }
+}
+
+export const getZoneCircles = async (req, res) => {
+  try {
+      const { page = 1, limit = 10,zone_ID  } = req.body;
+     
+      const aggregateQuery = circlesModel.aggregate([
+        { $match: { isDeleted: 0, zone_Id: new mongoose.Types.ObjectId(zone_ID) } },
+      //   { $lookup: {
+      //     from: 'discoms',
+      //       localField: 'discom_Id',
+      //       foreignField: '_id',
+      //       as: 'discomDetails'
+      // }},
+        { $lookup: {
+          from: 'dm-zones',
+          localField: 'zone_ID',
+          foreignField: '_id',
+          as: 'zoneDetails'
+      }},
+        
+        //{ $unwind: { path: '$discomDetails', preserveNullAndEmptyArrays: true } },
+        { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
+        { $sort: { circleName: 1 } }
+    ]);
+
+    const options = {
+        page: Number(page),
+        limit: Number(limit)
+    };
+
+    const result = await circlesModel.aggregatePaginate(aggregateQuery, options);
+
+
+
+      return res.status(200).json({ statusCode: 200, result });
+  } catch (error) {
+      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
+  }
+}
+
+export const exportCircleToCsv  = async (req, res) => {
+   
+  try {
+    // Define your aggregation query
+    const aggregateQuery = await circlesModel.aggregate([
+      { $match: { isDeleted: 0 } },
+      {
+        $lookup: {
+          from: 'dm-zones',
+          localField: 'zone_Id',
+          foreignField: '_id',
+          as: 'zoneDetails',
+        },
+      },
+      { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
+      { $sort: { circleName: 1 } },
+    ]);
+
+    // Convert the result to CSV format
+    // const fields = [ 'circleName', 'zoneDetails.zoneName']; // Adjust the fields as per your data
+    const fields = [
+      { label: 'Circle Name', value: 'circleName' },
+      { label: 'Zone Name', value: 'zoneDetails.zoneName' }
+    ];
+    const opts = { fields };
+    const parser = new Parser(opts);
+    const csv = parser.parse(aggregateQuery);
+
+    // Set headers to indicate that this is a file download
+    res.header('Content-Type', 'text/csv');
+    res.attachment('circles_export.csv');
+
+    // Send the CSV data as a response
+    res.send(csv);
+  }
+  catch (error) {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
   }
 }

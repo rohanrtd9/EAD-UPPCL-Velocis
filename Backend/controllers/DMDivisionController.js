@@ -4,6 +4,7 @@ import fs from 'fs';
 import csvParser from 'csv-parser';
 import circleModel from "../models/distributionCirclesModel.js";
 import divisionModel from "../models/distributionDivisionModel.js";
+import { Parser } from 'json2csv';
 
 export const exportDivisionController = async (req,res,next) => {
 
@@ -54,9 +55,9 @@ export const exportDivisionController = async (req,res,next) => {
 
 export const createDivision = async (req, res) => {
   try {
-      const { circle_ID, divisionName } = req.body;
+      const { discom_ID,zone_ID,circle_ID, divisionName,divisionCode } = req.body;
       if (!circle_ID || !divisionName) {
-          return res.status(400).send({ result: {}, statusCode: '400', message: 'circle_ID and divisionName are required' });
+          return res.status(400).send({ result: {}, statusCode: '400', message: 'discom_ID,zone_ID,circle_ID,divisionCode and divisionName are required' });
       }
       const result = await divisionModel.create(req.body);
       return res.status(200).send({ result, statusCode: '200', message: 'Created successfully' });
@@ -67,9 +68,9 @@ export const createDivision = async (req, res) => {
 
 export const updateDivision = async (req, res) => {
   try {
-      const { id, circle_ID, divisionName } = req.body;
+      const { id, discom_ID,zone_ID,circle_ID, divisionName,divisionCode } = req.body;
       if (!id || !circle_ID || !divisionName) {
-          return res.status(400).send({ result: {}, statusCode: '400', message: 'ID, circle_ID, and divisionName are required' });
+          return res.status(400).send({ result: {}, statusCode: '400', message: 'ID,discom_ID,zone_ID, circle_ID,divisionCode and divisionName are required' });
       }
       const resultCheck = await divisionModel.findById(id);
       if (!resultCheck) {
@@ -106,6 +107,18 @@ export const getDivisions = async (req, res) => {
       const aggregateQuery = divisionModel.aggregate([
         { $match: { isDeleted: 0 } },
         { $lookup: {
+            from: 'discoms',
+            localField: 'discom_ID',
+            foreignField: '_id',
+            as: 'discomDetails'
+        }},      
+        { $lookup: {
+            from: 'dm-zones',
+            localField: 'zone_ID',
+            foreignField: '_id',
+            as: 'zoneDetails'
+        }},      
+        { $lookup: {
             from: 'dm-circles',
             localField: 'circle_ID',
             foreignField: '_id',
@@ -137,6 +150,18 @@ export const getCircleDivisions = async (req, res) => {
       const aggregateQuery = divisionModel.aggregate([
         { $match: { isDeleted: 0, circle_ID: new mongoose.Types.ObjectId(circle_ID) } },
         { $lookup: {
+          from: 'discoms',
+          localField: 'discom_ID',
+          foreignField: '_id',
+          as: 'discomDetails'
+      }},      
+      { $lookup: {
+          from: 'dm-zones',
+          localField: 'zone_ID',
+          foreignField: '_id',
+          as: 'zoneDetails'
+      }},
+        { $lookup: {
           from: 'dm-circles',
           localField: 'circle_ID',
           foreignField: '_id',
@@ -159,5 +184,115 @@ export const getCircleDivisions = async (req, res) => {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones', error });
   }
 }
+
+// export const exportDivisionToCsv  = async (req, res) => {
+   
+  
+//   try {
+//     const aggregateQuery = await divisionModel.aggregate([
+//       { $match: { isDeleted: 0 } },
+//       {
+//         $lookup: {
+//           from: 'dm-circles',
+//           localField: 'circle_ID',
+//           foreignField: '_id',
+//           as: 'circleDetails'
+//         }
+//       },
+//       { $unwind: { path: '$circleDetails', preserveNullAndEmptyArrays: true } },
+//       {
+//         $lookup: {
+//           from: 'dm-zones',
+//           localField: 'circleDetails.zone_ID',
+//           foreignField: '_id',
+//           as: 'zoneDetails'
+//         }
+//       },
+//       { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
+//       {
+//         $lookup: {
+//           from: 'discoms',
+//           localField: 'zoneDetails.discom_ID',
+//           foreignField: '_id',
+//           as: 'discomDetails'
+//         }
+//       },
+//       { $unwind: { path: '$discomDetails', preserveNullAndEmptyArrays: true } },
+//       { $sort: { divisionName: 1 } }
+//     ]);
+  
+//     // Convert the result to CSV format
+//     const fields = [
+//       { label: 'Division Name', value: 'divisionName' },
+//       { label: 'Circle Name', value: 'circleDetails.circleName' },
+//       { label: 'Zone Name', value: 'zoneDetails.zoneName' },
+//       { label: 'Discom Name', value: 'discomDetails.discomName' }
+//     ];
+//     const opts = { fields };
+//     const parser = new Parser(opts);
+//     const csv = parser.parse(aggregateQuery);
+  
+//     // Set headers to indicate that this is a file download
+//     res.header('Content-Type', 'text/csv');
+//     res.attachment('division_export.csv');
+//       // Send the CSV data as a response
+//     res.send(csv);
+//   }
+//   catch (error) {
+//       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
+//   }
+// }
+export const exportDivisionToCsv  = async (req, res) => {
+   
+  
+  try {
+    
+    const aggregateQuery = divisionModel.aggregate([
+      { $match: { isDeleted: 0 } },
+      { $lookup: {
+          from: 'discoms',
+          localField: 'discom_ID',
+          foreignField: '_id',
+          as: 'discomDetails'
+      }},      
+      { $lookup: {
+          from: 'dm-zones',
+          localField: 'zone_ID',
+          foreignField: '_id',
+          as: 'zoneDetails'
+      }},      
+      { $lookup: {
+          from: 'dm-circles',
+          localField: 'circle_ID',
+          foreignField: '_id',
+          as: 'circleDetails'
+      }},      
+      { $unwind: { path: '$circleDetails', preserveNullAndEmptyArrays: true } },
+      { $sort: { divisionName: 1 } }
+  ]);
+  
+    // Convert the result to CSV format
+    const fields = [
+      { label: 'Division Name', value: 'divisionName' },
+      { label: 'Circle Name', value: 'circleName' },
+      { label: 'Zone Name', value: 'zoneName' },
+      { label: 'Discom Name', value: 'discomName' }
+    ];
+    const opts = { fields };
+    const parser = new Parser(opts);
+    const csv = parser.parse(aggregateQuery);
+  
+    // Set headers to indicate that this is a file download
+    res.header('Content-Type', 'text/csv');
+    res.attachment('division_export.csv');
+  
+    // Send the CSV data as a response
+    res.send(csv);
+  }
+  catch (error) {
+      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
+  }
+}
+
 
 

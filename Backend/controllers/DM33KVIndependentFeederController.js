@@ -36,7 +36,7 @@ export const createIndependentFeeder = async (req,res) => {
 
 export const updateIndependentFeeder = async (req,res) => {
   try {
-    const {divisionName,consumerName,feederVoltage,feederCategory,projectArea,supplyArea,feederCode,meterMake,meterSLNo,overallMF,consumerID} = req.body;
+    const {id,divisionName,consumerName,feederVoltage,feederCategory,projectArea,supplyArea,feederCode,meterMake,meterSLNo,overallMF,consumerID} = req.body;
     if (!id || !divisionName || !consumerName ||!feederVoltage ||!feederCategory ||!projectArea ||!supplyArea || !feederCode  || !meterMake  || !meterSLNo || !overallMF  || !consumerID  ) {
       return res.status(400).send({ result:{},statusCode:"400", message: '* marked fields are required' });
     }

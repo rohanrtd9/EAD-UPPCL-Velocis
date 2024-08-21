@@ -9,6 +9,7 @@ const zoneSchema = new mongoose.Schema({
         ref: "discoms"
     },     
     zoneName: String,
+    zoneCode: String,
     isDeleted:{
         type: Number,
         default: 0
