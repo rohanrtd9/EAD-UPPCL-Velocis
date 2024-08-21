@@ -162,13 +162,13 @@ export function Sidebar() {
                 title={"Edit Substation Metering Status By Admin"}
               />
               <CustomLink
-                to={"/AddMeterStatusByAdmin"}
+                to={"/Add33KVStatusByAdmin"}
                 title={
                   "Add 33KV & Above Consumer Feeder Metering Status By Admin"
                 }
               />
               <CustomLink
-                to={"/EditMeterStatusByAdmin"}
+                to={"/Edit33KVStatusByAdmin"}
                 title={
                   "Edit 33KV & Above Consumer Feeder Metering Status By Admin"
                 }
@@ -281,7 +281,7 @@ export function Sidebar() {
             <List className="p-0">
               <CustomLink
                 to={"/SubstationDataList"}
-                activeLink={"/AddFeederBayData"}
+                activeLink={"/AddSubstationData"}
                 title={"Name Of Substation"}
               />
               <CustomLink
@@ -290,6 +290,35 @@ export function Sidebar() {
                 title={"Name Of Feeder/Bay"}
               />
             </List>
+          </AccordionBody>
+        </Accordion>
+
+        <Accordion
+          open={open === 6}
+          icon={
+            <ChevronDownIcon
+              strokeWidth={2.5}
+              className={`mx-auto h-4 w-4 transition-transform ${
+                open === 6 ? "rotate-180" : ""
+              }`}
+            />
+          }
+        >
+          <ListItem className="p-0" selected={open === 6}>
+            <AccordionHeader
+              onClick={() => handleOpen(6)}
+              className="border-b-0 p-3"
+            >
+              <ListItemPrefix>
+                <PresentationChartBarIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Transmission Transaction
+              </Typography>
+            </AccordionHeader>
+          </ListItem>
+          <AccordionBody className="py-1">
+            <List className="p-0"></List>
           </AccordionBody>
         </Accordion>
       </List>

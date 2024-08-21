@@ -8,7 +8,7 @@ function FeederBayDataList() {
       <Header
         title="Feeder/Bay-Wise List"
         action={{
-          button: "Add Substation",
+          button: "Add Feeder/Bay",
           path: "/AddFeederBayData",
         }}
       />

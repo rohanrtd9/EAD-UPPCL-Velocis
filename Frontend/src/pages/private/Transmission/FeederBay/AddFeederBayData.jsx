@@ -55,7 +55,7 @@ function AddFeederBayData() {
   return (
     <>
       <Header
-        title="Add SubStation"
+        title="Add Feeder/Bay"
         action={{
           button: "Feeder/Bay-Wise List",
           path: "/FeederBayDataList",
@@ -129,6 +129,14 @@ function AddFeederBayData() {
             <label className={label}>Discom (Transmission)</label>
             <select className={select} defaultValue="">
               <option>--Select--</option>
+              <option>DAKSHINANCHAL</option>
+              <option>POORVANCHAL</option>
+              <option>PASCHIMANCHAL</option>
+              <option>MADHYANCHAL</option>
+              <option>KESCO</option>
+              <option>NORTHERN RALIWAY (OPEN ACCESS)</option>
+              <option>OTHER OPEN ACEESS</option>
+              <option>NPCL</option>
             </select>
           </div>
         </div>

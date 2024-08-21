@@ -83,6 +83,14 @@ const EditTransactionStatusByAdmin = React.lazy(() =>
   )
 );
 
+const Add33KVStatusByAdmin = React.lazy(() =>
+  import("./pages/private/Distribution/Transaction/Add33KVStatusByAdmin")
+);
+
+const Edit33KVStatusByAdmin = React.lazy(() =>
+  import("./pages/private/Distribution/Transaction/Edit33KVStatusByAdmin")
+);
+
 // Transmission Tabs Here
 
 const AddFeederBayData = React.lazy(() =>
@@ -337,6 +345,23 @@ function App() {
             element={
               <Suspense fallback={<Shimmer />}>
                 <EditTransactionStatusByAdmin />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/Add33KVStatusByAdmin"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <Add33KVStatusByAdmin />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/Edit33KVStatusByAdmin"
+            element={
+              <Suspense fallback={<Shimmer />}>
+                <Edit33KVStatusByAdmin />
               </Suspense>
             }
           />
