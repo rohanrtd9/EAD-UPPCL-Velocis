@@ -11,8 +11,8 @@ const independentFeederSchema = new mongoose.Schema({
     meterMake:String,
     meterSLNo:String,
     overallMF:String,
-    consumerID:String,
-    lengthOfFeeder:String,
+    consumerID:String,//
+    lengthOfFeeder:String,//
     isDeleted:{
         type: Number,
         default: 0
