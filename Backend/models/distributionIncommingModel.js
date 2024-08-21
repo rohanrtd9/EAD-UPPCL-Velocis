@@ -30,6 +30,10 @@ const incommingFeederSchema = new mongoose.Schema({
     isDeleted:{
         type: Number,
         default: 0
+    },
+    status:{
+        type: String,
+        default: 'active'
     }
 });
 

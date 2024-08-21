@@ -23,7 +23,7 @@ router.post('/change-password', changePasswordController);
 
 
 // router.get("/dm-substation/list",  listDMSubStationController);
-router.get("/dm-subdivision/list",  listDMSubdivisionController);
+// router.get("/dm-subdivision/list",  listDMSubdivisionController);
 
 //router.post("/export-discom",  exportDiscomController);
 router.post("/add-discom",  addDiscom);
