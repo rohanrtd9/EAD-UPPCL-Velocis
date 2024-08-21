@@ -8,7 +8,7 @@ export const getIndependentFeeders = async (req, res) => {
       const options = {
           page: page,
           limit: limit,
-          sort: { substationName: 1 } // Sort by discomName in ascending order
+          sort: { _id: -1 } // Sort by discomName in ascending order
       };
       const result = await independentModel.paginate(query, options);
       return res.status(200).json({status:200,result:result});
