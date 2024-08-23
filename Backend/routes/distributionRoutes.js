@@ -8,8 +8,8 @@ import {exportCircleController,createCircle,updateCircle,getCircles,getZoneCircl
 import {exportDiscomController,addDiscom,editDiscom,listDiscoms,softDeleteDiscom} from "../controllers/DiscomController.js";
 import {exportDivisionController,createDivision,updateDivision,getDivisions,getCircleDivisions,deleteDivision,exportDivisionToCsv} from "../controllers/DMDivisionController.js";
 import { importIncomingFeederController,createIncommingFeeder, deleteIncommingFeeder, getIncommingFeeders, updateIncommingFeeder } from "../controllers/DMIncommingFeederController.js";
-import { createOutgoingFeeder, deleteOutgoingFeeder, getOutgoingFeeders, updateOutgoingFeeder } from "../controllers/DMOutgoingFeederController.js";
-import { createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder } from "../controllers/DM33KVIndependentFeederController.js";
+import { importOutGoingFeederController,createOutgoingFeeder, deleteOutgoingFeeder, getOutgoingFeeders, updateOutgoingFeeder } from "../controllers/DMOutgoingFeederController.js";
+import { import33kvIndependentController,createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder } from "../controllers/DM33KVIndependentFeederController.js";
 import { addTransformer, editTransformer, softDeleteTransformer, listTransformer } from "../controllers/DMTransformerController.js";
  
 import {loginController,changePasswordController} from "../controllers/userController.js";
@@ -73,17 +73,19 @@ router.post("/list-substation",  getSubstations);
 router.delete("/delete-substation",  deleteSubstation);
 
 
-router.post("/import-incoming-feeder",  importIncomingFeederController);
+//router.post("/import-incoming-feeder",  importIncomingFeederController);
 router.post("/add-incomming-feeder",  createIncommingFeeder);
 router.put("/edit-incomming-feeder",  updateIncommingFeeder);
 router.delete("/delete-incomming-feeder",  deleteIncommingFeeder);
 router.post("/list-incomming-feeder",  getIncommingFeeders);
 
+router.post("/import-outgoing-feeder",  importOutGoingFeederController);
 router.post("/add-outgoing-feeder",  createOutgoingFeeder);
 router.put("/edit-outgoing-feeder",  updateOutgoingFeeder);
 router.delete("/delete-outgoing-feeder",  deleteOutgoingFeeder);
 router.post("/list-outgoing-feeder",  getOutgoingFeeders);
 
+router.post("/import-33KVIndependent-feeder",  import33kvIndependentController);
 router.post("/add-33KVIndependent-feeder",  createIndependentFeeder);
 router.put("/edit-33KVIndependent-feeder",  updateIndependentFeeder);
 router.delete("/delete-33KVIndependent-feeder",  deleteIndependentFeeder);

@@ -1,5 +1,99 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import csvParser from 'csv-parser';
 import outgoingModel from "../models/distributionOutgoingModel.js";
 
+export const importOutGoingFeederController = async (req,res,next) => {
+
+  try{
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);    
+    const results = [];
+    const filePath = path.join(__dirname, '../data/distribution/outgoingFeeder/KESCO-OutgoingMasterData.csv');
+    
+    fs.createReadStream(filePath)
+    .pipe(csvParser())
+    .on('data',  async(data) => {
+      try {       
+        
+        const outgoingResponse =   await  outgoingModel.findOne({divisionName:data['Division'],substationName:data['DistributionSub-StationName'],feederName:data['NameIncomingFeeder']}); 
+        if (outgoingResponse){
+          console.log("data found",data['Division'],data['DistributionSub-StationName'],data['NameIncomingFeeder'])
+        }else{
+          console.log("data not found-",data['Division'],data['DistributionSub-StationName'],data['NameIncomingFeeder'])
+        }
+        if(outgoingResponse){
+          // console.log("data found")
+          let payload = {
+           
+            "feederDetails":[
+              {
+                "feederVoltage":data['FeederVoltage'],
+                "outgoingFeederName":data['NameOutgoingFeeder'],
+                "feederCategory":data['CategoryFeeder'],
+                "projectArea":data['ProjectArea'],
+                "supplyArea":data['SupplyArea'],
+                "feederCode":data['FeederCode'],
+                "meterMake":data['MeterMakeType'],
+                "meterSLNo":data['MeterSlNo'],
+                "noOfConsumers":'',
+                "overallMF":data['OverallMF'],
+                "mappedEDD":data['MappedEDD'],
+                "status":data['Status']
+              }
+            ]
+          }
+          let substation = await outgoingModel.findByIdAndUpdate(
+            outgoingResponse._id,
+            { $push: { feederDetails: payload } },
+            { new: true } // To return the updated document
+          );
+
+        }else{
+          // console.log("data not found")
+          let payload = {
+            "discomName":data['Discom'],
+            "zoneName":data['Zone'],
+            "circleName":data['Circle'],
+            "divisionName":data['Division'],
+            "substationName":data['DistributionSub-StationName'],
+            "feederName":data['NameIncomingFeeder'],
+            "feederDetails":[
+              {
+                "feederVoltage":data['FeederVoltage'],
+                "outgoingFeederName":data['NameOutgoingFeeder'],
+                "feederCategory":data['CategoryFeeder'],
+                "projectArea":data['ProjectArea'],
+                "supplyArea":data['SupplyArea'],
+                "feederCode":data['FeederCode'],
+                "meterMake":data['MeterMakeType'],
+                "meterSLNo":data['MeterSlNo'],
+                "noOfConsumers":'',
+                "overallMF":data['OverallMF'],
+                "mappedEDD":data['MappedEDD'],
+                "status":data['Status']
+              }
+            ]
+          }
+          let substation =  await  outgoingModel.create(payload);             
+        }  
+
+      } catch (error) {
+        console.error('Error processing data:', error);
+        // Optionally, you can add error handling logic here.
+      }
+    })
+    .on('end', () => {
+      //console.log(results)
+     res.status(200).json({ message: "Successfully processed", results });
+    });
+
+
+}catch(error){
+    return res.status(500).send({message:"Export issue "+error,status:false,statusCode:500,user:[],errorMessage:error});
+}
+}
 
 
 export const getOutgoingFeeders = async (req, res) => {
@@ -21,9 +115,6 @@ export const getOutgoingFeeders = async (req, res) => {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing ', error });
   }
 }
-
-
-
 
 export const createOutgoingFeeder = async (req,res) => {
   try {

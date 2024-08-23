@@ -1,7 +1,10 @@
 import  mongoose from "mongoose";
 import mongoosePaginate  from 'mongoose-paginate-v2';
-const outgoingFeederSchema = new mongoose.Schema({   
+const outgoingFeederSchema = new mongoose.Schema({  
+    discomName: String,
+    zoneName: String,
     divisionName: String,
+    circleName: String, 
     substationName: String,
     feederName: String,
     isDeleted:{
@@ -18,7 +21,9 @@ const outgoingFeederSchema = new mongoose.Schema({
         meterMake:String,
         meterSLNo:String,
         noOfConsumers:String,
-        overallMF:String
+        overallMF:String,
+        mappedEDD:String,
+        status:String,
     }]
 });
 

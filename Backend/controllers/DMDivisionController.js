@@ -2,6 +2,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import csvParser from 'csv-parser';
+import discomModel from "../models/discomModel.js";
+import zoneModel from "../models/distributionZoneModel.js";
 import circleModel from "../models/distributionCirclesModel.js";
 import divisionModel from "../models/distributionDivisionModel.js";
 import { Parser } from 'json2csv';
@@ -21,13 +23,18 @@ export const exportDivisionController = async (req,res,next) => {
       .on('data',  async(data) => {
         try {
          
-          const result1 =   await  circleModel.findOne({circleName:data['Circle']}); 
-          if(result1 !==null && result1 !=""){
+          const result1 =   await  discomModel.findOne({discomName:data['Discom']}); 
+          const result2 =   await  zoneModel.findOne({zoneName:data['Zone']}); 
+          const result3 =   await  circleModel.findOne({circleName:data['Circle']}); 
+          if(result3 !==null && result3 !=""){
             let payload = {
-              "circle_ID":result1._id,
-              "divisionName":data['Division']
+              "discom_ID":result1._id,
+              "zone_ID":result2._id,
+              "circle_ID":result3._id,
+              "divisionName":data['Division'],
+              "password":"$argon2id$v=19$m=65536,t=3,p=4$Ib2h+dqTpZq+gn27FMfCpg$p+RUiXzNb916+rwjbzHKpSVrVzYt17Npl8J4qSvesg0"
             }
-            let substation =  await  divisionModel.create(payload);   
+            let divisision =  await  divisionModel.create(payload);   
 
           }else{
             //results.push(data['Division'])
