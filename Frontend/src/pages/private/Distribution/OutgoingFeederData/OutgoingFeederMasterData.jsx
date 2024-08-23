@@ -1,12 +1,14 @@
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
 import { discom } from "../../../../utils/constant";
+import Table, { Tbody, Td, Th, Thead, Tr } from "../../../../component/Table";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
+
 import {
   btn,
   label,
   select,
-  btnSuccess,
-  btnGrey,
+  removebtn,
 } from "../../../../utils/tailwindClasses";
 
 function OutgoingFeederMasterData() {
@@ -15,7 +17,7 @@ function OutgoingFeederMasterData() {
       <Header
         title="Distribution Outgoing Feeder Master Data"
         action={{
-          button: "Add Outgoing Feeder",
+          button: "Add DOFD",
           path: "/AddOutgoingFeederMasterData",
         }}
       />
@@ -66,12 +68,35 @@ function OutgoingFeederMasterData() {
           </div>
         </div>
 
-        <div className="col-span-3 flex justify-between">
+        <div className="col-span-3 justify-between space-x-4">
           <button className={btn + " w-1/5"}>Submit</button>
-          <button className={btnSuccess + " w-1/5"}>Export</button>
-          <button className={btnGrey + " w-1/5"}>Reset</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
         </div>
       </FormPanel>
+      <Table>
+        <Thead>
+          <Th>S.No.</Th>
+          <Th>Division Name</Th>
+          <Th>Substation Name</Th>
+          <Th>Incoming Feeder Name</Th>
+          <Th>Action</Th>
+          <Th>Status</Th>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td>1</Td>
+            <Td>EDD I AGRA</Td>
+            <Td>DIGNER_24462</Td>
+            <Td>INC-1</Td>
+            <Td>
+              <PencilSquareIcon className="h-5 w-5 ms-2" />
+            </Td>
+            <Td>
+              <button className={btn}>Active</button>
+            </Td>
+          </Tr>
+        </Tbody>
+      </Table>
     </>
   );
 }

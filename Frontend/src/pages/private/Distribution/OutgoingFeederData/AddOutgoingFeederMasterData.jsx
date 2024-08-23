@@ -7,8 +7,6 @@ import {
   select,
   btn,
   input,
-  btnSuccess,
-  btnGrey,
   removebtn,
 } from "../../../../utils/tailwindClasses";
 
@@ -59,10 +57,9 @@ function AddOutgoingFeederMasterData() {
           </div>
         </div>
 
-        <div className="col-span-3 flex justify-between">
+        <div className="col-span-3 justify-between space-x-4">
           <button className={btn + " w-1/5"}>Submit</button>
-          <button className={btnSuccess + " w-1/5"}>Export</button>
-          <button className={btnGrey + " w-1/5"}>Reset</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
         </div>
       </FormPanel>
 
@@ -122,7 +119,7 @@ function AddOutgoingFeederMasterData() {
                   </button>
                 ) : (
                   <button
-                    className={removebtn + " bg-red-500"}
+                    className={removebtn + " bg-red-500 "}
                     onClick={() => handleRemoveRow(row.id)}
                   >
                     Remove

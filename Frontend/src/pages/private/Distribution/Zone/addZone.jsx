@@ -1,7 +1,13 @@
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
 import { discom } from "../../../../utils/constant";
-import { btn, input, label, select } from "../../../../utils/tailwindClasses";
+import {
+  btn,
+  input,
+  label,
+  select,
+  removebtn,
+} from "../../../../utils/tailwindClasses";
 
 function AddZone() {
   return (
@@ -37,8 +43,9 @@ function AddZone() {
             <label className={label}>Zone Code</label>
           </div>
         </div>
-        <div className="col-span-3 flex justify-between">
+        <div className="col-span-3 justify-between space-x-4">
           <button className={btn + " w-1/5"}>Submit</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
         </div>
       </FormPanel>
     </>

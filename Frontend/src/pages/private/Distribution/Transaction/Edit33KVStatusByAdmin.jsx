@@ -163,8 +163,9 @@ function Edit33KVStatusByAdmin() {
           </div>
         </div>
 
-        <div className="col-span-3 flex justify-between">
+        <div className="col-span-3 justify-between space-x-4">
           <button className={btn + " w-1/5"}>Submit</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
         </div>
       </FormPanel>
 

@@ -120,9 +120,9 @@ export function Sidebar() {
               <CustomLink
                 to={"/kv33ConsumerFeederMaster"}
                 activeLink={"/AddKV33ConsumerFeederData"}
-                title={"33 KV & above consumer master"}
+                title={"33 KV & Above Consumer Master"}
               />
-              <CustomLink to={"/transformer"} title={"Transformer master"} />
+              <CustomLink to={"/transformer"} title={"Transformer Master"} />
             </List>
           </AccordionBody>
         </Accordion>

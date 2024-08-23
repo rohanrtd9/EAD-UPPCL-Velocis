@@ -163,8 +163,9 @@ function Add33KVStatusByAdmin() {
           </div>
         </div>
 
-        <div className="col-span-3 flex justify-between">
+        <div className="col-span-3 justify-between space-x-4">
           <button className={btn + " w-1/5"}>Submit</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
         </div>
       </FormPanel>
 
@@ -218,29 +219,82 @@ function Add33KVStatusByAdmin() {
         </Tbody>
       </Table>
 
+      {/* <Table className="mt-2">
+        <Thead>
+          <Tr>
+            <Th rowSpan={2}>Sr.No</Th>
+            <Th rowSpan={2}>Name</Th>
+            <Th rowSpan={2}>Number</Th>
+            <Th colSpan={2}>
+              <span style={{ textAlign: "center" }}>Email</span>
+            </Th>
+            <Th rowSpan={2}>Address</Th>
+          </Tr>
+          <Tr>
+            <Th>Mobile</Th>
+            <Th>Phone</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td>1</Td>
+            <Td>John Doe</Td>
+            <Td>123-456-7890</Td>
+            <Td>098-765-4321</Td>
+            <Td>john.doe@example.com</Td>
+            <Td>123 Main St, City</Td>
+          </Tr>
+        </Tbody>
+      </Table> */}
+
       {/* Consumer Data Table */}
       <Table className="mt-6">
         <Thead>
           <Tr>
-            <Th>Sr.No</Th>
-            <Th>33 KV Above Consumer Feeder Name</Th>
-            <Th>Category Of Feeder</Th>
-            <Th>Project Area</Th>
-            <Th>Supply Area</Th>
-            <Th>Feeder Code</Th>
+            <Th rowSpan={2}>Sr.No</Th>
+            <Th rowSpan={2}>33 KV Above Consumer Feeder Name</Th>
+            <Th rowSpan={2}>Category Of Feeder</Th>
+            <Th rowSpan={2}>Project Area</Th>
+            <Th rowSpan={2}>Supply Area</Th>
+            <Th rowSpan={2}>Feeder Code</Th>
+            <Th colSpan={2}>Meter Details</Th>
+            <Th rowSpan={2}>Customer Account ID</Th>
+            <Th colSpan={3}>Meter Reading</Th>
+            <Th rowSpan={2}>Overall MF</Th>
+            <Th rowSpan={2}>Energy Consumption (MWh)</Th>
+            <Th rowSpan={2}>Energy Assessed (MWh)</Th>
+            <Th rowSpan={2}>Total Energy Consumption (MWh)</Th>
+            <Th rowSpan={2}>Reason of Defect/Not Recording</Th>
+            <Th rowSpan={2}>Date Of Defect</Th>
+            <Th rowSpan={2}>Actions</Th>
+          </Tr>
+          <Tr>
             <Th>Make & Type</Th>
             <Th>SL.No.</Th>
-            <Th>Customer Account ID</Th>
-            <Th>Meter Reading Previous</Th>
-            <Th>Meter Reading Present</Th>
-            <Th>Meter Reading Diff</Th>
-            <Th>Overall MF</Th>
-            <Th>Energy Consumption (MWh)</Th>
-            <Th>Energy Assessed (MWh)</Th>
-            <Th>Total Energy Consumption (MWh)</Th>
-            <Th>Reason of Defect/Not Recording</Th>
-            <Th>Date Of Defect</Th>
-            <Th>Actions</Th>
+            <Th>Previous</Th>
+            <Th>Present</Th>
+            <Th>Diff.(11-10)</Th>
+          </Tr>
+          <Tr>
+            <Th>1</Th>
+            <Th>2</Th>
+            <Th>3</Th>
+            <Th>4</Th>
+            <Th>5</Th>
+            <Th>6</Th>
+            <Th>7</Th>
+            <Th>8</Th>
+            <Th>9</Th>
+            <Th>10</Th>
+            <Th>11</Th>
+            <Th>12</Th>
+            <Th>13</Th>
+            <Th>14</Th>
+            <Th>15</Th>
+            <Th>16</Th>
+            <Th>17</Th>
+            <Th>18</Th>
+            <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -446,8 +500,15 @@ function Add33KVStatusByAdmin() {
       {/* Add Consumer Row Button */}
       <div className="flex justify-end mt-4">
         <button type="button" className={btn} onClick={addConsumerRow}>
-          Add Consumer Row
+          Add
         </button>
+      </div>
+
+      <div className="">
+        <span style={{ color: "red" }}>
+          Note : 1- Meter Changed, 2- CT Defective, 3- PT Defective, 4-Meter
+          Defective, 5- Others
+        </span>
       </div>
 
       {/* Remarks Section */}
@@ -456,7 +517,7 @@ function Add33KVStatusByAdmin() {
           <div className="relative z-0 w-full group">
             <label className={label1}>Remarks</label>
             <textarea
-              className="form-textarea mt-1 block w-full"
+              className="form-textarea"
               placeholder=""
               cols={80}
               rows={5}
@@ -464,8 +525,9 @@ function Add33KVStatusByAdmin() {
           </div>
         </div>
 
-        <div className="col-span-3 flex justify-between">
+        <div className="col-span-3 justify-between space-x-4">
           <button className={btn + " w-1/5"}>Submit</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
         </div>
       </FormPanel>
     </>

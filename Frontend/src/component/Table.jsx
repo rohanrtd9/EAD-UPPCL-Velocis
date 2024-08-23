@@ -1,7 +1,10 @@
 export default function Table({ children }) {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <table
+        border="1"
+        className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      >
         {children}
       </table>
     </div>
@@ -17,8 +20,16 @@ export function Thead({ children }) {
 export function Tr({ children }) {
   return <tr>{children}</tr>;
 }
-export function Th({ children }) {
-  return <th className="px-6 py-3">{children}</th>;
+export function Th({ children, rowSpan, colSpan }) {
+  return (
+    <th
+      className="px-6 py-3"
+      {...(rowSpan && { rowSpan })}
+      {...(colSpan && { colSpan })}
+    >
+      {children}
+    </th>
+  );
 }
 export function Tbody({ children }) {
   return <tbody>{children}</tbody>;
