@@ -71,11 +71,25 @@ function Login() {
     try {
       const response = await axios.post(`${apiUrl}login`, data);
       const userData = response?.data?.user;
+
       if (userData) {
         userData.role = response?.data?.role;
         localStorage.setItem("userData", JSON.stringify(userData));
         localStorage.setItem("token", response.data.token);
-        navigate("/", { replace: true });
+
+        // Redirect based on user role
+        if (userData.role === "DIVISION") {
+          navigate("/", { replace: true });
+        } else if (userData.role === "subStation") {
+          navigate("/TransMisstionDashboard", { replace: true });
+        } else {
+          Swal.fire({
+            text: "Invalid role. Please contact support.",
+            icon: "error",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "#3085d6",
+          });
+        }
       } else {
         Swal.fire({
           text: "Login failed. Please try again.",
