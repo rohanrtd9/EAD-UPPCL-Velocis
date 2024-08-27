@@ -123,7 +123,10 @@ function Login() {
   return (
     <section className="h-screen flex items-center justify-center bg-white">
       {loading && <Loader />}
-      <div className="flex w-4/5 h-4/5 max-w-screen-lg mx-auto rounded-lg shadow-lg overflow-hidden bg-white">
+      <div
+        style={{ display: "contents" }}
+        className="flex w-4/5 h-4/5 max-w-screen-lg mx-auto rounded-lg shadow-lg overflow-hidden bg-white"
+      >
         <div className="flex flex-col w-full h-full bg-blue-50">
           <div className="flex flex-col justify-center items-center h-full w-full">
             <img
