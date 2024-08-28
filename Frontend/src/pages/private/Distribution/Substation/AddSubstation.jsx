@@ -1,9 +1,26 @@
+import React, { useState } from "react";
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
 import { discom } from "../../../../utils/constant";
-import { btn, input, label, select } from "../../../../utils/tailwindClasses";
+import {
+  btn,
+  input,
+  label,
+  select,
+  removebtn,
+} from "../../../../utils/tailwindClasses";
 
 function AddSubstation() {
+  const [rows, setRows] = useState([{ id: Date.now() }]);
+
+  const handleAddRow = () => {
+    setRows([...rows, { id: Date.now() }]);
+  };
+
+  const handleRemoveRow = (id) => {
+    setRows(rows.filter((row) => row.id !== id));
+  };
+
   return (
     <>
       <Header
@@ -75,11 +92,9 @@ function AddSubstation() {
             <label className={label}>Junior Engineer Number</label>
           </div>
         </div>
-        <div className="col-span-3 flex justify-between">
-          <button className={btn + " w-1/5"}>Submit</button>
-        </div>
       </FormPanel>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -94,46 +109,67 @@ function AddSubstation() {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="p-1">1</td>
-              <td className="p-1">
-                <select className={select} defaultValue="">
-                  <option>District</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="FR">France</option>
-                  <option value="DE">Germany</option>
-                </select>
-              </td>
-              <td className="p-1">
-                <input className={input} placeholder="" />
-                <label className={label}>Distribution Sub-Station Name</label>
-              </td>
-              <td className="p-1">
-                <input className={input} placeholder="" />
-                <label className={label}>Distribution</label>
-              </td>
-              <td className="p-1">
-                <input className={input} placeholder="" />
-                <label className={label}>Distribution</label>
-              </td>
+            {rows.map((row, index) => (
+              <tr
+                key={row.id}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <td className="p-1">{index + 1}</td>
+                <td className="p-1">
+                  <select className={select} defaultValue="">
+                    <option>District</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="FR">France</option>
+                    <option value="DE">Germany</option>
+                  </select>
+                </td>
+                <td className="p-1">
+                  <input className={input} placeholder="" />
+                  <label className={label}>Distribution Sub-Station Name</label>
+                </td>
+                <td className="p-1">
+                  <input className={input} placeholder="" />
+                  <label className={label}>Distribution</label>
+                </td>
+                <td className="p-1">
+                  <input className={input} placeholder="" />
+                  <label className={label}>Distribution</label>
+                </td>
 
-              <td className="p-1">
-                <input className={input} placeholder="Distribution" />
-                <label className={label}>Distribution</label>
-              </td>
-              <td className="p-1">
-                <input className={input} placeholder="" />
-                <label className={label}>Distribution</label>
-              </td>
-              <td className="p-1">
-                <button className={btn}>Add</button>
-              </td>
-            </tr>
+                <td className="p-1">
+                  <input className={input} placeholder="Distribution" />
+                  <label className={label}>Distribution</label>
+                </td>
+                <td className="p-1">
+                  <input className={input} placeholder="" />
+                  <label className={label}>Distribution</label>
+                </td>
+                <td className="p-1">
+                  {index === 0 ? (
+                    <button className={btn} onClick={handleAddRow}>
+                      Add
+                    </button>
+                  ) : (
+                    <button
+                      className={removebtn + " bg-red-500"}
+                      onClick={() => handleRemoveRow(row.id)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+        <div className="col-span-3 justify-between space-x-4">
+          <button className={btn + " w-1/5"}>Submit</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
+        </div>
       </div>
     </>
   );
 }
+
 export default AddSubstation;

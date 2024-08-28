@@ -143,94 +143,95 @@ function AddKV33ConsumerFeederData() {
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
             <input className={input} placeholder=" " />
-            <label className={label}>Costomer Account ID</label>
+            <label className={label}>Customer Account ID</label>
           </div>
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
             <input className={input} placeholder=" " />
-            <label className={label}>Length of Feeder(in KM)</label>
+            <label className={label}>Length of Feeder (in KM)</label>
           </div>
         </div>
-
-        <div className="col-span-3 flex justify-between">
-          <button className={btn + " w-1/5"}>Submit</button>
-        </div>
       </FormPanel>
-
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Action Name</Th>
-            <Th>Zone (Transmission)</Th>
-            <Th>Circle (Transmission)</Th>
-            <Th>Division (Transmission)</Th>
-            <Th>T-D Interface Points (Bay)</Th>
-            <Th>Action</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {rows.map((row, index) => (
-            <Tr key={index}>
-              <Td>
-                <input
-                  className={input}
-                  name="actionName"
-                  value={row.actionName}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="zone"
-                  value={row.zone}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="circle"
-                  value={row.circle}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="division"
-                  value={row.division}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="interfacePoints"
-                  value={row.interfacePoints}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                {index === 0 && (
-                  <button className={btn} onClick={handleAddRow}>
-                    Add
-                  </button>
-                )}
-                {index > 0 && (
-                  <button
-                    className={removebtn + " bg-red-500"}
-                    onClick={() => handleRemoveRow(index)}
-                  >
-                    Remove
-                  </button>
-                )}
-              </Td>
+      <div className="overflow-x-auto mt-4">
+        <Table className="min-w-full">
+          <Thead>
+            <Tr>
+              <Th>Action Name</Th>
+              <Th>Zone (Transmission)</Th>
+              <Th>Circle (Transmission)</Th>
+              <Th>Division (Transmission)</Th>
+              <Th>T-D Interface Points (Bay)</Th>
+              <Th>Action</Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
+          </Thead>
+          <Tbody>
+            {rows.map((row, index) => (
+              <Tr key={index}>
+                <Td>
+                  <input
+                    className={`${input} w-full`}
+                    name="actionName"
+                    value={row.actionName}
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </Td>
+                <Td>
+                  <input
+                    className={`${input} w-full`}
+                    name="zone"
+                    value={row.zone}
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </Td>
+                <Td>
+                  <input
+                    className={`${input} w-full`}
+                    name="circle"
+                    value={row.circle}
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </Td>
+                <Td>
+                  <input
+                    className={`${input} w-full`}
+                    name="division"
+                    value={row.division}
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </Td>
+                <Td>
+                  <input
+                    className={`${input} w-full`}
+                    name="interfacePoints"
+                    value={row.interfacePoints}
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </Td>
+                <Td>
+                  {index === 0 ? (
+                    <button className={btn} onClick={handleAddRow}>
+                      Add
+                    </button>
+                  ) : (
+                    <button
+                      className={`${removebtn} bg-red-500`}
+                      onClick={() => handleRemoveRow(index)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </div>
+
+      <div className="col-span-3 justify-between space-x-4">
+        <button className={btn + " w-1/5"}>Submit</button>
+        <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
+      </div>
     </>
   );
 }

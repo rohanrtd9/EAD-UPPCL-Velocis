@@ -1,6 +1,12 @@
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
-import { btn, input, label, select } from "../../../../utils/tailwindClasses";
+import {
+  btn,
+  input,
+  label,
+  select,
+  removebtn,
+} from "../../../../utils/tailwindClasses";
 
 function AddDivision() {
   return (
@@ -75,8 +81,9 @@ function AddDivision() {
             <label className={label}>Overall MF</label>
           </div>
         </div>
-        <div className="col-span-3 flex justify-between">
+        <div className="col-span-3 justify-between space-x-4">
           <button className={btn + " w-1/5"}>Submit</button>
+          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
         </div>
       </FormPanel>
     </>
