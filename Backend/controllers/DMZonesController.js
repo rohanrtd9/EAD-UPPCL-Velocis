@@ -104,8 +104,9 @@ export const deleteZone = async (req, res) => {
 
 export const getZones = async (req, res) => {
   try {
-      const { page = 1, limit = 10 } = req.body;
-     
+ 
+      const { page = 1, limit = 100000 } = req.body;
+    
       const aggregateQuery = zonesModel.aggregate([
         { $match: { isDeleted: 0 } },
         { $lookup: {
@@ -115,7 +116,8 @@ export const getZones = async (req, res) => {
             as: 'discomDetails'
         }},
         { $unwind: '$discomDetails' },
-        { $sort: { zoneName: 1 } }
+        { $sort: { _id: -1 } }
+        //{ $sort: { zoneName: 1 } }
     ]);
 
     const options = {

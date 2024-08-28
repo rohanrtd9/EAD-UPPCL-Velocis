@@ -6,11 +6,7 @@ const outgoingFeederSchema = new mongoose.Schema({
     divisionName: String,
     circleName: String, 
     substationName: String,
-    feederName: String,
-    isDeleted:{
-        type: Number,
-        default: 0
-    },
+    feederName: String,  
     feederDetails: [{
         feederVoltage:String,
         outgoingFeederName:String,
@@ -24,7 +20,11 @@ const outgoingFeederSchema = new mongoose.Schema({
         overallMF:String,
         mappedEDD:String,
         status:String,
-    }]
+    }],
+    isDeleted:{
+        type: Number,
+        default: 0
+    }
 });
 
 outgoingFeederSchema.plugin(mongoosePaginate);
