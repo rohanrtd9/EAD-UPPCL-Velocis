@@ -10,6 +10,7 @@ export default function Table({ children }) {
     </div>
   );
 }
+
 export function Thead({ children }) {
   return (
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -17,13 +18,15 @@ export function Thead({ children }) {
     </thead>
   );
 }
+
 export function Tr({ children }) {
   return <tr>{children}</tr>;
 }
+
 export function Th({ children, rowSpan, colSpan }) {
   return (
     <th
-      className="px-6 py-3"
+      className="px-3 py-2" // Reduced padding
       {...(rowSpan && { rowSpan })}
       {...(colSpan && { colSpan })}
     >
@@ -31,13 +34,15 @@ export function Th({ children, rowSpan, colSpan }) {
     </th>
   );
 }
+
 export function Tbody({ children }) {
   return <tbody>{children}</tbody>;
 }
+
 export function Td({ children, flex, colspan }) {
   return (
     <td
-      className={flex ? "flex px-6 py-4" : " px-6 py-4"}
+      className={flex ? "flex px-3 py-2" : "px-3 py-2"} // Reduced padding
       colSpan={colspan ? colspan : 1}
     >
       {children}

@@ -15,6 +15,12 @@
   cursor: pointer;
   font-size: 14px; /* Smaller font size */
   transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Smooth transitions */
+  min-width: 30px; /* Minimum width */
+  min-height: 30px; /* Minimum height */
+  text-align: center; /* Center text horizontally */
+  display: flex; /* Flexbox to center text vertically */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
 }
 
 .pagination-controls button:hover {
@@ -40,17 +46,4 @@
 .pagination-controls button.active {
   background-color: #3085d6;
   color: white;
-}
-
-.pagination-controls button {
-  background: transparent;
-  border: 1px solid #ddd;
-  padding: 0.5rem 1rem;
-  margin: 0 0.2rem;
-  cursor: pointer;
-}
-
-.pagination-controls button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
 }

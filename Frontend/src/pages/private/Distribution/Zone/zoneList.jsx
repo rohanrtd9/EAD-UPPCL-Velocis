@@ -129,15 +129,16 @@ function ZoneList() {
               <Td flex={true}>
                 <button
                   onClick={() => handleDelete(zone._id)}
-                  className="text-indigo-600 hover:text-indigo-900"
+                  className="text-red-600 hover:text-red-800 w-6 h-7 p-1 flex items-center justify-center" // Updated styles
                 >
-                  <TrashIcon className="h-6 w-6" />
+                  <TrashIcon className="h-5 w-5" /> {/* Smaller icon size */}
                 </button>
                 <button
                   onClick={() => editConnection(zone)}
-                  className="text-indigo-600 hover:text-indigo-900"
+                  className="text-indigo-600 hover:text-indigo-900 w-6 h-7 p-1 flex items-center justify-center" // Updated styles
                 >
-                  <PencilSquareIcon className="h-6 w-6" />
+                  <PencilSquareIcon className="h-5 w-5" />{" "}
+                  {/* Smaller icon size */}
                 </button>
               </Td>
             </Tr>
