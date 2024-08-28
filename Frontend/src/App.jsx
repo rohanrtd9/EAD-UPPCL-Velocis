@@ -172,7 +172,7 @@ function App() {
               }
             />
             <Route
-              path="/addZone"
+              path="/zoneAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddZone />

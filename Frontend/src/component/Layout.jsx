@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar } from "./Sidebar";
+import Sidebar from "./Sidebar";
 import Dropdown from "./UserDropdown";
 import { useLocation } from "react-router-dom";
 const Layout = ({ children }) => {

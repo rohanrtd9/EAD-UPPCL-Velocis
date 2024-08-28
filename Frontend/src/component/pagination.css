@@ -1,0 +1,56 @@
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination-controls button {
+  background-color: transparent; /* Transparent background */
+  color: #3085d6; /* Primary button text color */
+  border: 1px solid #3085d6; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  padding: 5px 10px; /* Smaller padding for smaller button */
+  margin: 0 3px; /* Reduced margin between buttons */
+  cursor: pointer;
+  font-size: 14px; /* Smaller font size */
+  transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.pagination-controls button:hover {
+  background-color: #f0f0f0; /* Light background on hover */
+  color: #1e70c0; /* Change text color on hover */
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.pagination-controls button:disabled {
+  background-color: transparent; /* Transparent background for disabled button */
+  color: #a9a9a9; /* Disabled text color */
+  border: 1px solid #a9a9a9; /* Disabled border color */
+  cursor: not-allowed;
+  transform: none; /* Remove hover effect for disabled button */
+}
+
+.pagination-controls span {
+  font-size: 14px; /* Smaller font size */
+  margin: 0 5px; /* Reduced margin for better alignment */
+  color: #333; /* Text color */
+}
+
+.pagination-controls button.active {
+  background-color: #3085d6;
+  color: white;
+}
+
+.pagination-controls button {
+  background: transparent;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
