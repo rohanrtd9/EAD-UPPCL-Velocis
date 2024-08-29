@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
-import { discom } from "../../../../utils/constant";
 import {
   btn,
   input,
@@ -36,9 +35,6 @@ function AddSubstation() {
             <label className={label}>Division Name</label>
             <select className={select} defaultValue="">
               <option>Select Division</option>
-              {discom.map((dis) => (
-                <option key={dis.id}>{dis.name}</option>
-              ))}
             </select>
           </div>
         </div>

@@ -205,7 +205,7 @@ function App() {
               }
             />
             <Route
-              path="/addDivision"
+              path="/divisionAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddDivision />
@@ -222,7 +222,7 @@ function App() {
               }
             />
             <Route
-              path="/addDistrict"
+              path="/districtAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddDistrict />

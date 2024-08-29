@@ -1,6 +1,5 @@
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
-import { discom } from "../../../../utils/constant";
 import Table, { Tbody, Td, Th, Thead, Tr } from "../../../../component/Table";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 
@@ -28,9 +27,6 @@ function OutgoingFeederMasterData() {
             <label className={label}>Discom</label>
             <select className={select} defaultValue="">
               <option>Select a Discom</option>
-              {discom.map((dis) => (
-                <option key={dis.id}>{dis.name}</option>
-              ))}
             </select>
           </div>
         </div>

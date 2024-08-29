@@ -86,20 +86,24 @@ const Sidebar = () => {
         </ListItem>
         <AccordionBody className="py-1">
           <List className="p-0">
-            <CustomLink to="/zone" activeLink="/addZone" title="Zone Masters" />
+            <CustomLink
+              to="/zone"
+              activeLink="/zoneAction/addZone"
+              title="Zone Masters"
+            />
             <CustomLink
               to="/circle"
-              activeLink="/addCircle"
+              activeLink="/circleAction/addCircle"
               title="Circle Masters"
             />
             <CustomLink
               to="/division"
-              activeLink="/addDivision"
+              activeLink="/divisionAction/addDivision"
               title="Division Masters"
             />
             <CustomLink
               to="/district"
-              activeLink="/addDistrict"
+              activeLink="/districtAction/addDistrict"
               title="District Masters"
             />
             <CustomLink

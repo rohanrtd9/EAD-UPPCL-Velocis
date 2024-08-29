@@ -181,7 +181,7 @@ function AddZone() {
         {loading && <Loader />}
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Discom</label>
+            <label className={label}>Discom Name</label>
             <select
               name="discom_ID"
               className={select}
