@@ -73,7 +73,7 @@ router.post("/list-substation",  getSubstations);
 router.delete("/delete-substation",  deleteSubstation);
 
 
-//router.post("/import-incoming-feeder",  importIncomingFeederController);
+router.post("/import-incoming-feeder",  importIncomingFeederController);
 router.post("/add-incomming-feeder",  createIncommingFeeder);
 router.put("/edit-incomming-feeder",  updateIncommingFeeder);
 router.delete("/delete-incomming-feeder",  deleteIncommingFeeder);
