@@ -98,7 +98,7 @@ export const importTempOutGoingFeederController = async (req, res, next) => {
   try {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
-    const filePath = path.join(__dirname, '../data/distribution/outgoingFeeder/csv/POORVANCHAL-OutgoingMasterData-2.csv');
+    const filePath = path.join(__dirname, '../data/distribution/outgoingFeeder/csv/PASCHIMANCHAL-OutgoingMasterData-3.csv');
 
     fs.createReadStream(filePath)
       .pipe(csvParser())
@@ -184,7 +184,7 @@ export const importOutGoingFeederController = async (req, res, next) => {
         };
   
         if (existingRecord) {          
-          let substation = await outgoingModel.findByIdAndUpdate(
+          let responseDataa = await outgoingModel.findByIdAndUpdate(
             existingRecord._id,
             { $push: { feederDetails: payload } },
             { new: true } // To return the updated document
@@ -199,7 +199,7 @@ export const importOutGoingFeederController = async (req, res, next) => {
           console.log(`Inserted new record for ${divisionName}, ${substationName}, ${feederName}`);
         }
       }
-      res.status(200).json({ message: "Data importing in process" });
+      res.status(200).json({ message: "Data imported" });
     } catch (error) {
       console.error("Error inserting/updating records:", error);
     }    
@@ -209,8 +209,8 @@ export const importOutGoingFeederController = async (req, res, next) => {
 export const getOutgoingFeeders = async (req, res) => {
   try {
 
-    const {page, limit} = req.body;
-      const query = { isDeleted: 0 }; // Only fetch non-deleted discoms
+    const {page, limit,discomName,zoneName, circleName, divisionName,substationName} = req.body;
+      const query = { discomName:discomName,zoneName:zoneName, circleName:circleName, divisionName:divisionName,substationName:substationName,isDeleted: 0 }; // Only fetch non-deleted discoms
       const options = {
           page: page,
           limit: limit,
@@ -218,8 +218,6 @@ export const getOutgoingFeeders = async (req, res) => {
       };
       const result = await outgoingModel.paginate(query, options);
       return res.status(200).json({status:200,result:result});
-
-
 
   } catch (error) {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing ', error });
