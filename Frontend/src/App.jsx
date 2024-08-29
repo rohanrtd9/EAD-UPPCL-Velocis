@@ -188,7 +188,7 @@ function App() {
               }
             />
             <Route
-              path="/addCircle"
+              path="/circleAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddCircle />

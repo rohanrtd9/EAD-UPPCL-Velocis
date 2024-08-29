@@ -170,12 +170,13 @@ function AddZone() {
   return (
     <>
       <Header
-        title="Add Zone"
+        title={isEdit ? "Update Zone" : "Add Zone"}
         action={{
           button: "Zone List",
           path: "/zone",
         }}
       />
+
       <FormPanel>
         {loading && <Loader />}
         <div className="col-span-1">
@@ -207,6 +208,7 @@ function AddZone() {
               name="zoneName"
               className={input}
               placeholder=" "
+              autoComplete="off"
               value={localBodyData.zoneName}
               onChange={(e) =>
                 setLocalBodyData({ ...localBodyData, zoneName: e.target.value })
@@ -221,6 +223,7 @@ function AddZone() {
               name="zoneCode"
               className={input}
               placeholder=" "
+              autoComplete="off"
               value={localBodyData.zoneCode}
               onChange={(e) =>
                 setLocalBodyData({ ...localBodyData, zoneCode: e.target.value })
