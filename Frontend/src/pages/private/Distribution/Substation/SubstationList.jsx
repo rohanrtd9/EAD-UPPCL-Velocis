@@ -2,6 +2,7 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import Header from "../../../../component/Header";
 import Table, { Tbody, Td, Th, Thead, Tr } from "../../../../component/Table";
+import { IoAddCircleSharp } from "react-icons/io5";
 
 const SubstationList = () => {
   return (
@@ -9,13 +10,33 @@ const SubstationList = () => {
       <Header
         title="Substations"
         action={{
-          button: "Add Substation",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <IoAddCircleSharp
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Add Substation
+            </div>
+          ),
           path: "/AddSubstation",
         }}
       />
+
       <Table>
         <Thead>
           <Tr>
+            <Th>Sr No</Th>
+            <Th>Division</Th>
             <Th>Distribution Sub-Station Name</Th>
             <Th>Distribution Sub-Station Code</Th>
             <Th>Voltage of Unit Sub-Station</Th>
@@ -26,6 +47,8 @@ const SubstationList = () => {
         </Thead>
         <Tbody>
           <Tr>
+            <Td>1</Td>
+            <Td>EDD KANPUR</Td>
             <Td>SARSAUL_24842</Td>
             <Td>24842</Td>
             <Td>33</Td>

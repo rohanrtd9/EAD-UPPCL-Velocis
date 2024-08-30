@@ -9,8 +9,10 @@ import {
   ListItemPrefix,
   List,
 } from "@material-tailwind/react";
+import { RiDashboard3Line } from "react-icons/ri";
+import { GrTransaction } from "react-icons/gr";
+
 import {
-  ComputerDesktopIcon,
   PresentationChartBarIcon,
   DocumentCheckIcon,
 } from "@heroicons/react/24/outline";
@@ -53,7 +55,7 @@ const Sidebar = () => {
       <NavLink to="/">
         <ListItem>
           <ListItemPrefix>
-            <ComputerDesktopIcon className="h-5 w-5" />
+            <RiDashboard3Line className="h-5 w-5" />
           </ListItemPrefix>
           Distribution Dashboard
         </ListItem>
@@ -149,7 +151,7 @@ const Sidebar = () => {
             className="border-b-0 p-3"
           >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <GrTransaction className="h-5 w-5" />
             </ListItemPrefix>
             <Typography color="blue-gray" className="mr-auto font-normal">
               Distribution - Transaction
@@ -249,7 +251,7 @@ const Sidebar = () => {
       <NavLink to="/TransMisstionDashboard">
         <ListItem>
           <ListItemPrefix>
-            <ComputerDesktopIcon className="h-5 w-5" />
+            <RiDashboard3Line className="h-5 w-5" />
           </ListItemPrefix>
           Transmission Dashboard
         </ListItem>
@@ -314,7 +316,7 @@ const Sidebar = () => {
             className="border-b-0 p-3"
           >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <GrTransaction className="h-5 w-5" />
             </ListItemPrefix>
             <Typography color="blue-gray" className="mr-auto font-normal">
               Transmission Transaction
@@ -353,7 +355,7 @@ const Sidebar = () => {
             className="border-b-0 p-3"
           >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <DocumentCheckIcon className="h-5 w-5" />
             </ListItemPrefix>
             <Typography color="blue-gray" className="mr-auto font-normal">
               Transmission Report

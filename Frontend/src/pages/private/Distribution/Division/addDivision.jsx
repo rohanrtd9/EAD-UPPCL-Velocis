@@ -8,6 +8,7 @@ import Header from "../../../../component/Header";
 import Loader from "../../../../component/Loader";
 import { btn, input, label, select } from "../../../../utils/tailwindClasses";
 import { apiUrl } from "../../../../utils/constant";
+import { CiCircleList } from "react-icons/ci";
 
 function AddDivision() {
   const { pageName } = useParams();
@@ -260,7 +261,24 @@ function AddDivision() {
       <Header
         title={isEdit ? "Update Division" : "Add Division"}
         action={{
-          button: "Division List",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <CiCircleList
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Division List
+            </div>
+          ),
           path: "/division",
         }}
       />

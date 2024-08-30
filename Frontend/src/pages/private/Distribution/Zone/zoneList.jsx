@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../../../utils/userContext";
 import Loader from "../../../../component/Loader";
 import "./../../../../component/pagination.css";
+import { IoAddCircleSharp } from "react-icons/io5";
 
 function ZoneList() {
   const navigate = useNavigate();
@@ -107,10 +108,28 @@ function ZoneList() {
       <Header
         title="Zone (Distribution)"
         action={{
-          button: "Add Zone",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <IoAddCircleSharp
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Add Zone
+            </div>
+          ),
           path: "/zoneAction/addZone",
         }}
       />
+
       <Table>
         <Thead>
           <Tr>

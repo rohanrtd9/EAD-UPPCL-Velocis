@@ -8,6 +8,7 @@ import { useUserContext } from "../../../../utils/userContext";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../../../../component/Loader";
+import { CiCircleList } from "react-icons/ci";
 
 function AddCircle() {
   const { pageName } = useParams();
@@ -220,10 +221,28 @@ function AddCircle() {
       <Header
         title={isEdit ? "Update Circle" : "Add Circle"}
         action={{
-          button: "Circle List",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <CiCircleList
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Circle List
+            </div>
+          ),
           path: "/circle",
         }}
       />
+
       <FormPanel>
         {loading && <Loader />}
         <div className="col-span-1">

@@ -8,6 +8,7 @@ import Header from "../../../../component/Header";
 import Loader from "../../../../component/Loader";
 import { btn, input, label } from "../../../../utils/tailwindClasses";
 import { apiUrl } from "../../../../utils/constant";
+import { CiCircleList } from "react-icons/ci";
 
 function AddDistrict() {
   const { pageName } = useParams();
@@ -144,7 +145,24 @@ function AddDistrict() {
       <Header
         title={isEdit ? "Update District" : "Add District"}
         action={{
-          button: "District List",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <CiCircleList
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              District List
+            </div>
+          ),
           path: "/district",
         }}
       />

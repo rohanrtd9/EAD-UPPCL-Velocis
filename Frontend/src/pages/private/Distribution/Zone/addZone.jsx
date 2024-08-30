@@ -8,6 +8,7 @@ import { useUserContext } from "../../../../utils/userContext";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../../../../component/Loader";
+import { CiCircleList } from "react-icons/ci";
 
 function AddZone() {
   const { pageName } = useParams();
@@ -172,7 +173,24 @@ function AddZone() {
       <Header
         title={isEdit ? "Update Zone" : "Add Zone"}
         action={{
-          button: "Zone List",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <CiCircleList
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Zone List
+            </div>
+          ),
           path: "/zone",
         }}
       />

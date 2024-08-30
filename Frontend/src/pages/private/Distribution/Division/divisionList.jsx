@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../../../utils/userContext";
 import Loader from "../../../../component/Loader";
 import "./../../../../component/pagination.css";
+import { IoAddCircleSharp } from "react-icons/io5";
 
 function DivisionList() {
   const navigate = useNavigate();
@@ -114,7 +115,24 @@ function DivisionList() {
       <Header
         title="Division (Distribution)"
         action={{
-          button: "Add Division",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <IoAddCircleSharp
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Add Division
+            </div>
+          ),
           path: "/divisionAction/addDivision",
         }}
       />
