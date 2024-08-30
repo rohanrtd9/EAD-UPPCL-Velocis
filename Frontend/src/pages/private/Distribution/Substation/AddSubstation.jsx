@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
-import { discom } from "../../../../utils/constant";
+import { IoAddCircleSharp } from "react-icons/io5";
+import { FaMinus } from "react-icons/fa6";
+import { CiCircleList } from "react-icons/ci";
+
 import {
   btn,
   input,
@@ -26,26 +29,108 @@ function AddSubstation() {
       <Header
         title="Add Substation"
         action={{
-          button: "Substations List",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <CiCircleList
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Substations List
+            </div>
+          ),
           path: "/substations",
         }}
       />
       <FormPanel>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Division Name</label>
+            <label className={label}>
+              Division
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
+
             <select className={select} defaultValue="">
               <option>Select Division</option>
-              {discom.map((dis) => (
-                <option key={dis.id}>{dis.name}</option>
-              ))}
             </select>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>
+              Distribution Sub-Station Name{" "}
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>
+              Distribution Sub-Station Code{" "}
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
           </div>
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
             <label className={label}>
               Voltage level of Distribution Substation (KV)
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
+            <select className={select} defaultValue="">
+              <option>--Select--</option>
+              <option>33</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " required />
+            <label className={label}>
+              Junior Engineer Name
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <input className={input} placeholder=" " />
+            <label className={label}>
+              Junior Engineer Number
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label}>
+              Start Month
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
             </label>
             <select className={select} defaultValue="">
               <option>--Select--</option>
@@ -54,42 +139,15 @@ function AddSubstation() {
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Month</label>
+            <label className={label}>
+              Year
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select className={select} defaultValue="">
               <option>--Select--</option>
             </select>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <label className={label}>Year</label>
-            <select className={select} defaultValue="">
-              <option>--Select--</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Distribution Sub-Station Name</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Distribution Sub-Station Code</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Junior Engineer Name</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Junior Engineer Number</label>
           </div>
         </div>
       </FormPanel>
@@ -117,7 +175,7 @@ function AddSubstation() {
                 <td className="p-1">{index + 1}</td>
                 <td className="p-1">
                   <select className={select} defaultValue="">
-                    <option>District</option>
+                    <option>--Select--</option>
                     <option value="US">United States</option>
                     <option value="CA">Canada</option>
                     <option value="FR">France</option>
@@ -125,37 +183,44 @@ function AddSubstation() {
                   </select>
                 </td>
                 <td className="p-1">
-                  <input className={input} placeholder="" />
-                  <label className={label}>Distribution Sub-Station Name</label>
+                  <input className={input} placeholder="Substation Name" />
                 </td>
                 <td className="p-1">
-                  <input className={input} placeholder="" />
-                  <label className={label}>Distribution</label>
+                  <input className={input} placeholder="Zone(Transmission)" />
                 </td>
                 <td className="p-1">
-                  <input className={input} placeholder="" />
-                  <label className={label}>Distribution</label>
+                  <input className={input} placeholder="Circle(Transmission)" />
                 </td>
 
                 <td className="p-1">
-                  <input className={input} placeholder="Distribution" />
-                  <label className={label}>Distribution</label>
+                  <input
+                    className={input}
+                    placeholder="Division(Transmission)"
+                  />
                 </td>
-                <td className="p-1">
-                  <input className={input} placeholder="" />
-                  <label className={label}>Distribution</label>
+                <td className="p-1 d-flex align-items-center">
+                  <select className={select} defaultValue="">
+                    <option>--Select--</option>
+                    <option value="40 MVA T/F ||">40 MVA T/F ||</option>
+                    <option value="40 MVA T/F">40 MVA T/F</option>
+                    <option value="33 KV SOHNI">33 KV SOHNI</option>
+                    <option value="40 MVA T/F ||">33 KV BIDHUNA</option>
+                  </select>
                 </td>
                 <td className="p-1">
                   {index === 0 ? (
-                    <button className={btn} onClick={handleAddRow}>
-                      Add
+                    <button
+                      className={`${btn} no-underline`}
+                      onClick={handleAddRow}
+                    >
+                      <IoAddCircleSharp className="h-5 w-5" />
                     </button>
                   ) : (
                     <button
-                      className={removebtn + " bg-red-500"}
+                      className={`${removebtn} bg-red-500 no-underline `}
                       onClick={() => handleRemoveRow(row.id)}
                     >
-                      Remove
+                      <FaMinus className="h-5 w-5" />
                     </button>
                   )}
                 </td>
@@ -163,9 +228,10 @@ function AddSubstation() {
             ))}
           </tbody>
         </table>
-        <div className="col-span-3 justify-between space-x-4">
-          <button className={btn + " w-1/5"}>Submit</button>
-          <button className={removebtn + " bg-red-500 w-1/5"}>Reset</button>
+        <div className="col-span-3 flex justify-between space-x-4 mt-4">
+          <button className={`${btn} no-underline w-1/5 mt-2 mb-2`}>
+            Submit
+          </button>
         </div>
       </div>
     </>

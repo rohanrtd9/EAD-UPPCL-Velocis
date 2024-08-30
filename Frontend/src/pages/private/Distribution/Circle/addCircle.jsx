@@ -8,6 +8,7 @@ import { useUserContext } from "../../../../utils/userContext";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../../../../component/Loader";
+import { CiCircleList } from "react-icons/ci";
 
 function AddCircle() {
   const { pageName } = useParams();
@@ -79,8 +80,8 @@ function AddCircle() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-zone`,
-        { discom_Id: discomId },
+        `${apiUrl}list-discom-zone`,
+        { discom_ID: discomId },
         {
           headers: {
             "Content-Type": "application/json",
@@ -220,10 +221,28 @@ function AddCircle() {
       <Header
         title={isEdit ? "Update Circle" : "Add Circle"}
         action={{
-          button: "Circle List",
+          button: (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "4px",
+              }}
+            >
+              <CiCircleList
+                style={{
+                  fontSize: "18px",
+                  color: "#DCDCDC",
+                  marginRight: "8px",
+                }}
+              />
+              Circle List
+            </div>
+          ),
           path: "/circle",
         }}
       />
+
       <FormPanel>
         {loading && <Loader />}
         <div className="col-span-1">
@@ -296,6 +315,14 @@ function AddCircle() {
             disabled={loading}
           >
             {loading ? "Loading..." : isEdit ? "Update" : "Submit"}
+          </button>
+
+          <button
+            type="button"
+            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            onClick={resetForm}
+          >
+            Reset
           </button>
         </div>
       </FormPanel>

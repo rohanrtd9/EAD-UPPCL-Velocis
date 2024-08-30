@@ -9,8 +9,10 @@ import {
   ListItemPrefix,
   List,
 } from "@material-tailwind/react";
+import { RiDashboard3Line } from "react-icons/ri";
+import { GrTransaction } from "react-icons/gr";
+
 import {
-  ComputerDesktopIcon,
   PresentationChartBarIcon,
   DocumentCheckIcon,
 } from "@heroicons/react/24/outline";
@@ -53,7 +55,7 @@ const Sidebar = () => {
       <NavLink to="/">
         <ListItem>
           <ListItemPrefix>
-            <ComputerDesktopIcon className="h-5 w-5" />
+            <RiDashboard3Line className="h-5 w-5" />
           </ListItemPrefix>
           Distribution Dashboard
         </ListItem>
@@ -86,25 +88,29 @@ const Sidebar = () => {
         </ListItem>
         <AccordionBody className="py-1">
           <List className="p-0">
-            <CustomLink to="/zone" activeLink="/addZone" title="Zone Masters" />
+            <CustomLink
+              to="/zone"
+              activeLink="/zoneAction/addZone"
+              title="Zone Masters"
+            />
             <CustomLink
               to="/circle"
-              activeLink="/addCircle"
+              activeLink="/circleAction/addCircle"
               title="Circle Masters"
             />
             <CustomLink
               to="/division"
-              activeLink="/addDivision"
+              activeLink="/divisionAction/addDivision"
               title="Division Masters"
             />
             <CustomLink
               to="/district"
-              activeLink="/addDistrict"
+              activeLink="/districtAction/addDistrict"
               title="District Masters"
             />
             <CustomLink
               to="/substations"
-              activeLink="/AddSubstation"
+              activeLink="/substationAction/AddSubstation"
               title="Substation Masters"
             />
             <CustomLink
@@ -145,7 +151,7 @@ const Sidebar = () => {
             className="border-b-0 p-3"
           >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <GrTransaction className="h-5 w-5" />
             </ListItemPrefix>
             <Typography color="blue-gray" className="mr-auto font-normal">
               Distribution - Transaction
@@ -245,7 +251,7 @@ const Sidebar = () => {
       <NavLink to="/TransMisstionDashboard">
         <ListItem>
           <ListItemPrefix>
-            <ComputerDesktopIcon className="h-5 w-5" />
+            <RiDashboard3Line className="h-5 w-5" />
           </ListItemPrefix>
           Transmission Dashboard
         </ListItem>
@@ -310,7 +316,7 @@ const Sidebar = () => {
             className="border-b-0 p-3"
           >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <GrTransaction className="h-5 w-5" />
             </ListItemPrefix>
             <Typography color="blue-gray" className="mr-auto font-normal">
               Transmission Transaction
@@ -349,7 +355,7 @@ const Sidebar = () => {
             className="border-b-0 p-3"
           >
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <DocumentCheckIcon className="h-5 w-5" />
             </ListItemPrefix>
             <Typography color="blue-gray" className="mr-auto font-normal">
               Transmission Report
