@@ -13,6 +13,7 @@ import { import33kvIndependentController,createIndependentFeeder, deleteIndepend
 import { addTransformer, editTransformer, softDeleteTransformer, listTransformer } from "../controllers/DMTransformerController.js";
  
 import {loginController,changePasswordController} from "../controllers/userController.js";
+import {addMonth,listMonth,addYear,listYear} from "../controllers/monthYearController.js";
 
 
 
@@ -97,5 +98,9 @@ router.put("/edit-transformer",  editTransformer);
 router.delete("/delete-transformer",  softDeleteTransformer);
 router.post("/list-transformer",  listTransformer);
 
+router.post("/add-month",  addMonth);
+router.post("/add-year",  addYear);
+router.get("/monthList",  listMonth);
+router.get("/yearList",  listYear);
 
 export default router;
