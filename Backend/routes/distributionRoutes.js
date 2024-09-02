@@ -100,7 +100,7 @@ router.post("/list-transformer",  listTransformer);
 
 router.post("/add-month",  addMonth);
 router.post("/add-year",  addYear);
-router.get("/monthList",  listMonth);
-router.get("/yearList",  listYear);
+router.post("/monthList",  listMonth);
+router.post("/yearList",  listYear);
 
 export default router;
