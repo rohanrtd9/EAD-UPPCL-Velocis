@@ -110,7 +110,7 @@ const Sidebar = () => {
             />
             <CustomLink
               to="/substations"
-              activeLink="/substationAction/AddSubstation"
+              activeLink="/AddSubstation"
               title="Substation Masters"
             />
             <CustomLink

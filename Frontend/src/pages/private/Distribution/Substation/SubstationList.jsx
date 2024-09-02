@@ -124,7 +124,7 @@ const SubstationList = () => {
               Add Substation
             </div>
           ),
-          path: "/substationAction/AddSubstation",
+          path: "/AddSubstation",
         }}
       />
 
