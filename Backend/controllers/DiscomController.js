@@ -7,10 +7,8 @@ import discomModel from "../models/discomModel.js";
 export const exportDiscomController = async (req,res,next) => {
 
     try{
-
         const __filename = fileURLToPath(import.meta.url); 
-        const __dirname = path.dirname(__filename);
-        
+        const __dirname = path.dirname(__filename);        
         const results = [];
         const filePath = path.join(__dirname, '../data/distribution/discom/discom.csv');
         
