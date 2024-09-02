@@ -90,8 +90,8 @@ const SubstationList = () => {
   };
 
   const editConnection = (data) => {
-    const obj = encodeURIComponent(JSON.stringify(data));
-    navigate(`/substationAction/${obj}`);
+    const encodedData = encodeURIComponent(JSON.stringify(data));
+    navigate(`/substationAction/${encodedData}`);
   };
 
   const pagesToShow = 4; // Number of page buttons to show
@@ -124,7 +124,7 @@ const SubstationList = () => {
               Add Substation
             </div>
           ),
-          path: "/AddSubstation",
+          path: "/substationAction/AddSubstation",
         }}
       />
 

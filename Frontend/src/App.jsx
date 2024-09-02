@@ -247,7 +247,7 @@ function App() {
               }
             />
             <Route
-              path="/AddSubstation"
+              path="/substationAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddSubstation />
