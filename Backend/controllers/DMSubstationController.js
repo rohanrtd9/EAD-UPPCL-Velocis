@@ -142,7 +142,7 @@ export const getSubstations = async (req, res) => {
   try {
 
     const {page, limit,divisionName} = req.body; 
-    var query = {  }; // { isDeleted: 0 };
+    var query = { isDeleted: 0 };
     if(divisionName){
       query = { isDeleted: 0, divisionName:divisionName}; // Only fetch non-deleted discoms
     }
