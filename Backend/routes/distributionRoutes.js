@@ -86,7 +86,6 @@ router.post("/add-outgoing-feeder",  createOutgoingFeeder);
 router.put("/edit-outgoing-feeder",  updateOutgoingFeeder);
 router.delete("/delete-outgoing-feeder",  deleteOutgoingFeeder);
 router.post("/list-outgoing-feeder",  getOutgoingFeeders);
-
 router.post("/import-33KVIndependent-feeder",  import33kvIndependentController);
 router.post("/add-33KVIndependent-feeder",  createIndependentFeeder);
 router.put("/edit-33KVIndependent-feeder",  updateIndependentFeeder);
