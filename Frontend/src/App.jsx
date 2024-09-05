@@ -283,7 +283,7 @@ function App() {
             />
             {/* Add Outgoing Feeder Master Data */}
             <Route
-              path="/AddOutgoingFeederMasterData"
+              path="/outgoingFeederAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddOutgoingFeederMasterData />

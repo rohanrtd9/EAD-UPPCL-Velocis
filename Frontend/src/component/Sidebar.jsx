@@ -120,7 +120,7 @@ const Sidebar = () => {
             />
             <CustomLink
               to="/outgoingFeederMaterData"
-              activeLink="/AddOutgoingFeederMasterData"
+              activeLink="/outgoingFeederAction/AddOutgoingFeederMasterData"
               title="Outgoing Feeder Master Data"
             />
             <CustomLink
