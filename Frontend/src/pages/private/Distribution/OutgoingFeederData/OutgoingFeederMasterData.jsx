@@ -418,15 +418,7 @@ function OutgoingFeederMasterData() {
                         )}&feederName=${encodeURIComponent(feeder.feederName)}`}
                         className="link-button"
                       >
-                        <button className={btn}>
-                          <IoAddCircleSharp
-                            style={{
-                              fontSize: "18px",
-                              color: "#DCDCDC",
-                              marginRight: "2px",
-                            }}
-                          />
-                        </button>
+                        <button className={btn}>Add DOFD</button>
                       </Link>
                     </Td>
                   </Tr>
