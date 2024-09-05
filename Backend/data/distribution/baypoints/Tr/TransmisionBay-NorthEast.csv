@@ -1,0 +1,4 @@
+S.No.,Zone,Circle,Division,Substation,FeederBay,EnergyMeterSerialNo,InterfaceType,Month,Year,Import Energy(Transmission),Export Energy(Transmission),Name of Distribution S/S and/or 33kv and above Consumer feeder,Receipt Energy for Month,Name of Distribution Division,Name of Distribution Discom
+1,NORTH-EAST,ETC Gorakhpur,400 kV S/S Div. Gorakhpur,220KV S/S GORAKHPUR II (MOTI RAM ADDA),132 KV KAPTANGANJ TSS,XD449357,T-D,July,2024,0,2271,,,,
+2,NORTH-EAST,ETC Gorakhpur,400 kV S/S Div. Gorakhpur,220KV S/S GORAKHPUR II (MOTI RAM ADDA),20 MVA TRANSFORMER (FOR SUBSTATION CONSUMPTION),XE485363,T-D,July,2024,116.5,0,,,,
+3,NORTH-EAST,ETC Gorakhpur,400 kV S/S Div. Gorakhpur,220KV S/S GORAKHPUR II (MOTI RAM ADDA),33 KV COLONY FEEDER (FOR SUBSTATION CONSUMPTION),XF409175,T-D,July,2024,0,107.5,,,,

@@ -7,8 +7,8 @@ import {exportZonesController,createZone,updateZone,deleteZone,getZones,getDisco
 import {exportCircleController,createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle,exportCircleToCsv} from "../controllers/DMCircleController.js";
 import {exportDiscomController,addDiscom,editDiscom,listDiscoms,softDeleteDiscom} from "../controllers/DiscomController.js";
 import {exportDivisionController,createDivision,updateDivision,getDivisions,getCircleDivisions,deleteDivision,exportDivisionToCsv} from "../controllers/DMDivisionController.js";
-import { importIncomingFeederController,createIncommingFeeder, deleteIncommingFeeder, getIncommingFeeders, updateIncommingFeeder,updateIncommingFeedersStatus } from "../controllers/DMIncommingFeederController.js";
-import { importTempOutGoingFeederController,importOutGoingFeederController,createOutgoingFeeder, deleteOutgoingFeeder, getOutgoingFeeders, updateOutgoingFeeder } from "../controllers/DMOutgoingFeederController.js";
+import { importIncomingFeederController,createIncommingFeeder, deleteIncommingFeeder, getIncommingFeeders, updateIncommingFeeder } from "../controllers/DMIncommingFeederController.js";
+import { importTempOutGoingFeederController,importOutGoingFeederController,createOutgoingFeeder, deleteOutgoingFeeder, getOutgoingFeeders, updateOutgoingFeeder,importTempBaypointController,importBayspointController } from "../controllers/DMOutgoingFeederController.js";
 import { import33kvIndependentController,createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder } from "../controllers/DM33KVIndependentFeederController.js";
 import { addTransformer, editTransformer, softDeleteTransformer, listTransformer } from "../controllers/DMTransformerController.js";
  
@@ -26,7 +26,6 @@ router.post('/change-password', changePasswordController);
 
 // router.get("/dm-substation/list",  listDMSubStationController);
 // router.get("/dm-subdivision/list",  listDMSubdivisionController);
-
 //router.post("/import-discom",  exportDiscomController);
 router.post("/add-discom",  addDiscom);
 router.put("/edit-discom",  editDiscom);
@@ -79,7 +78,6 @@ router.post("/add-incomming-feeder",  createIncommingFeeder);
 router.put("/edit-incomming-feeder",  updateIncommingFeeder);
 router.delete("/delete-incomming-feeder",  deleteIncommingFeeder);
 router.post("/list-incomming-feeder",  getIncommingFeeders);
-router.post("/update-incoming-feeder-status",  updateIncommingFeedersStatus);
 
 router.post("/import-temp-all-outgoing-feeder",  importTempOutGoingFeederController);
 router.post("/import-outgoing-feeder",  importOutGoingFeederController);
@@ -102,5 +100,8 @@ router.post("/add-month",  addMonth);
 router.post("/add-year",  addYear);
 router.post("/monthList",  listMonth);
 router.post("/yearList",  listYear);
+
+router.post("/import-temp-bay-point",  importTempBaypointController);
+router.post("/import-bay-point",  importBayspointController);
 
 export default router;

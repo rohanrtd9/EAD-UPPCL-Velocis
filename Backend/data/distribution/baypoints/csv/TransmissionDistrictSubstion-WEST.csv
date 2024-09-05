@@ -1,0 +1,208 @@
+Sr.No.,Zone,Circle,Division,Substation,DistrictName
+542,WEST,ETC Ghaziabad,400 kV S/S Div Muradnagar -I,400KV S/S MURADNAGAR-I,Gaziabad
+543,WEST,ETC Ghaziabad,400 kV S/S Div Muradnagar -II,400KV S/S MURADNAGAR-II,Gaziabad
+544,WEST,ETC Ghaziabad,ETD Ghaziabad-I,220 KV S/S MANDOLA VIHAR,Gaziabad
+545,WEST,ETC Ghaziabad,ETD Ghaziabad-I,220KV S/S LONI,Gaziabad
+546,WEST,ETC Ghaziabad,ETD Ghaziabad-I,220KV S/S MORTI,Gaziabad
+547,WEST,ETC Ghaziabad,ETD Ghaziabad-I,220KV S/S SAHIBABAD,Gaziabad
+548,WEST,ETC Ghaziabad,ETD Ghaziabad-I,132KV S/S KANHA UPWAN,Gaziabad
+549,WEST,ETC Ghaziabad,ETD Ghaziabad-I,132KV S/S MOHANNAGAR,Gaziabad
+550,WEST,ETC Ghaziabad,ETD Ghaziabad-I,132KV S/S TILA MORE,Gaziabad
+551,WEST,ETC Ghaziabad,ETD Ghaziabad-I,132KV S/S VAISHALI,Gaziabad
+552,WEST,ETC Ghaziabad,ETD Ghaziabad-II,220KV S/S PRATAPVIHAR,Gaziabad
+553,WEST,ETC Ghaziabad,ETD Ghaziabad-II,"220KV S/S MADHUBAN BAPUDHAM, GIS",Gaziabad
+554,WEST,ETC Ghaziabad,ETD Ghaziabad-II,"132KV S/S DPH,GHAZIABAD",Gaziabad
+555,WEST,ETC Ghaziabad,ETD Ghaziabad-II,132KV S/S GHAZIABAD(BSR ROAD) Lal kuan,Gaziabad
+556,WEST,ETC Ghaziabad,ETD Ghaziabad-II,132KV S/S GHAZIABAD(IA),Gaziabad
+557,WEST,ETC Ghaziabad,ETD Ghaziabad-II,"132KV S/S GHAZIABAD(M.ROAD),MORTA",Gaziabad
+558,WEST,ETC Ghaziabad,ETD Ghaziabad-II,132KV S/S GOVINDPURAM,Gaziabad
+559,WEST,ETC Ghaziabad,ETD Ghaziabad-II,"132KV S/S UPSIDC, MASSURI",Gaziabad
+560,WEST,ETC Ghaziabad,ETD Ghaziabad-II,132 KV S/S MORTA,Gaziabad
+561,WEST,ETC Ghaziabad,ETD Ghaziabad-II,132KV S/S BSR II,Gaziabad
+562,WEST,ETC Ghaziabad,ETD Muradnagar,220KV S/S FARIDNAGAR,Gaziabad
+563,WEST,ETC Ghaziabad,ETD Muradnagar,220KV S/S MURADNAGAR,Gaziabad
+564,WEST,ETC Ghaziabad,ETD Muradnagar,132KV S/S MODINAGAR(MODI STEEL),Gaziabad
+565,WEST,ETC Ghaziabad,ETD Muradnagar,132KV S/S MODINAGAR(NIWARI ROAD),Gaziabad
+566,WEST,ETC Gr.Noida,400 kV S/S Div Gr. Noida,400KV S/S GREATER NOIDA,Gautam Buddha Nagar
+567,WEST,ETC Gr.Noida,400 kV S/S Div Gr. Noida,220KV S/S IITGNL,Gautam Buddha Nagar
+568,WEST,ETC Gr.Noida,400 kV S/S Div Gr. Noida,220KV S/S YEIDA(SEC-18),Gautam Buddha Nagar
+569,WEST,ETC Gr.Noida,400 kV S/S Div Gr. Noida,220KV S/S YEIDA(SEC-24),Gautam Buddha Nagar
+570,WEST,ETC Gr.Noida,ETD Bulandshahar,220KV S/S RUKHI,Bulandshahar
+571,WEST,ETC Gr.Noida,ETD Bulandshahar,220KV S/S SIKANDRABAD,Bulandshahar
+572,WEST,ETC Gr.Noida,ETD Bulandshahar,132KV S/S BB NAGAR,Bulandshahar
+573,WEST,ETC Gr.Noida,ETD Bulandshahar,132KV S/S BHOOR,Bulandshahar
+574,WEST,ETC Gr.Noida,ETD Bulandshahar,132KV S/S BHOOR-II,Bulandshahar
+575,WEST,ETC Gr.Noida,ETD Bulandshahar,132KV S/S GULAOTI,Bulandshahar
+576,WEST,ETC Gr.Noida,ETD Bulandshahar,132KV S/S LAKHAOTI,Bulandshahar
+577,WEST,ETC Gr.Noida,ETD Bulandshahar,132KV S/S SIYANA,Bulandshahar
+578,WEST,ETC Gr.Noida,ETD Hapur,132KV S/S DASNA,Hapur
+579,WEST,ETC Gr.Noida,ETD Hapur,132 KV S/S TEXTILE CENTER PILAKHUWA,Hapur
+580,WEST,ETC Gr.Noida,ETD Hapur,132 KV S/S HAPUR,Hapur
+581,WEST,ETC Gr.Noida,ETD Hapur,132 KV S/S BABUGARH,Hapur
+582,WEST,ETC Gr.Noida,ETD Hapur,220 KV HYBRID S/S HAPUR,Hapur
+583,WEST,ETC Gr.Noida,ETD Hapur,220 KV S/S SIMBHAOLI,Hapur
+584,WEST,ETC Gr.Noida,ETD Hapur,132 KV S/S GARHMUKETSHWER,Hapur
+585,WEST,ETC Gr.Noida,ETD Hapur,220KV S/S SIMBHAOLI,Hapur
+586,WEST,ETC Gr.Noida,ETD Hapur,220 KV HAPUR HYBRID,Hapur
+587,WEST,ETC Gr.Noida,ETD Hapur,132KV S/S GARHMUKTESHWAR,Hapur
+588,WEST,ETC Gr.Noida,ETD Hapur,132KV S/S HAPUR,Hapur
+589,WEST,ETC Gr.Noida,ETD Hapur,132KV S/S HAPUR II(BABUGARH),Hapur
+590,WEST,ETC Gr.Noida,ETD Hapur,132KV S/S PILKHUWA,Hapur
+591,WEST,ETC Gr.Noida,ETD Khurja,220KV S/S KHURJA,Bulandshahar
+592,WEST,ETC Gr.Noida,ETD Khurja,220KV S/S DEBAI,Bulandshahar
+593,WEST,ETC Gr.Noida,ETD Khurja,220KV S/S JAHANGIRABAD,Bulandshahar
+594,WEST,ETC Gr.Noida,ETD Khurja,132KV S/S ANOOPSHAHR,Bulandshahar
+595,WEST,ETC Gr.Noida,ETD Khurja,132KV S/S JAHANGIRABAD,Bulandshahar
+596,WEST,ETC Gr.Noida,ETD Khurja,132KV S/S JAHANGIRPUR,Bulandshahar
+597,WEST,ETC Gr.Noida,ETD Khurja,132KV S/S KHURJA-II,Bulandshahar
+598,WEST,ETC Gr.Noida,ETD Khurja,132KV S/S DHARMAPUR,Bulandshahar
+599,WEST,ETC Gr.Noida,ETD Khurja,132KV S/S SHIKARPUR,Bulandshahar
+600,WEST,ETC Meerut,ETD Baraut,220KV S/S BAGHPAT,Baghpat
+601,WEST,ETC Meerut,ETD Baraut,220KV S/S BARAUT,Baghpat
+602,WEST,ETC Meerut,ETD Baraut,132KV S/S BAGHPAT,Baghpat
+603,WEST,ETC Meerut,ETD Baraut,132KV S/S CHHAPRAULI,Baghpat
+604,WEST,ETC Meerut,ETD Baraut,132KV S/S KHEKRA,Baghpat
+605,WEST,ETC Meerut,ETD Baraut,132KV S/S KIRTHAL,Baghpat
+606,WEST,ETC Meerut,ETD Baraut,132KV S/S NIRPURA,Baghpat
+607,WEST,ETC Meerut,ETD Baraut,132KV S/S HARSIYA,Baghpat
+608,WEST,ETC Meerut,ETD Baraut,132KV S/S SINGHAOLI,Baghpat
+609,WEST,ETC Meerut,ETD Baraut,220KV S/S NIRPURA,Baghpat
+610,WEST,ETC Meerut,ETD Baraut,132KV S/S BILOCHPURA,Baghpat
+611,WEST,ETC Meerut,ETD Meerut-I,220KV S/S PARTAPUR(JAGRITI VIHAR),Meerut
+612,WEST,ETC Meerut,ETD Meerut-I,220KV S/S MEERUT(MODIPURAM),Meerut
+613,WEST,ETC Meerut,ETD Meerut-I,220KV S/S SHATABDI NAGAR,Meerut
+614,WEST,ETC Meerut,ETD Meerut-I,132KV S/S HAPUR BY PASS ROAD,Meerut
+615,WEST,ETC Meerut,ETD Meerut-I,132KV S/S HAPUR ROAD MEERUT (LOHIA NAGAR),Meerut
+616,WEST,ETC Meerut,ETD Meerut-I,132KV S/S KANKER KHERA,Meerut
+617,WEST,ETC Meerut,ETD Meerut-I,132KV S/S MEERUT(MEDICAL COLLEGE),Meerut
+618,WEST,ETC Meerut,ETD Meerut-I,132KV S/S MEERUT(PARTAPUR),Meerut
+619,WEST,ETC Meerut,ETD Meerut-I,132KV S/S KANKER KHERA-II,Meerut
+620,WEST,ETC Meerut,ETD Meerut-I,132KV S/S MUNDALI,Meerut
+621,WEST,ETC Meerut,ETD Meerut-I,132KV S/S NAGLIKHITHOR,Meerut
+622,WEST,ETC Meerut,ETD Meerut-I,132KV S/S GANGANAGAR,Meerut
+623,WEST,ETC Meerut,ETD Meerut-I,220KV S/S MODIPURAM-II,Meerut
+624,WEST,ETC Meerut,ETD Meerut-I,220 KV S/S MODIPURAM MEERUT DAURALA,Meerut
+625,WEST,ETC Meerut,ETD Meerut-I,220 KV SUBSTATION MODIPURAM-I,Meerut
+626,WEST,ETC Meerut,ETD Meerut-II,220KV S/S CHARLA,Meerut
+627,WEST,ETC Meerut,ETD Meerut-II,132KV S/S SALAVA,Meerut
+628,WEST,ETC Meerut,ETD Meerut-II,132 KV S/S MAWANA ROAD Hastinapur,Meerut
+629,WEST,ETC Meerut,ETD Meerut-II,132KV S/S RAMRAJ,Meerut
+630,WEST,ETC Meerut,ETD Meerut-II,132KV S/S MAWANA,Meerut
+631,WEST,ETC Meerut,ETD Meerut-II,132KV S/S SARDHANA,Meerut
+632,WEST,ETC Meerut,ETD Meerut-II,132 KV KANKARKHERA-II,Meerut
+633,WEST,ETC Moradabad-I,400kV S/S Div Moradabad,ELECTRICITY 400 KV S/S MORADABAD,Moradabad
+634,WEST,ETC Moradabad-I,ETD Moradabad-I,"132KV S/S AWAS VIKAS,MORADABAD",Moradabad
+635,WEST,ETC Moradabad-I,ETD Moradabad-I,132KV S/S BILARI,Moradabad
+636,WEST,ETC Moradabad-I,ETD Moradabad-I,132KV S/S KUNDARKI,Moradabad
+637,WEST,ETC Moradabad-I,ETD Moradabad-I,132KV S/S MORADABAD-II(KANTH ROAD),Moradabad
+638,WEST,ETC Moradabad-I,ETD Moradabad-I,132KV S/S THAKURDWARA,Moradabad
+639,WEST,ETC Moradabad-I,ETD Moradabad-II,220KV S/S MORADABAD(MAJHOLA),Moradabad
+640,WEST,ETC Moradabad-I,ETD Moradabad-II,132KV S/S AGWANPUR,Moradabad
+641,WEST,ETC Moradabad-I,ETD Moradabad-II,132KV S/S MORADABAD-III(GULAB BARI),Moradabad
+642,WEST,ETC Moradabad-I,ETD Rampur,220KV S/S RAMPUR,Rampur
+643,WEST,ETC Moradabad-I,ETD Rampur,132KV S/S BILASPUR,Rampur
+644,WEST,ETC Moradabad-I,ETD Rampur,132KV S/S RAMPUR,Rampur
+645,WEST,ETC Moradabad-I,ETD Rampur,"132KV S/S SAHABAD,RAMPUR",Rampur
+646,WEST,ETC Moradabad-I,ETD Rampur,132KV S/S LALPUR,Rampur
+647,WEST,ETC Moradabad-I,ETD Rampur,132KV S/S TANDA (RAMPUR),Rampur
+648,WEST,ETC Moradabad-I,ETD Sambhal,220KV S/S CHANDAUSI,Sambhal
+649,WEST,ETC Moradabad-I,ETD Sambhal,220KV S/S SAMBHAL,Sambhal
+650,WEST,ETC Moradabad-I,ETD Sambhal,132KV S/S ASMOLI,Sambhal
+651,WEST,ETC Moradabad-I,ETD Sambhal,132KV S/S BABRALA(GUNNOR),Sambhal
+652,WEST,ETC Moradabad-I,ETD Sambhal,132KV S/S CHANDAUSI,Sambhal
+653,WEST,ETC Moradabad-I,ETD Sambhal,132KV S/S SAMBHAL,Sambhal
+654,WEST,ETC Moradabad-I,ETD Sambhal,132KV S/S KAILADEVI,Sambhal
+655,WEST,ETC Moradabad-I,ETD Sambhal,132KV S/S BEHJOI,Sambhal
+656,WEST,ETC Morodabad-II,ETD Amroha,220KV S/S GAJRAULA,Amroha
+657,WEST,ETC Morodabad-II,ETD Amroha,220KV S/S AMROHA,Amroha
+658,WEST,ETC Morodabad-II,ETD Amroha,132KV S/S AMROHA,Amroha
+659,WEST,ETC Morodabad-II,ETD Amroha,132KV S/S BACHHRAUN,Amroha
+660,WEST,ETC Morodabad-II,ETD Amroha,132KV S/S GAJRAULA,Amroha
+661,WEST,ETC Morodabad-II,ETD Amroha,132KV S/S KOTHI KHIDMATPUR,Amroha
+662,WEST,ETC Morodabad-II,ETD Amroha,132KV S/S SAID NAGLI,Amroha
+663,WEST,ETC Morodabad-II,ETD Amroha,132KV S/S HASANPUR,Amroha
+664,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S BIJNORE,Bijnore
+665,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S TAJPUR,Bijnore
+666,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S MORNA,Bijnore
+667,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S CHANDAK,Bijnore
+668,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S CHANDPUR,Bijnore
+669,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S JALILPUR,Bijnore
+670,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S KIRATPUR,Bijnore
+671,WEST,ETC Morodabad-II,ETD Bijnore,220KV S/S CHANDPUR,Bijnore
+672,WEST,ETC Morodabad-II,ETD Bijnore,132KV S/S SWAHERI,Bijnore
+673,WEST,ETC Morodabad-II,ETD Dhampur,220KV S/S NEHTAUR,Bijnore
+674,WEST,ETC Morodabad-II,ETD Dhampur,132KV S/S SHERKOT,Bijnore
+675,WEST,ETC Morodabad-II,ETD Dhampur,132KV S/S NAGINA,Bijnore
+676,WEST,ETC Morodabad-II,ETD Dhampur,132KV S/S NAJIBABAD,Bijnore
+677,WEST,ETC Morodabad-II,ETD Dhampur,132KV S/S DHAMPUR,Bijnore
+678,WEST,ETC Morodabad-II,ETD Dhampur,132KV S/S AFZALGARH,Bijnore
+679,WEST,ETC Muzaffarnagar,400 kV S/S Div Muzaffarnagar,400KV S/S MUZAFFARNAGAR,Muzaffarnagar
+680,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,220KV S/S BADHAIKALAN,Muzaffarnagar
+681,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,220KV S/S JANSATH,Muzaffarnagar
+682,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,220KV S/S NARA (MUZAFFARNAGAR),Muzaffarnagar
+683,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S BHOPA ROAD,Muzaffarnagar
+684,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S BAGHRA,Muzaffarnagar
+685,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S JOLLY ROAD MUZAFRNAGAR,Muzaffarnagar
+686,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S KHATAULI,Muzaffarnagar
+687,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S PURA,Muzaffarnagar
+688,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S PURKAZI,Muzaffarnagar
+689,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S BHOPA(BHOKARHEDI),Muzaffarnagar
+690,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,220KV S/S KHATAULI,Muzaffarnagar
+691,WEST,ETC Muzaffarnagar,ETD Muzaffarnagar,132KV S/S JANSATH,Muzaffarnagar
+692,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,220KV S/S BEHAT,Saharanpur
+693,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,220KV S/S SARSAWAN,Saharanpur
+694,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,220KV S/S SAHARANPUR,Saharanpur
+695,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,132KV S/S AMBALA ROAD SAHARANPUR,Saharanpur
+696,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,132KV S/S AMBALA ROAD -II,Saharanpur
+697,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,132KV S/S CHUTMALPUR,Saharanpur
+698,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,132KV S/S GAGALHERI,Saharanpur
+699,WEST,ETC Muzaffarnagar,ETD Saharanpur-I,132KV S/S RAMPUR MANIHARAN,Saharanpur
+700,WEST,ETC Muzaffarnagar,ETD Saharanpur-II,220KV S/S NANAUTA,Saharanpur
+701,WEST,ETC Muzaffarnagar,ETD Saharanpur-II,132KV S/S DEOBAND,Saharanpur
+702,WEST,ETC Muzaffarnagar,ETD Saharanpur-II,132KV S/S GANGOH,Saharanpur
+703,WEST,ETC Muzaffarnagar,ETD Saharanpur-II,132KV S/S KOTA,Saharanpur
+704,WEST,ETC Muzaffarnagar,ETD Saharanpur-II,132KV S/S NAKUR,Saharanpur
+705,WEST,ETC Muzaffarnagar,ETD Saharanpur-II,132KV S/S RAMPUR MAHIHARAN,Saharanpur
+706,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S BUDHANA,Muzaffarnagar
+707,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S LALUKHERI,Muzaffarnagar
+708,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S KHARAD,Muzaffarnagar
+709,WEST,ETC Muzaffarnagar,ETD Shamli,220KV S/S SHAMLI,Shamli
+710,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S JHINJHANA,Shamli
+711,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S KAIRANA,Shamli
+712,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S JASALA,Shamli
+713,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S BANNAT,Shamli
+714,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S KANIYAN,Shamli
+715,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S SHAMLI SHYAMLA,Shamli
+716,WEST,ETC Muzaffarnagar,ETD Shamli,132KV S/S THANA BHAWAN,Shamli
+717,WEST,ETC Muzaffarnagar,ETD Shamli,400KV S/S SHAMLI,Shamli
+718,WEST,ETC Noida,ETD Noida-I,400KV S/S Sector-123 Noida,Gautam Buddha Nagar
+719,WEST,ETC Noida,ETD Noida-I,400KV S/S SECTOR -148 NOIDA,Gautam Buddha Nagar
+720,WEST,ETC Noida,ETD Noida-I,"220KV S/S NOIDA,SECTOR-129",Gautam Buddha Nagar
+721,WEST,ETC Noida,ETD Noida-I,"220KV S/S NOIDA,SECTOR-20",Gautam Buddha Nagar
+722,WEST,ETC Noida,ETD Noida-I,"220KV S/S BOTANICAL GARDEN, SECTOR- 38 A, NOIDA",Gautam Buddha Nagar
+723,WEST,ETC Noida,ETD Noida-I,132KV S/S NOIDA SECTOR-115,Gautam Buddha Nagar
+724,WEST,ETC Noida,ETD Noida-I,132KV S/S SURAJPUR,Gautam Buddha Nagar
+725,WEST,ETC Noida,ETD Noida-I,132KV S/S NOIDA-II(BHANGEL),Gautam Buddha Nagar
+726,WEST,ETC Noida,ETD Noida-I,132KV S/S NOIDA-IV(SECTOR-45),Gautam Buddha Nagar
+727,WEST,ETC Noida,ETD Noida-I,132KV S/S SECTOR- 115 (II),Gautam Buddha Nagar
+728,WEST,ETC Noida,ETD Noida-I,220KV S/S SECTOR-45,Gautam Buddha Nagar
+729,WEST,ETC Noida,ETD Noida-II,220KV S/S DADRI,Gautam Buddha Nagar
+730,WEST,ETC Noida,ETD Noida-II,"220KV S/S NOIDA,SECTOR-62",Gautam Buddha Nagar
+731,WEST,ETC Noida,ETD Noida-II,220KV S/S RC GREEN,Gautam Buddha Nagar
+732,WEST,ETC Noida,ETD Noida-II,132 KV S/S DANKAUR,Gautam Buddha Nagar
+733,WEST,ETC Noida,ETD Noida-II,132KV S/S NOIDA-III(SECTOR-62),Gautam Buddha Nagar
+734,WEST,ETC Noida,ETD Noida-II,132KV S/S NOIDA-V(SECTOR-66),Gautam Buddha Nagar
+735,WEST,ETC Noida,ETD Noida-II,220KV S/S JEWAR,Gautam Buddha Nagar
+736,WEST,ETC Noida,ETD Noida-II,132KV S/S SECTOR- 63,Gautam Buddha Nagar
+737,WEST,ETC Noida,ETD Noida-II,132KV S/S SECTOR- 67,Gautam Buddha Nagar
+738,WEST,PPP-PG(W),PGMSTL,"765KV S/S MODIPURAM, MEERUT (PPP)",Meerut
+739,WEST,PPP-PG(W),PGMSTL,400KV S/S SIMBHAOLI (PPP),Hapur
+740,WEST,PPP-PG(W),PGRSTL,765KV S/S RAMPUR(PPP),Rampur
+741,WEST,PPP-PG(W),PGRSTL,400KV S/S SAMBHAL(PPP),Sambhal
+742,WEST,PPP-WUPPTCL(W),PPP-WUPPTCL,765KV S/S HAPUR (PPP),Hapur
+743,WEST,PPP-WUPPTCL(W),PPP-WUPPTCL,400KV S/S SIKANDRABAD (PPP),Bulandshahar
+744,WEST,PPP-WUPPTCL(W),PPP-WUPPTCL,765KV S/S GREATER NOIDA (PPP),Gautam Buddha Nagar
+745,WEST,PPP-WUPPTCL(W),PPP-WUPPTCL,400KV S/S ATAUR(GIS) (PPP),Gaziabad
+746,WEST,PPP-WUPPTCL(W),PPP-WUPPTCL,400KV S/S DASNA (PPP),Gaziabad
+747,WEST,PPP-WUPPTCL(W),PPP-WUPPTCL,400KV S/S INDIRAPURAM (GIS) (PPP),Gaziabad
+748,WEST,PPP-WUPPTCL(W),PPP-WUPPTCL,400KV S/S NEHTAUR (PPP),Bijnore
