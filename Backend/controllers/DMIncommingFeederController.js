@@ -160,6 +160,23 @@ export const updateIncommingFeeder = async (req,res) => {
   }
 }
 
+export const updateIncommingFeedersStatus = async (req,res) => {
+  try {
+    const {id,status} = req.body;
+    if (!id || !status ) {
+      return res.status(400).send({ result:{},statusCode:"400", message: '* marked fields are required' });
+    }
+      var resultCheck = await incommingModel.findById(id);
+      if(!resultCheck){
+          return res.status(404).json({result:{},status:404,message: "ID not found"});
+      }
+      const result = await incommingModel.findByIdAndUpdate(id, req.body, { new: true });
+      return res.status(200).send({ result:result,statusCode:"200", message: 'updated sucessfully' });
+  } catch (error) {
+    return res.status(500).send({ result:{},statusCode:"500", message: 'error occured in updating',error });
+  }
+}
+
 export const deleteIncommingFeeder = async (req,res) => {
   try {
 
