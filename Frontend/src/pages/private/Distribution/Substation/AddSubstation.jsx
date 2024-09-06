@@ -281,7 +281,6 @@ function AddSubstation() {
       transmissionDetail: rows,
     };
 
-    console.log(data);
     try {
       const response = await axios.put(`${apiUrl}/edit-substation`, data, {
         headers: {
@@ -556,14 +555,13 @@ function AddSubstation() {
                   <input
                     className={input}
                     value={row.subStationName}
-                    placeholder=""
                     autoComplete="off"
                     onChange={(e) =>
                       handleChange(row.id, "subStationName", e.target.value)
                     }
                   />
                   <label className={label}>
-                    Sub-Station Name
+                    SubStation(Transmission)
                     <span
                       className="text-red-500"
                       style={{ fontSize: "1.30rem" }}
@@ -580,14 +578,13 @@ function AddSubstation() {
                   <input
                     className={input}
                     value={row.zone}
-                    placeholder=""
                     autoComplete="off"
                     onChange={(e) =>
                       handleChange(row.id, "zone", e.target.value)
                     }
                   />
                   <label className={label}>
-                    Zone
+                    Zone(Transmission)
                     <span
                       className="text-red-500"
                       style={{ fontSize: "1.30rem" }}
@@ -603,7 +600,6 @@ function AddSubstation() {
                 <div className="relative z-0 w-full group">
                   <input
                     className={input}
-                    placeholder=""
                     autoComplete="off"
                     value={row.circle}
                     onChange={(e) =>
@@ -611,7 +607,7 @@ function AddSubstation() {
                     }
                   />
                   <label className={label}>
-                    Circle
+                    Circle(Transmission)
                     <span
                       className="text-red-500"
                       style={{ fontSize: "1.30rem" }}
@@ -626,7 +622,6 @@ function AddSubstation() {
               <div className="col-span-1">
                 <div className="relative z-0 w-full group">
                   <input
-                    placeholder=" "
                     className={input}
                     autoComplete="off"
                     value={row.division}
@@ -635,7 +630,7 @@ function AddSubstation() {
                     }
                   />
                   <label className={label}>
-                    Division
+                    Division(Transmission)
                     <span
                       className="text-red-500"
                       style={{ fontSize: "1.30rem" }}

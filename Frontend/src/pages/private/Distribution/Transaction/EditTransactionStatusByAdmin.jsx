@@ -11,45 +11,113 @@ import {
 import Table, { Tbody, Td, Th, Thead, Tr } from "../../../../component/Table";
 
 function EditTransactionStatusByAdmin() {
-  // State to manage rows
-  const [rows, setRows] = useState([
-    {
-      district: "", // New field 1
-      actionName: "",
-      zone: "",
-      circle: "",
-      division: "",
-      interfacePoints: "",
-    },
-  ]);
-
-  // Function to handle adding a new row
-  const handleAddRow = () => {
-    setRows([
-      ...rows,
+  // State for form inputs
+  const [formData, setFormData] = useState({
+    division: "",
+    feederName: "",
+    monthOfEntry: "",
+    yearOfEntry: "",
+    remarks: "",
+    receiptEnergy: "",
+    discom: "DAKSHINANCHAL",
+    zone: "KANPUR-1",
+    circle: "EDC-KANPUR",
+    edDivision: "EDD I KANPUR",
+    month: "AUGUST",
+    year: "2024",
+    consumerData: [
       {
-        district: "", // New field 1
-        actionName: "",
-        zone: "",
-        circle: "",
-        division: "",
-        interfacePoints: "",
+        id: 1,
+        feederName: "",
+        feederCategory: "",
+        projectArea: "",
+        supplyArea: "",
+        feederCode: "",
+        makeType: "",
+        serialNumber: "",
+        customerAccountId: "",
+        previousReading: "",
+        presentReading: "",
+        readingDiff: "",
+        overallMF: "",
+        energyConsumption: "",
+        energyAssessed: "",
+        totalEnergyConsumption: "",
+        defectReason: "",
+        defectDate: "",
       },
-    ]);
+    ],
+  });
+
+  const label1 = "block text-gray-700 text-sm font-bold mb-2";
+
+  // Handler for form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  // Function to handle input changes in each row
-  const handleInputChange = (index, event) => {
-    const { name, value } = event.target;
-    const newRows = [...rows];
-    newRows[index][name] = value;
-    setRows(newRows);
+  // Handler for consumer data changes
+  const handleConsumerChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedConsumerData = formData.consumerData.map((item, i) =>
+      i === index ? { ...item, [name]: value } : item
+    );
+    setFormData((prev) => ({
+      ...prev,
+      consumerData: updatedConsumerData,
+    }));
   };
 
-  // Function to handle removing a row
-  const handleRemoveRow = (index) => {
-    const newRows = rows.filter((_, i) => i !== index);
-    setRows(newRows);
+  // Handler to add new consumer row
+  const addConsumerRow = () => {
+    setFormData((prev) => ({
+      ...prev,
+      consumerData: [
+        ...prev.consumerData,
+        {
+          id: prev.consumerData.length + 1,
+          feederName: "",
+          feederCategory: "",
+          projectArea: "",
+          supplyArea: "",
+          feederCode: "",
+          makeType: "",
+          serialNumber: "",
+          customerAccountId: "",
+          previousReading: "",
+          presentReading: "",
+          readingDiff: "",
+          overallMF: "",
+          energyConsumption: "",
+          energyAssessed: "",
+          totalEnergyConsumption: "",
+          defectReason: "",
+          defectDate: "",
+        },
+      ],
+    }));
+  };
+
+  // Handler to remove consumer row
+  const removeConsumerRow = (index) => {
+    const updatedConsumerData = formData.consumerData.filter(
+      (item, i) => i !== index
+    );
+    setFormData((prev) => ({
+      ...prev,
+      consumerData: updatedConsumerData,
+    }));
+  };
+
+  // Handler for form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data Submitted:", formData);
+    // Perform form validation and API calls here
   };
 
   return (
@@ -61,6 +129,7 @@ function EditTransactionStatusByAdmin() {
           path: "",
         }}
       />
+
       <FormPanel>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
@@ -78,86 +147,19 @@ function EditTransactionStatusByAdmin() {
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Independent Feeder Voltage</label>
+            <label className={label}>Month Of Entry</label>
             <select className={select} defaultValue="">
               <option>--Select--</option>
-              <option>220</option>
-              <option>132</option>
-              <option>33</option>
-              <option>11</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <label className={label}>Category Of Feeder </label>
-            <select className={select} defaultValue="">
-              <option>--Select--</option>
-              <option>INDEPENDENT</option>
-              <option>TAPPED(WITH OTHER CONSUMER FEEDER)</option>
-              <option>TAPPED(WITH DISTRIBUTION SUBSTATION FEEDER)</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <label className={label}>Project Area </label>
-            <select className={select} defaultValue="">
-              <option>--Select--</option>
-              <option>IPDS</option>
-              <option>RURAL</option>
-              <option>URBAN</option>
-              <option>TEHSIL</option>
-              <option>DISTRICT HQ</option>
             </select>
           </div>
         </div>
 
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Supply Area</label>
+            <label className={label}>Year Of Entry</label>
             <select className={select} defaultValue="">
               <option>--Select--</option>
-              <option>TEHSIL HQ</option>
-              <option>DISTRICT HQ</option>
-              <option>OTHERS</option>
             </select>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Independent Feeder Code</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Meter (Make & Type)</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Meter (SL.No)</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Overall MF</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Costomer Account ID</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input className={input} placeholder=" " />
-            <label className={label}>Length of Feeder(in KM)</label>
           </div>
         </div>
 
@@ -167,89 +169,306 @@ function EditTransactionStatusByAdmin() {
         </div>
       </FormPanel>
 
-      <Table>
+      {/* First Table */}
+      <Table className="mt-2">
         <Thead>
           <Tr>
-            <Th>District</Th>
-            <Th>Transmission Sub Station Name</Th>
             <Th>Zone (Transmission)</Th>
             <Th>Circle (Transmission)</Th>
             <Th>Division (Transmission)</Th>
+            <Th>Sub-Station (Transmission)</Th>
             <Th>T-D Interface Points (Bay)</Th>
-            <Th>Action</Th>
+            <Th>Volatege Lavel</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {rows.map((row, index) => (
-            <Tr key={index}>
-              <Td>
-                <input
-                  className={input}
-                  name="district"
-                  value={row.district}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="actionName"
-                  value={row.actionName}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="zone"
-                  value={row.zone}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="circle"
-                  value={row.circle}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="division"
-                  value={row.division}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
-              <Td>
-                <input
-                  className={input}
-                  name="interfacePoints"
-                  value={row.interfacePoints}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
-              </Td>
+          <Tr>
+            <Td>South-West</Td>
+            <Td>ETC Kanpur -1</Td>
+            <Td>220 kV Div. Panki, Kanpur</Td>
+            <Td>220 KV S/S Panki, Kanpur</Td>
+            <Td>PSIT</Td>
+            <Td>33</Td>
+          </Tr>
+          <Tr>
+            <Td></Td>
+            <Td></Td>
+            <Td></Td>
+            <Td></Td>
+            <Th>Receipt Energy (MWH)</Th>
+            <Td>
+              <input className={input} placeholder=" " />
+            </Td>
+          </Tr>
+          <Tr>
+            <Th>DISCOM</Th>
+            <Td>DAKSHINANCHAL</Td>
+            <Th>ZONE</Th>
+            <Td>KANPUR-1</Td>
+            <Th>CIRCLE</Th>
+            <Td>EDC-KANPUR</Td>
+          </Tr>
+          <Tr>
+            <Th>DIVISION</Th>
+            <Td>EDD I KANPUR</Td>
+            <Th>MONTH</Th>
+            <Td>AUGUST</Td>
+            <Th>YEAR</Th>
+            <Td>2024</Td>
+          </Tr>
+        </Tbody>
+      </Table>
 
+      {/* Consumer Data Table */}
+      <Table className="mt-6">
+        <Thead>
+          <Tr>
+            <Th>Sr.No</Th>
+            <Th>33 KV Above Consumer Feeder Name</Th>
+            <Th>Category Of Feeder</Th>
+            <Th>Project Area</Th>
+            <Th>Supply Area</Th>
+            <Th>Feeder Code</Th>
+            <Th>Make & Type</Th>
+            <Th>SL.No.</Th>
+            <Th>Customer Account ID</Th>
+            <Th>Meter Reading Previous</Th>
+            <Th>Meter Reading Present</Th>
+            <Th>Meter Reading Diff</Th>
+            <Th>Overall MF</Th>
+            <Th>Energy Consumption (MWh)</Th>
+            <Th>Energy Assessed (MWh)</Th>
+            <Th>Total Energy Consumption (MWh)</Th>
+            <Th>Reason of Defect/Not Recording</Th>
+            <Th>Date Of Defect</Th>
+            <Th>Actions</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {formData.consumerData.map((consumer, index) => (
+            <Tr key={consumer.id}>
+              <Td>{consumer.id}</Td>
               <Td>
-                {index === 0 && (
-                  <button className={btn} onClick={handleAddRow}>
-                    Add
-                  </button>
-                )}
-                {index > 0 && (
-                  <button
-                    className={removebtn + " bg-red-500"}
-                    onClick={() => handleRemoveRow(index)}
-                  >
-                    Remove
-                  </button>
-                )}
+                <input
+                  type="text"
+                  name="feederName"
+                  className={input}
+                  value={consumer.feederName}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Feeder Name"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="feederCategory"
+                  className={input}
+                  value={consumer.feederCategory}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Feeder Category"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="projectArea"
+                  className={input}
+                  value={consumer.projectArea}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Project Area"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="supplyArea"
+                  className={input}
+                  value={consumer.supplyArea}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Supply Area"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="feederCode"
+                  className={input}
+                  value={consumer.feederCode}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Feeder Code"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="makeType"
+                  className={input}
+                  value={consumer.makeType}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Make & Type"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="serialNumber"
+                  className={input}
+                  value={consumer.serialNumber}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Serial Number"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="customerAccountId"
+                  className={input}
+                  value={consumer.customerAccountId}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Customer Account ID"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="number"
+                  name="previousReading"
+                  className={input}
+                  value={consumer.previousReading}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Previous Reading"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="number"
+                  name="presentReading"
+                  className={input}
+                  value={consumer.presentReading}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Present Reading"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="number"
+                  name="readingDiff"
+                  className={input}
+                  value={
+                    consumer.presentReading && consumer.previousReading
+                      ? consumer.presentReading - consumer.previousReading
+                      : ""
+                  }
+                  readOnly
+                  placeholder="Reading Difference"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="number"
+                  name="overallMF"
+                  className={input}
+                  value={consumer.overallMF}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Overall MF"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="number"
+                  name="energyConsumption"
+                  className={input}
+                  value={
+                    consumer.readingDiff && consumer.overallMF
+                      ? consumer.readingDiff * consumer.overallMF
+                      : ""
+                  }
+                  readOnly
+                  placeholder="Energy Consumption"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="number"
+                  name="energyAssessed"
+                  className={input}
+                  value={consumer.energyAssessed}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Energy Assessed"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="number"
+                  name="totalEnergyConsumption"
+                  className={input}
+                  value={
+                    consumer.energyConsumption && consumer.energyAssessed
+                      ? consumer.energyConsumption + consumer.energyAssessed
+                      : ""
+                  }
+                  readOnly
+                  placeholder="Total Energy Consumption"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="text"
+                  name="defectReason"
+                  className={input}
+                  value={consumer.defectReason}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Reason of Defect"
+                />
+              </Td>
+              <Td>
+                <input
+                  type="date"
+                  name="defectDate"
+                  className={input}
+                  value={consumer.defectDate}
+                  onChange={(e) => handleConsumerChange(index, e)}
+                  placeholder="Date of Defect"
+                />
+              </Td>
+              <Td>
+                <button
+                  type="button"
+                  className={removebtn + " bg-red-500"}
+                  onClick={() => removeConsumerRow(index)}
+                >
+                  Remove
+                </button>
               </Td>
             </Tr>
           ))}
         </Tbody>
       </Table>
+
+      {/* Add Consumer Row Button */}
+      <div className="flex justify-end mt-4">
+        <button type="button" className={btn} onClick={addConsumerRow}>
+          Add Consumer Row
+        </button>
+      </div>
+
+      {/* Remarks Section */}
+      <FormPanel>
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label1}>Remarks</label>
+            <textarea
+              className="form-textarea mt-1 block w-full"
+              placeholder=""
+              cols={80}
+              rows={5}
+            ></textarea>
+          </div>
+        </div>
+
+        <div className="col-span-3 flex justify-between">
+          <button className={btn + " w-1/5"}>Submit</button>
+        </div>
+      </FormPanel>
     </>
   );
 }
