@@ -16,6 +16,10 @@ const independentFeederSchema = new mongoose.Schema({
     overallMF:String,
     consumerID:String,
     lengthOfFeeder:String,
+    status:{
+        type: String,
+        default: 'Active'
+    },
     isDeleted:{
         type: Number,
         default: 0
