@@ -1,6 +1,5 @@
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
-import { discom } from "../../../../utils/constant";
 import {
   label,
   select,
@@ -25,9 +24,7 @@ function DivisionWiseIndependentFeederMeteringStatusReport() {
           <div className="relative z-0 w-full mb-5 group">
             <label className={label}>Discom</label>
             <select className={select} defaultValue="">
-              {discom.map((dis) => (
-                <option key={dis.id}>{dis.name}</option>
-              ))}
+              <option>Select </option>
             </select>
           </div>
         </div>

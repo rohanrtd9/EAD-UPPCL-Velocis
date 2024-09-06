@@ -48,7 +48,7 @@ export const loginController = async (req,res,next) => {
     }else{
 
     const isMatch = await user.comparePassword(password);
-    console.log('aaaaa',isMatch);    
+    
     if (isMatch) {
     } else {
       return res.status(400).send({message:"Invalid password",status:400,user:{}});

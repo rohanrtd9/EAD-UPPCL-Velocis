@@ -33,7 +33,8 @@ const subStationSchema = new mongoose.Schema({
         subStationName:String,
         zone:String,
         circle:String,
-        division:String
+        division:String,
+        tdInterface:String
     }],
     isDeleted:{
         type: Number,

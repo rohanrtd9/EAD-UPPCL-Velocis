@@ -1,12 +1,299 @@
+import mongoose from 'mongoose';
+const { ObjectId } = mongoose.Types;
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import csvParser from 'csv-parser';
 import outgoingModel from "../models/distributionOutgoingModel.js";
+import tempOutgoingModel from "../models/distributionTempOutgoingModel.js";
+import tempSubstaionDistrictModel from "../models/tempTrSubstationDistrictModel.js";
+import substaionDistrictBayModel from "../models/substationDistrictBayModel.js";
+
+// export const importOutGoingFeederController = async (req,res,next) => {
+
+//   try{
+//     const __filename = fileURLToPath(import.meta.url);
+//     const __dirname = path.dirname(__filename);    
+//     const results = [];
+//     const filePath = path.join(__dirname, '../data/distribution/outgoingFeeder/csv/DAKSHINANCHAL-OutgoingMasterData.csv');
+    
+//     fs.createReadStream(filePath)
+//     .pipe(csvParser())
+//     .on('data',  async(data) => {
+//       try {       
+        
+//         const outgoingResponse =   await  tempOutgoingModel.findOne({divisionName:data['Division'],substationName:data['DistributionSub-StationName'],feederName:data['NameIncomingFeeder']}); 
+       
+//         if(outgoingResponse){
+//           // console.log("data found")
+//           let payload = {
+           
+//             "feederDetails":[
+//               {
+//                 "feederVoltage":data['FeederVoltage'],
+//                 "outgoingFeederName":data['NameOutgoingFeeder'],
+//                 "feederCategory":data['CategoryFeeder'],
+//                 "projectArea":data['ProjectArea'],
+//                 "supplyArea":data['SupplyArea'],
+//                 "feederCode":data['FeederCode'],
+//                 "meterMake":data['MeterMakeType'],
+//                 "meterSLNo":data['MeterSlNo'],
+//                 "noOfConsumers":'',
+//                 "overallMF":data['OverallMF'],
+//                 "mappedEDD":data['MappedEDD'],
+//                 "status":data['Status']
+//               }
+//             ]
+//           }
+//           let substation = await outgoingModel.findByIdAndUpdate(
+//             outgoingResponse._id,
+//             { $push: { feederDetails: payload } },
+//             { new: true } // To return the updated document
+//           );
+
+//         }else{
+//           // console.log("data not found")
+//           let payload = {
+//             "discomName":data['Discom'],
+//             "zoneName":data['Zone'],
+//             "circleName":data['Circle'],
+//             "divisionName":data['Division'],
+//             "substationName":data['DistributionSub-StationName'],
+//             "feederName":data['NameIncomingFeeder'],
+//             "feederDetails":[
+//               {
+//                 "feederVoltage":data['FeederVoltage'],
+//                 "outgoingFeederName":data['NameOutgoingFeeder'],
+//                 "feederCategory":data['CategoryFeeder'],
+//                 "projectArea":data['ProjectArea'],
+//                 "supplyArea":data['SupplyArea'],
+//                 "feederCode":data['FeederCode'],
+//                 "meterMake":data['MeterMakeType'],
+//                 "meterSLNo":data['MeterSlNo'],
+//                 "noOfConsumers":'',
+//                 "overallMF":data['OverallMF'],
+//                 "mappedEDD":data['MappedEDD'],
+//                 "status":data['Status']
+//               }
+//             ]
+//           }
+//           let substation =  await  outgoingModel.create(payload);             
+//         }  
+
+//       } catch (error) {
+//         console.error('Error processing data:', error);
+//         // Optionally, you can add error handling logic here.
+//       }
+//     })
+//     .on('end', () => {
+//       //console.log(results)
+//      res.status(200).json({ message: "Successfully processed", results });
+//     });
 
 
+// }catch(error){
+//     return res.status(500).send({message:"Export issue "+error,status:false,statusCode:500,user:[],errorMessage:error});
+// }
+// }
+
+export const importBayspointController = async (req, res, next) => {
+  try {  
+   
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    
+    const results = [];
+    const filePath = path.join(__dirname, '../data/distribution/baypoints/Tr/TransmisionBay-WEST.csv');
+    
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data',  async(data) => {
+        try {         
+          
+          const divisionN =   await  tempSubstaionDistrictModel.findOne({divisionName:data['Division']}); 
+          if(divisionN !==null && divisionN !=""){
+            let payload = {              
+              "zoneName":divisionN.zoneName,
+              "circleName":divisionN.circleName,
+              "divisionName":divisionN.divisionName,
+              "substationName":divisionN.substationName,
+              "districtName":divisionN.districtName,
+              "feederBayName":data["FeederBay"]
+            }
+            let divisionBay =  await  substaionDistrictBayModel.create(payload);   
+
+          }else{
+            //results.push(data['Circle'])              
+          }               
+                
+
+        } catch (error) {
+          console.error('Error processing data:', error);
+          // Optionally, you can add error handling logic here.
+        }
+      })
+      .on('end', () => {
+        //console.log(results)
+       res.status(200).json({ message: "Successfully processed", results });
+      });
+
+  } catch (error) {
+    return res.status(500).send({ message: "Export issue " + error, status: false, statusCode: 500, user: [], errorMessage: error });
+  }
+};
+
+export const importTempBaypointController = async (req, res, next) => {
+  try {
+   
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const filePath = path.join(__dirname, '../data/distribution/baypoints/csv/TransmissionDistrictSubstion-Master.csv');
+
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data', async (data) => {
+        try {
+          // import temp feeders object from CSV data
+          const dataDetails = {            
+            zoneName: data['Zone'],
+            circleName: data['Circle'],
+            divisionName: data['Division'],
+            substationName: data['Substation'],
+            districtName: data['DistrictName']           
+          };
+          await tempSubstaionDistrictModel.create(dataDetails);
+
+        } catch (error) {
+          console.error('Error processing data:'+ error);
+        }
+      })
+      .on('end', () => {
+        res.status(200).json({ message: "Successfully processed" });
+      });
+
+  } catch (error) {
+    return res.status(500).send({ message: "Export issue " + error, status: false, statusCode: 500, user: [], errorMessage: error });
+  }
+};
+
+export const importTempOutGoingFeederController = async (req, res, next) => {
+  try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const filePath = path.join(__dirname, '../data/distribution/outgoingFeeder/csv/PASCHIMANCHAL-OutgoingMasterData-3.csv');
+
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data', async (data) => {
+        try {
+          // import temp feeders object from CSV data
+          const feederDetails = {
+            discomName: data['Discom'],
+            zoneName: data['Zone'],
+            circleName: data['Circle'],
+            divisionName: data['Division'],
+            substationName: data['DistributionSub-StationName'],
+            feederName: data['NameIncomingFeeder'],
+            outgoingFeederName: data['NameOutgoingFeeder'],
+            feederCode: data['FeederCode'],
+            feederVoltage: data['FeederVoltage'],
+            feederCategory: data['CategoryFeeder'],
+            supplyArea: data['SupplyArea'],
+            projectArea: data['ProjectArea'],
+            meterMake: data['MeterMakeType'],
+            meterSLNo: data['MeterSlNo'],
+            overallMF: data['OverallMF'],
+            mappedEDD: data['MappedEDD'],
+            status: data['Status'],
+            noOfConsumers: ''
+          };
+          await tempOutgoingModel.create(feederDetails);
+
+        } catch (error) {
+          console.error('Error processing data:', error);
+        }
+      })
+      .on('end', () => {
+        res.status(200).json({ message: "Successfully processed" });
+      });
+
+  } catch (error) {
+    return res.status(500).send({ message: "Export issue " + error, status: false, statusCode: 500, user: [], errorMessage: error });
+  }
+};
+
+
+export const importOutGoingFeederController = async (req, res, next) => {
+  const resultData = await tempOutgoingModel.find({});
+    try {
+      
+        for (const record of resultData) {
+            const {
+              discomName,zoneName,circleName, 
+              divisionName,
+              substationName,
+              feederName,
+              feederVoltage,
+              outgoingFeederName,
+              feederCategory,
+              projectArea,
+              supplyArea,
+              feederCode,
+              meterMake,
+              meterSLNo,
+              overallMF,
+              mappedEDD,
+              status
+            } = record;
+        const existingRecord = await outgoingModel.findOne({
+          discomName,
+          divisionName,
+          substationName,
+          feederName
+        });
+        let payload = {
+          feederVoltage,
+          outgoingFeederName,
+          feederCategory,
+          projectArea,
+          supplyArea,
+          feederCode,
+          meterMake,
+          meterSLNo,
+          noOfConsumers: '', // This value remains empty as per your requirement
+          overallMF,
+          mappedEDD,
+          status,
+        };
+  
+        if (existingRecord) {          
+          let responseDataa = await outgoingModel.findByIdAndUpdate(
+            existingRecord._id,
+            { $push: { feederDetails: payload } },
+            { new: true } // To return the updated document
+          );
+
+        } else {
+          // If it doesn't exist, insert a new document
+          const newRecord = new outgoingModel({
+            discomName,zoneName,circleName, divisionName,substationName,feederName,feederDetails: payload
+          });
+          await newRecord.save();
+          console.log(`Inserted new record for ${divisionName}, ${substationName}, ${feederName}`);
+        }
+      }
+      res.status(200).json({ message: "Data imported" });
+    } catch (error) {
+      console.error("Error inserting/updating records:", error);
+    }    
+    return false;    
+};
 
 export const getOutgoingFeeders = async (req, res) => {
   try {
 
-    const {page, limit} = req.body;
-      const query = { isDeleted: 0 }; // Only fetch non-deleted discoms
+    const {page, limit,discomName,zoneName, circleName, divisionName,substationName} = req.body;
+      const query = { discomName:discomName,zoneName:zoneName, circleName:circleName, divisionName:divisionName,substationName:substationName,isDeleted: 0 }; // Only fetch non-deleted discoms
       const options = {
           page: page,
           limit: limit,
@@ -15,15 +302,10 @@ export const getOutgoingFeeders = async (req, res) => {
       const result = await outgoingModel.paginate(query, options);
       return res.status(200).json({status:200,result:result});
 
-
-
   } catch (error) {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing ', error });
   }
 }
-
-
-
 
 export const createOutgoingFeeder = async (req,res) => {
   try {

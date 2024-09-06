@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import csvParser from 'csv-parser';
 import incommingModel from "../models/distributionIncommingModel.js";
+//import incommingFeederModel from "../models/distributionIncommingModel2.js";
 
 export const importIncomingFeederController = async (req,res,next) => {
 
@@ -45,11 +46,67 @@ export const importIncomingFeederController = async (req,res,next) => {
      res.status(200).json({ message: "Successfully processed", results });
     });
 
-
 }catch(error){
     return res.status(500).send({message:"Export issue "+error,status:false,statusCode:500,user:[],errorMessage:error});
 }
 }
+
+// export const importIncomingFeederController = async (req, res, next) => {
+//   const resultData = await incommingModel.find({});
+//     try {
+      
+//         for (const record of resultData) {
+//             const {
+//               discomName,
+//               zoneName,
+//               circleName, 
+//               divisionName,
+//               substationName,
+//               feederName,
+//               feederVoltage,
+//               meterMake,
+//               meterSLNo,
+//               overAllMF,
+//               status
+//             } = record;
+//         const existingRecord = await incommingFeederModel.findOne({
+//           discomName,
+//           zoneName,
+//           circleName, 
+//           divisionName
+//         });
+//         let payload = {
+//             substationName,
+//             feederName,
+//             feederVoltage,              
+//             meterMake,
+//             meterSLNo,
+//             overAllMF,
+//             status
+//         };
+  
+//         if (existingRecord) {          
+//           let responseDataa = await incommingFeederModel.findByIdAndUpdate(
+//             existingRecord._id,
+//             { $push: { incomingFeederDetails: payload } },
+//             { new: true } // To return the updated document
+//           );
+
+//         } else {
+//           // If it doesn't exist, insert a new document
+//           const newRecord = new incommingFeederModel({
+//             discomName,zoneName,circleName, divisionName,incomingFeederDetails: payload
+//           });
+//           await newRecord.save();
+//           console.log(`Inserted new record for${discomName}, ${zoneName}, ${circleName}, ${divisionName}`);
+//         }
+//       }
+//       res.status(200).json({ message: "Data imported" });
+//     } catch (error) {
+//       console.error("Error inserting/updating records:", error);
+//     }    
+//     return false;    
+// };
 
 
 export const getIncommingFeeders = async (req, res) => {
@@ -90,6 +147,23 @@ export const updateIncommingFeeder = async (req,res) => {
   try {
     const {id,divisionName,substationName,feederName,feederVoltage,meterMake,meterSLNo,overAllMF} = req.body;
     if (!id || !divisionName || !substationName ||!feederName ||!feederVoltage ||!meterMake ||!meterSLNo ||!overAllMF ) {
+      return res.status(400).send({ result:{},statusCode:"400", message: '* marked fields are required' });
+    }
+      var resultCheck = await incommingModel.findById(id);
+      if(!resultCheck){
+          return res.status(404).json({result:{},status:404,message: "ID not found"});
+      }
+      const result = await incommingModel.findByIdAndUpdate(id, req.body, { new: true });
+      return res.status(200).send({ result:result,statusCode:"200", message: 'updated sucessfully' });
+  } catch (error) {
+    return res.status(500).send({ result:{},statusCode:"500", message: 'error occured in updating',error });
+  }
+}
+
+export const updateIncommingFeedersStatus = async (req,res) => {
+  try {
+    const {id,status} = req.body;
+    if (!id || !status ) {
       return res.status(400).send({ result:{},statusCode:"400", message: '* marked fields are required' });
     }
       var resultCheck = await incommingModel.findById(id);

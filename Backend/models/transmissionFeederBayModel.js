@@ -24,7 +24,19 @@ const circleSchema = new mongoose.Schema({
     baySubstationName:String,   
     interfaceType: String,
     transactionType: String,
-    discom: String,      
+    discom: String,     
+    bayDetails: [{
+        energyMeterSerialNo:String,
+        mf:String,
+        openingReadingImport:String,
+        openingReadingExport:String,
+        month:String,
+        year:String,
+        isAbandon:{
+            type: Boolean,
+            default: false
+        }        
+    }], 
     isDeleted:{
         type: Number,
         default: 0

@@ -1,7 +1,10 @@
 import  mongoose from "mongoose";
 import mongoosePaginate  from 'mongoose-paginate-v2';
 const independentFeederSchema = new mongoose.Schema({   
+    discomName: String,
+    zoneName: String,
     divisionName: String,
+    circleName: String,
     consumerName: String,
     feederVoltage: String,
     feederCategory: String,
@@ -11,8 +14,8 @@ const independentFeederSchema = new mongoose.Schema({
     meterMake:String,
     meterSLNo:String,
     overallMF:String,
-    consumerID:String,//
-    lengthOfFeeder:String,//
+    consumerID:String,
+    lengthOfFeeder:String,
     isDeleted:{
         type: Number,
         default: 0
@@ -30,4 +33,4 @@ const independentFeederSchema = new mongoose.Schema({
 
 independentFeederSchema.plugin(mongoosePaginate);
 
-export default mongoose.model('dm-independent-feeders', independentFeederSchema);
+export default mongoose.model('dm-33kv-independent-feeders', independentFeederSchema);

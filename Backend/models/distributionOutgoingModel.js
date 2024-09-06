@@ -1,13 +1,12 @@
 import  mongoose from "mongoose";
 import mongoosePaginate  from 'mongoose-paginate-v2';
-const outgoingFeederSchema = new mongoose.Schema({   
+const outgoingFeederSchema = new mongoose.Schema({  
+    discomName: String,
+    zoneName: String,
     divisionName: String,
+    circleName: String, 
     substationName: String,
-    feederName: String,
-    isDeleted:{
-        type: Number,
-        default: 0
-    },
+    feederName: String,  
     feederDetails: [{
         feederVoltage:String,
         outgoingFeederName:String,
@@ -18,8 +17,14 @@ const outgoingFeederSchema = new mongoose.Schema({
         meterMake:String,
         meterSLNo:String,
         noOfConsumers:String,
-        overallMF:String
-    }]
+        overallMF:String,
+        mappedEDD:String,
+        status:String,
+    }],
+    isDeleted:{
+        type: Number,
+        default: 0
+    }
 });
 
 outgoingFeederSchema.plugin(mongoosePaginate);

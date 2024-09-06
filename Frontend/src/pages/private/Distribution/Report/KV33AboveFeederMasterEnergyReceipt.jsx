@@ -1,6 +1,5 @@
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
-import { discom } from "../../../../utils/constant";
 import {
   label,
   select,
@@ -26,9 +25,6 @@ function KV33AboveFeederMasterEnergyReceipt() {
             <label className={label}>Discom</label>
             <select className={select} defaultValue="">
               <option>Select a Discom</option>
-              {discom.map((dis) => (
-                <option key={dis.id}>{dis.name}</option>
-              ))}
             </select>
           </div>
         </div>

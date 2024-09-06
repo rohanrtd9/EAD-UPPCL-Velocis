@@ -27,10 +27,12 @@ export const exportCircleController = async (req,res,next) => {
               const result1 =   await  zonesModel.findOne({zoneName:data['Zone']}); 
               if(result1 !==null && result1 !=""){
                 let payload = {
+                  "discom_Id":result1.discom_ID,
                   "zone_Id":result1._id,
-                  "circleName":data['Circle']                  
+                  "circleName":data['Circle'],                  
+                  "circleCode":""                  
                 }
-                let substation =  await  circlesModel.create(payload);   
+                let circles =  await  circlesModel.create(payload);   
 
               }else{
                 //results.push(data['Circle'])
