@@ -11,8 +11,6 @@ import substationModel from "../models/distributionSubstationModel.js";
 export const exportController = async (req,res,next) => {
 
     try{
-
-
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);
         

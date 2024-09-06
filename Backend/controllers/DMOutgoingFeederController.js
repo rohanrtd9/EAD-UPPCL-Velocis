@@ -6,6 +6,8 @@ import fs from 'fs';
 import csvParser from 'csv-parser';
 import outgoingModel from "../models/distributionOutgoingModel.js";
 import tempOutgoingModel from "../models/distributionTempOutgoingModel.js";
+import tempSubstaionDistrictModel from "../models/tempTrSubstationDistrictModel.js";
+import substaionDistrictBayModel from "../models/substationDistrictBayModel.js";
 
 // export const importOutGoingFeederController = async (req,res,next) => {
 
@@ -94,6 +96,86 @@ import tempOutgoingModel from "../models/distributionTempOutgoingModel.js";
 // }
 // }
 
+export const importBayspointController = async (req, res, next) => {
+  try {  
+   
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    
+    const results = [];
+    const filePath = path.join(__dirname, '../data/distribution/baypoints/Tr/TransmisionBay-WEST.csv');
+    
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data',  async(data) => {
+        try {         
+          
+          const divisionN =   await  tempSubstaionDistrictModel.findOne({divisionName:data['Division']}); 
+          if(divisionN !==null && divisionN !=""){
+            let payload = {              
+              "zoneName":divisionN.zoneName,
+              "circleName":divisionN.circleName,
+              "divisionName":divisionN.divisionName,
+              "substationName":divisionN.substationName,
+              "districtName":divisionN.districtName,
+              "feederBayName":data["FeederBay"]
+            }
+            let divisionBay =  await  substaionDistrictBayModel.create(payload);   
+
+          }else{
+            //results.push(data['Circle'])              
+          }               
+                
+
+        } catch (error) {
+          console.error('Error processing data:', error);
+          // Optionally, you can add error handling logic here.
+        }
+      })
+      .on('end', () => {
+        //console.log(results)
+       res.status(200).json({ message: "Successfully processed", results });
+      });
+
+  } catch (error) {
+    return res.status(500).send({ message: "Export issue " + error, status: false, statusCode: 500, user: [], errorMessage: error });
+  }
+};
+
+export const importTempBaypointController = async (req, res, next) => {
+  try {
+   
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const filePath = path.join(__dirname, '../data/distribution/baypoints/csv/TransmissionDistrictSubstion-Master.csv');
+
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data', async (data) => {
+        try {
+          // import temp feeders object from CSV data
+          const dataDetails = {            
+            zoneName: data['Zone'],
+            circleName: data['Circle'],
+            divisionName: data['Division'],
+            substationName: data['Substation'],
+            districtName: data['DistrictName']           
+          };
+          await tempSubstaionDistrictModel.create(dataDetails);
+
+        } catch (error) {
+          console.error('Error processing data:'+ error);
+        }
+      })
+      .on('end', () => {
+        res.status(200).json({ message: "Successfully processed" });
+      });
+
+  } catch (error) {
+    return res.status(500).send({ message: "Export issue " + error, status: false, statusCode: 500, user: [], errorMessage: error });
+  }
+};
+
 export const importTempOutGoingFeederController = async (req, res, next) => {
   try {
     const __filename = fileURLToPath(import.meta.url);
@@ -139,6 +221,7 @@ export const importTempOutGoingFeederController = async (req, res, next) => {
     return res.status(500).send({ message: "Export issue " + error, status: false, statusCode: 500, user: [], errorMessage: error });
   }
 };
+
 
 export const importOutGoingFeederController = async (req, res, next) => {
   const resultData = await tempOutgoingModel.find({});

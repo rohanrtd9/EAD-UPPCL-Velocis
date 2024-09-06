@@ -7,6 +7,7 @@ import zoneModel from "../models/distributionZoneModel.js";
 import circleModel from "../models/distributionCirclesModel.js";
 import divisionModel from "../models/distributionDivisionModel.js";
 import { Parser } from 'json2csv';
+import  mongoose from "mongoose";
 
 export const exportDivisionController = async (req,res,next) => {
 
@@ -151,7 +152,7 @@ export const getDivisions = async (req, res) => {
 
 export const getCircleDivisions = async (req, res) => {
   try {
-      const { page = 1, limit = 10 } = req.body;
+      const { page = 1, limit = 10,circle_ID } = req.body;
       const aggregateQuery = divisionModel.aggregate([
         { $match: { isDeleted: 0, circle_ID: new mongoose.Types.ObjectId(circle_ID) } },
         { $lookup: {
@@ -186,7 +187,7 @@ export const getCircleDivisions = async (req, res) => {
     return res.status(200).json({ statusCode: 200, result });
 
   } catch (error) {
-      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones', error });
+      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones'+error });
   }
 }
 
