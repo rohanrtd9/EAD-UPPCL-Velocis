@@ -125,7 +125,7 @@ const Sidebar = () => {
             />
             <CustomLink
               to="/kv33ConsumerFeederMaster"
-              activeLink="/AddKV33ConsumerFeederData"
+              activeLink="/outgoingFeeder33KVAction/AddKV33ConsumerFeederData"
               title="33 KV & Above Consumer Master"
             />
             <CustomLink to="/transformer" title="Transformer Master" />
