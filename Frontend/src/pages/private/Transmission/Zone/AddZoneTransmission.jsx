@@ -1,6 +1,6 @@
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
-import { btn, input, label, select } from "../../../../utils/tailwindClasses";
+import { btn, input, label } from "../../../../utils/tailwindClasses";
 import { apiUrl } from "../../../../utils/constant";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
@@ -10,10 +10,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../../../../component/Loader";
 import { CiCircleList } from "react-icons/ci";
 
-function AddZone() {
+function AddZoneTransmission() {
   const { pageName } = useParams();
   const { token } = useUserContext();
-  const [discoms, setDiscoms] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -26,62 +25,28 @@ function AddZone() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (pageName !== "addZone") {
+    if (pageName !== "addZoneTransmission") {
       setIsEdit(true);
       const data = JSON.parse(pageName);
       setLocalBodyData({
         id: data._id,
-        discom_ID: data.discom_ID,
         zoneName: data.zoneName,
-        zoneCode: data?.zoneCode,
+        zoneCode: data.zoneCode,
       });
     } else {
       setIsEdit(false);
     }
   }, [pageName]);
 
-  const listDiscom = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.post(
-        `${apiUrl}distribution/list-discom`,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.data && response.data.result && response.data.result.docs) {
-        setDiscoms(response.data.result.docs);
-      } else {
-        console.error("Invalid discom response structure:", response);
-      }
-    } catch (error) {
-      setError(error.response ? error.response.data : error.message);
-      console.error("Discom Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (token) {
-      listDiscom();
-    }
-  }, [token]);
-
   const saveZoneMaster = async () => {
     setLoading(true);
     const data = {
-      discom_ID: localBodyData.discom_ID,
       zoneName: localBodyData.zoneName,
       zoneCode: localBodyData.zoneCode,
     };
     try {
       const response = await axios.post(
-        `${apiUrl}distribution/add-zone`,
+        `${apiUrl}transmission/add-zone`,
         data,
         {
           headers: {
@@ -100,7 +65,7 @@ function AddZone() {
         background: "#fff",
         iconColor: "#3085d6",
       }).then(() => {
-        navigate("/zone");
+        navigate("/zoneTranmissionList");
       });
       resetForm();
     } catch (error) {
@@ -118,7 +83,7 @@ function AddZone() {
         error.response ? error.response.data : error.message
       );
     } finally {
-      setLoading(false);
+      setLoading(false); // Ensure the loader is stopped in both success and error cases
     }
   };
 
@@ -126,13 +91,12 @@ function AddZone() {
     setLoading(true);
     const data = {
       id: localBodyData.id,
-      discom_ID: localBodyData.discom_ID,
       zoneName: localBodyData.zoneName,
-      zoneCode: localBodyData.zoneCode,
+      zoneCode: localBodyData.zoneCode, // Ensure zoneCode is included in the request
     };
     try {
       const response = await axios.put(
-        `${apiUrl}distribution/edit-zone`,
+        `${apiUrl}transmission/edit-zone`,
         data,
         {
           headers: {
@@ -148,7 +112,7 @@ function AddZone() {
         confirmButtonText: "Ok",
         confirmButtonColor: "#3085d6",
       }).then(() => {
-        navigate("/zone");
+        navigate("/zoneTranmissionList");
       });
       resetForm();
     } catch (error) {
@@ -163,13 +127,12 @@ function AddZone() {
         error.response ? error.response.data : error.message
       );
     } finally {
-      setLoading(false);
+      setLoading(false); // Ensure the loader is stopped in both success and error cases
     }
   };
 
   const resetForm = () => {
     setLocalBodyData({
-      discom_ID: "",
       zoneName: "",
       zoneCode: "",
     });
@@ -199,35 +162,13 @@ function AddZone() {
               Zone List
             </div>
           ),
-          path: "/zone",
+          path: "/zoneTranmissionList",
         }}
       />
 
       <FormPanel>
         {loading && <Loader />}
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <label className={label}>Discom Name</label>
-            <select
-              name="discom_ID"
-              className={select}
-              value={localBodyData.discom_ID}
-              onChange={(e) =>
-                setLocalBodyData({
-                  ...localBodyData,
-                  discom_ID: e.target.value,
-                })
-              }
-            >
-              <option value="">--Select--</option>
-              {discoms.map((discom) => (
-                <option key={discom._id} value={discom._id}>
-                  {discom.discomName}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
+
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
             <input
@@ -237,7 +178,10 @@ function AddZone() {
               autoComplete="off"
               value={localBodyData.zoneName}
               onChange={(e) =>
-                setLocalBodyData({ ...localBodyData, zoneName: e.target.value })
+                setLocalBodyData({
+                  ...localBodyData,
+                  zoneName: e.target.value,
+                })
               }
             />
             <label className={label}>Zone Name</label>
@@ -252,7 +196,10 @@ function AddZone() {
               autoComplete="off"
               value={localBodyData.zoneCode}
               onChange={(e) =>
-                setLocalBodyData({ ...localBodyData, zoneCode: e.target.value })
+                setLocalBodyData({
+                  ...localBodyData,
+                  zoneCode: e.target.value,
+                })
               }
             />
             <label className={label}>Zone Code</label>
@@ -280,4 +227,4 @@ function AddZone() {
   );
 }
 
-export default AddZone;
+export default AddZoneTransmission;

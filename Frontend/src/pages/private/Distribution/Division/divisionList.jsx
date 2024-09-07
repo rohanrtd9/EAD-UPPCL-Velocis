@@ -25,7 +25,7 @@ function DivisionList() {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${apiUrl}/list-division`,
+        `${apiUrl}distribution/list-division`,
         {
           page,
           limit: itemsPerPage,
@@ -70,7 +70,7 @@ function DivisionList() {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}/delete-division`, {
+        await axios.delete(`${apiUrl}distribution/delete-division`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

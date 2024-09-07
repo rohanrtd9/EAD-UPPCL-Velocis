@@ -45,7 +45,7 @@ function OutgoingFeederMasterData() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-discom`,
+        `${apiUrl}distribution/list-discom`,
         {},
         {
           headers: {
@@ -67,7 +67,7 @@ function OutgoingFeederMasterData() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-discom-zone`,
+        `${apiUrl}distribution/list-discom-zone`,
         { discom_ID },
         {
           headers: {
@@ -91,7 +91,7 @@ function OutgoingFeederMasterData() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-zone-circle`,
+        `${apiUrl}distribution/list-zone-circle`,
         { zone_ID },
         {
           headers: {
@@ -115,7 +115,7 @@ function OutgoingFeederMasterData() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-circle-division`,
+        `${apiUrl}distribution/list-circle-division`,
         { circle_ID },
         {
           headers: {
@@ -138,7 +138,7 @@ function OutgoingFeederMasterData() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-substation`,
+        `${apiUrl}distribution/list-substation`,
         { divisionName },
         {
           headers: {
@@ -166,12 +166,16 @@ function OutgoingFeederMasterData() {
       substationName: localBodyData.substationName,
     };
     try {
-      const response = await axios.post(`${apiUrl}list-outgoing-feeder`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${apiUrl}distribution/list-outgoing-feeder`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setOutgoingFeederData(response.data.result.docs || []);
     } catch (error) {
       console.error("Error fetching Outgoing Feeders:", error);

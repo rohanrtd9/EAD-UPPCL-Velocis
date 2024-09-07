@@ -22,15 +22,18 @@ function TransformerList() {
   const fetchTransformers = async (page) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${apiUrl}/list-transformer`, {
-        params: {
-          page,
-          limit: itemsPerPage,
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${apiUrl}distribution/list-transformer`,
+        {
+          params: {
+            page,
+            limit: itemsPerPage,
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const { docs, totalPages } = response.data.result;
       setTransformers(docs);
       setTotalPages(totalPages);

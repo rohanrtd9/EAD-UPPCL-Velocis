@@ -177,7 +177,7 @@ function AddKV33ConsumerFeederData() {
 
     try {
       const response = await axios.post(
-        `${apiUrl}/add-33KVIndependent-feeder`,
+        `${apiUrl}distribution/add-33KVIndependent-feeder`,
         data,
         {
           headers: {
@@ -217,7 +217,7 @@ function AddKV33ConsumerFeederData() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-division`,
+        `${apiUrl}distribution/list-division`,
         {},
         {
           headers: {
@@ -238,7 +238,7 @@ function AddKV33ConsumerFeederData() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-districts`,
+        `${apiUrl}distribution/list-districts`,
         {},
         {
           headers: {
@@ -276,7 +276,7 @@ function AddKV33ConsumerFeederData() {
 
     try {
       const response = await axios.put(
-        `${apiUrl}/edit-33KVIndependent-feeder`,
+        `${apiUrl}distribution/edit-33KVIndependent-feeder`,
         data,
         {
           headers: {

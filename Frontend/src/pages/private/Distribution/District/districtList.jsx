@@ -25,7 +25,7 @@ function DistrictList() {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${apiUrl}/list-districts`,
+        `${apiUrl}distribution/list-districts`,
         {
           page,
           limit: itemsPerPage,
@@ -70,7 +70,7 @@ function DistrictList() {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}/delete-district`, {
+        await axios.delete(`${apiUrl}distribution/delete-district`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

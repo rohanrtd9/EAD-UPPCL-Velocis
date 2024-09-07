@@ -13,16 +13,13 @@ import { CiCircleList } from "react-icons/ci";
 function AddCircle() {
   const { pageName } = useParams();
   const { token } = useUserContext();
-  const [discoms, setDiscoms] = useState([]);
   const [zones, setZones] = useState([]);
-
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [localBodyData, setLocalBodyData] = useState({
     id: "",
-    discom_Id: "",
-    zone_Id: "",
+    zone_ID: "",
     circleName: "",
     circleCode: "",
   });
@@ -35,61 +32,32 @@ function AddCircle() {
         setIsEdit(true);
         setLocalBodyData({
           id: data._id,
-          discom_Id: data.discom_Id,
-          zone_Id: data.zone_Id,
+          zone_ID: data.zone_ID,
           circleName: data.circleName,
           circleCode: data.circleCode,
         });
-        fetchZones(data.discom_Id);
+        fetchZones(); // Fetch zones for the specific discom
       } catch (error) {
         console.error("Error parsing pageName:", error);
       }
     } else {
       setIsEdit(false);
+      fetchZones();
     }
-    listDiscoms();
   }, [pageName]);
 
-  const listDiscoms = async () => {
+  const fetchZones = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(
-        `${apiUrl}distribution/list-discom`,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.data && response.data.result && response.data.result.docs) {
-        setDiscoms(response.data.result.docs);
-      } else {
-        console.error("Invalid discom response structure:", response);
-      }
-    } catch (error) {
-      setError(error.response ? error.response.data : error.message);
-      console.error("Discom Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+      const response = await axios.post(`${apiUrl}transmission/list-zone`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  const fetchZones = async (discomId) => {
-    setLoading(true);
-    try {
-      const response = await axios.post(
-        `${apiUrl}distribution/list-discom-zone`,
-        { discom_ID: discomId },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.data && response.data.result && response.data.result.docs) {
+      // Ensure the response structure is valid before setting zones
+      if (response?.data?.result?.docs) {
         setZones(response.data.result.docs);
       } else {
         console.error("Invalid zone response structure:", response);
@@ -105,14 +73,13 @@ function AddCircle() {
   const saveCircleMaster = async () => {
     setLoading(true);
     const data = {
-      discom_Id: localBodyData.discom_Id,
-      zone_Id: localBodyData.zone_Id,
+      zone_ID: localBodyData.zone_ID,
       circleName: localBodyData.circleName,
       circleCode: localBodyData.circleCode,
     };
     try {
       const response = await axios.post(
-        `${apiUrl}distribution/add-circle`,
+        `${apiUrl}transmission/add-circle`,
         data,
         {
           headers: {
@@ -131,7 +98,7 @@ function AddCircle() {
         background: "#fff",
         iconColor: "#3085d6",
       }).then(() => {
-        navigate("/circle");
+        navigate("/circleTransmission");
       });
       resetForm();
     } catch (error) {
@@ -157,16 +124,14 @@ function AddCircle() {
     setLoading(true);
     const data = {
       id: localBodyData.id,
-      discom_Id: localBodyData.discom_Id,
-      zone_ID: localBodyData.zone_Id,
+      zone_ID: localBodyData.zone_ID,
       circleName: localBodyData.circleName,
       circleCode: localBodyData.circleCode,
     };
 
-    console.log(data);
     try {
       const response = await axios.put(
-        `${apiUrl}distribution/edit-circle`,
+        `${apiUrl}transmission/edit-circle`,
         data,
         {
           headers: {
@@ -182,7 +147,7 @@ function AddCircle() {
         confirmButtonText: "Ok",
         confirmButtonColor: "#3085d6",
       }).then(() => {
-        navigate("/circle");
+        navigate("/circleTransmission");
       });
       resetForm();
     } catch (error) {
@@ -203,8 +168,7 @@ function AddCircle() {
 
   const resetForm = () => {
     setLocalBodyData({
-      discom_Id: "",
-      zone_Id: "",
+      zone_ID: "",
       circleName: "",
       circleCode: "",
     });
@@ -218,10 +182,6 @@ function AddCircle() {
       ...prevData,
       [name]: value,
     }));
-
-    if (name === "discom_Id") {
-      fetchZones(value);
-    }
   };
 
   return (
@@ -255,33 +215,14 @@ function AddCircle() {
         {loading && <Loader />}
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Discom Name</label>
+            <label className={label}>Zone (Transmission)</label>
             <select
-              name="discom_Id"
+              name="zone_ID"
               className={select}
-              value={localBodyData.discom_Id}
+              value={localBodyData.zone_ID}
               onChange={handleInputChange}
             >
               <option value="">--Select--</option>
-              {discoms.map((discom) => (
-                <option key={discom._id} value={discom._id}>
-                  {discom.discomName}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <label className={label}>Zone (Distribution)</label>
-            <select
-              name="zone_Id"
-              className={select}
-              value={localBodyData.zone_Id}
-              onChange={handleInputChange}
-              disabled={!localBodyData.discom_Id}
-            >
-              <option value="">Select Zone</option>
               {zones.map((zone) => (
                 <option key={zone._id} value={zone._id}>
                   {zone.zoneName}

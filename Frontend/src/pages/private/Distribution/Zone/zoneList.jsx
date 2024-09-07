@@ -24,7 +24,7 @@ function ZoneList() {
   const fetchZones = async (page) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${apiUrl}/list-zone`, {
+      const response = await axios.post(`${apiUrl}distribution/list-zone`, {
         page,
         limit: itemsPerPage,
       });
@@ -61,7 +61,7 @@ function ZoneList() {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}/delete-zone`, {
+        await axios.delete(`${apiUrl}distribution/delete-zone`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

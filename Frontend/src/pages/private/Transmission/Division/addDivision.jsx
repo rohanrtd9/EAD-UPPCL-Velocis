@@ -1,87 +1,59 @@
-import FormPanel from "../../../../component/FormPanel";
-import Header from "../../../../component/Header";
-import { btn, input, label, select } from "../../../../utils/tailwindClasses";
-import { apiUrl } from "../../../../utils/constant";
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Swal from "sweetalert2";
 import { useUserContext } from "../../../../utils/userContext";
-import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import FormPanel from "../../../../component/FormPanel";
+import Header from "../../../../component/Header";
 import Loader from "../../../../component/Loader";
+import { btn, input, label, select } from "../../../../utils/tailwindClasses";
+import { apiUrl } from "../../../../utils/constant";
 import { CiCircleList } from "react-icons/ci";
 
-function AddCircle() {
+function AddDivision() {
   const { pageName } = useParams();
   const { token } = useUserContext();
-  const [discoms, setDiscoms] = useState([]);
   const [zones, setZones] = useState([]);
-
+  const [circles, setCircles] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [localBodyData, setLocalBodyData] = useState({
     id: "",
-    discom_Id: "",
-    zone_Id: "",
-    circleName: "",
-    circleCode: "",
+    zone_ID: "",
+    circle_ID: "",
+    divisionName: "",
   });
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (pageName !== "addCircle") {
+    fetchZones(); // Fetch zones on component mount
+
+    if (pageName !== "addDivision") {
       try {
         const data = JSON.parse(pageName);
         setIsEdit(true);
         setLocalBodyData({
           id: data._id,
-          discom_Id: data.discom_Id,
-          zone_Id: data.zone_Id,
-          circleName: data.circleName,
-          circleCode: data.circleCode,
+          zone_ID: data.zone_ID,
+          circle_ID: data.circle_ID,
+          divisionName: data.divisionName,
         });
-        fetchZones(data.discom_Id);
+        fetchCircles(data.zone_ID); // Fetch circles based on the existing zone_ID
       } catch (error) {
         console.error("Error parsing pageName:", error);
       }
     } else {
       setIsEdit(false);
     }
-    listDiscoms();
   }, [pageName]);
 
-  const listDiscoms = async () => {
+  const fetchZones = async () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}distribution/list-discom`,
+        `${apiUrl}transmission/list-zone`,
         {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.data && response.data.result && response.data.result.docs) {
-        setDiscoms(response.data.result.docs);
-      } else {
-        console.error("Invalid discom response structure:", response);
-      }
-    } catch (error) {
-      setError(error.response ? error.response.data : error.message);
-      console.error("Discom Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchZones = async (discomId) => {
-    setLoading(true);
-    try {
-      const response = await axios.post(
-        `${apiUrl}distribution/list-discom-zone`,
-        { discom_ID: discomId },
         {
           headers: {
             "Content-Type": "application/json",
@@ -102,17 +74,56 @@ function AddCircle() {
     }
   };
 
-  const saveCircleMaster = async () => {
+  const fetchCircles = async (zoneId) => {
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${apiUrl}transmission/list-zone-circle`,
+        { zone_ID: zoneId },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.data && response.data.result && response.data.result.docs) {
+        const fetchedCircles = response.data.result.docs;
+        setCircles(fetchedCircles);
+
+        // Check if the current circle_ID is in the fetched circles
+        if (
+          localBodyData.circle_ID &&
+          !fetchedCircles.some(
+            (circle) => circle._id === localBodyData.circle_ID
+          )
+        ) {
+          setLocalBodyData((prevData) => ({
+            ...prevData,
+            circle_ID: "",
+          }));
+        }
+      } else {
+        console.error("Invalid circle response structure:", response);
+      }
+    } catch (error) {
+      setError(error.response ? error.response.data : error.message);
+      console.error("Circle Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const saveDivisionMaster = async () => {
     setLoading(true);
     const data = {
-      discom_Id: localBodyData.discom_Id,
-      zone_Id: localBodyData.zone_Id,
-      circleName: localBodyData.circleName,
-      circleCode: localBodyData.circleCode,
+      zone_ID: localBodyData.zone_ID,
+      circle_ID: localBodyData.circle_ID,
+      divisionName: localBodyData.divisionName,
     };
     try {
       const response = await axios.post(
-        `${apiUrl}distribution/add-circle`,
+        `${apiUrl}transmission/add-division`,
         data,
         {
           headers: {
@@ -121,31 +132,26 @@ function AddCircle() {
           },
         }
       );
-      console.log("Response:", response);
       Swal.fire({
         title: "Success!",
-        text: "Circle Saved Successfully",
+        text: "Division Saved Successfully",
         icon: "success",
         confirmButtonText: "Ok",
         confirmButtonColor: "#3085d6",
-        background: "#fff",
-        iconColor: "#3085d6",
       }).then(() => {
-        navigate("/circle");
+        navigate("/divisionTransmission");
       });
       resetForm();
     } catch (error) {
       Swal.fire({
         title: "Error!",
-        text: error.response?.data?.message || "Error saving circle.",
+        text: error.response?.data?.message || "Error saving division.",
         icon: "error",
         confirmButtonText: "Ok",
         confirmButtonColor: "#d33",
-        background: "#fff",
-        iconColor: "#d33",
       });
       console.error(
-        "Error Saving Circle Record:",
+        "Error Saving Division Record:",
         error.response ? error.response.data : error.message
       );
     } finally {
@@ -153,20 +159,18 @@ function AddCircle() {
     }
   };
 
-  const updateCircleMaster = async () => {
+  const updateDivisionMaster = async () => {
     setLoading(true);
     const data = {
       id: localBodyData.id,
-      discom_Id: localBodyData.discom_Id,
-      zone_ID: localBodyData.zone_Id,
-      circleName: localBodyData.circleName,
-      circleCode: localBodyData.circleCode,
+      zone_ID: localBodyData.zone_ID,
+      circle_ID: localBodyData.circle_ID,
+      divisionName: localBodyData.divisionName,
     };
 
-    console.log(data);
     try {
       const response = await axios.put(
-        `${apiUrl}distribution/edit-circle`,
+        `${apiUrl}transmission/edit-division`,
         data,
         {
           headers: {
@@ -175,19 +179,18 @@ function AddCircle() {
           },
         }
       );
-      console.log("Response:", response);
       Swal.fire({
         text: "Record updated successfully.",
         icon: "success",
         confirmButtonText: "Ok",
         confirmButtonColor: "#3085d6",
       }).then(() => {
-        navigate("/circle");
+        navigate("/divisionTransmission");
       });
       resetForm();
     } catch (error) {
       Swal.fire({
-        text: error.response?.data?.message || "Error updating circle.",
+        text: error.response?.data?.message || "Error updating division.",
         icon: "error",
         confirmButtonText: "Ok",
         confirmButtonColor: "#d33",
@@ -203,12 +206,11 @@ function AddCircle() {
 
   const resetForm = () => {
     setLocalBodyData({
-      discom_Id: "",
-      zone_Id: "",
-      circleName: "",
-      circleCode: "",
+      zone_ID: "",
+      circle_ID: "",
+      divisionName: "",
     });
-    setZones([]);
+    setCircles([]);
     setIsEdit(false);
   };
 
@@ -219,15 +221,19 @@ function AddCircle() {
       [name]: value,
     }));
 
-    if (name === "discom_Id") {
-      fetchZones(value);
+    if (name === "zone_ID") {
+      setLocalBodyData((prevData) => ({
+        ...prevData,
+        circle_ID: "", // Reset circle when zone changes
+      }));
+      fetchCircles(value);
     }
   };
 
   return (
     <>
       <Header
-        title={isEdit ? "Update Circle" : "Add Circle"}
+        title={isEdit ? "Update Division" : "Add Division"}
         action={{
           button: (
             <div
@@ -244,44 +250,25 @@ function AddCircle() {
                   marginRight: "8px",
                 }}
               />
-              Circle List
+              Division List
             </div>
           ),
-          path: "/circle",
+          path: "/divisionTransmission",
         }}
       />
-
       <FormPanel>
         {loading && <Loader />}
+
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Discom Name</label>
+            <label className={label}>Zone (Transmission)</label>
             <select
-              name="discom_Id"
+              name="zone_ID"
               className={select}
-              value={localBodyData.discom_Id}
+              value={localBodyData.zone_ID}
               onChange={handleInputChange}
             >
               <option value="">--Select--</option>
-              {discoms.map((discom) => (
-                <option key={discom._id} value={discom._id}>
-                  {discom.discomName}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <label className={label}>Zone (Distribution)</label>
-            <select
-              name="zone_Id"
-              className={select}
-              value={localBodyData.zone_Id}
-              onChange={handleInputChange}
-              disabled={!localBodyData.discom_Id}
-            >
-              <option value="">Select Zone</option>
               {zones.map((zone) => (
                 <option key={zone._id} value={zone._id}>
                   {zone.zoneName}
@@ -292,50 +279,57 @@ function AddCircle() {
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <input
-              name="circleName"
-              className={input}
-              placeholder=" "
-              autoComplete="off"
-              value={localBodyData.circleName}
+            <label className={label}>Circle (Transmission)</label>
+            <select
+              name="circle_ID"
+              className={select}
+              value={localBodyData.circle_ID}
               onChange={handleInputChange}
-            />
-            <label className={label}>Circle Name</label>
+              disabled={!localBodyData.zone_ID}
+            >
+              <option value="">--Select--</option>
+              {circles.map((circle) => (
+                <option key={circle._id} value={circle._id}>
+                  {circle.circleName}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
+            <label className={label}>Division Name</label>
             <input
-              name="circleCode"
-              className={input}
-              placeholder=" "
+              type="text"
+              name="divisionName"
               autoComplete="off"
-              value={localBodyData.circleCode}
+              className={input}
+              value={localBodyData.divisionName}
               onChange={handleInputChange}
             />
-            <label className={label}>Circle Code</label>
           </div>
         </div>
-        <div className="col-span-3 justify-between space-x-4">
-          <button
-            className={btn}
-            onClick={isEdit ? updateCircleMaster : saveCircleMaster}
-            disabled={loading}
-          >
-            {loading ? "Loading..." : isEdit ? "Update" : "Submit"}
-          </button>
-
+        <div className="flex flex-row gap-4 mt-4">
           <button
             type="button"
-            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            className={btn}
+            onClick={isEdit ? updateDivisionMaster : saveDivisionMaster}
+          >
+            {isEdit ? "Update" : "Save"}
+          </button>
+          <button
+            type="button"
+            className={btn}
             onClick={resetForm}
+            style={{ backgroundColor: "#f44336" }} // Red color for reset button
           >
             Reset
           </button>
         </div>
+        {error && <p className="text-red-600">{error}</p>}
       </FormPanel>
     </>
   );
 }
 
-export default AddCircle;
+export default AddDivision;

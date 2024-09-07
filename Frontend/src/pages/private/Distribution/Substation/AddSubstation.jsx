@@ -153,12 +153,16 @@ function AddSubstation() {
       transmissionDetail: rows,
     };
     try {
-      const response = await axios.post(`${apiUrl}/add-substation`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${apiUrl}distribution/add-substation`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       Swal.fire({
         title: "Success!",
         text: "Substation Saved Successfully",
@@ -186,7 +190,7 @@ function AddSubstation() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-division`,
+        `${apiUrl}distribution/list-division`,
         {},
         {
           headers: {
@@ -207,7 +211,7 @@ function AddSubstation() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-districts`,
+        `${apiUrl}distribution/list-districts`,
         {},
         {
           headers: {
@@ -228,7 +232,7 @@ function AddSubstation() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}monthList`,
+        `${apiUrl}distribution/monthList`,
         {},
         {
           headers: {
@@ -249,7 +253,7 @@ function AddSubstation() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}yearList`,
+        `${apiUrl}distribution/yearList`,
         {},
         {
           headers: {
@@ -282,12 +286,16 @@ function AddSubstation() {
     };
 
     try {
-      const response = await axios.put(`${apiUrl}/edit-substation`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.put(
+        `${apiUrl}distribution/edit-substation`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Response:", response);
       Swal.fire({
         text: "Record updated successfully.",

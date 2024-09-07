@@ -24,10 +24,13 @@ const SubstationList = () => {
   const fetchSubstation = async (page) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${apiUrl}/list-substation`, {
-        page,
-        limit: itemsPerPage,
-      });
+      const response = await axios.post(
+        `${apiUrl}distribution/list-substation`,
+        {
+          page,
+          limit: itemsPerPage,
+        }
+      );
       setSubstation(response.data.result.docs);
       setTotalPages(response.data.result.totalPages);
       setLoading(false);
@@ -61,7 +64,7 @@ const SubstationList = () => {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}/delete-substation`, {
+        await axios.delete(`${apiUrl}distribution/delete-substation`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

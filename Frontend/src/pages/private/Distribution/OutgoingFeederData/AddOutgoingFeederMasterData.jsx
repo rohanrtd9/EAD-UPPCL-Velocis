@@ -125,12 +125,16 @@ function AddOutgoingFeederMasterData() {
       feederDetails: rows,
     };
     try {
-      const response = await axios.post(`${apiUrl}/add-outgoing-feeder`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${apiUrl}distribution/add-outgoing-feeder`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       Swal.fire({
         title: "Success!",
         text: "Outgoing Feeder Saved Successfully",

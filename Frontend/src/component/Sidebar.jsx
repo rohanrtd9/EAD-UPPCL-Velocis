@@ -285,6 +285,26 @@ const Sidebar = () => {
         <AccordionBody className="py-1">
           <List className="p-0">
             <CustomLink
+              to="/zoneTranmissionList"
+              activeLink="/zoneTransmissionAction/addZoneTransmission"
+              title="Zone"
+            />
+            <CustomLink
+              to="/circleTransmission"
+              activeLink="/circleTransmissionAction/addCircle"
+              title="Circle"
+            />
+            <CustomLink
+              to="/divisionTransmission"
+              activeLink="/divisionTransmissionAction/addDivision"
+              title="Division"
+            />
+            <CustomLink
+              to="/districtTransmission"
+              activeLink="/districtTransmissionAction/addDistrict"
+              title="District"
+            />
+            <CustomLink
               to="/SubstationDataList"
               activeLink="/AddSubstationData"
               title="Name Of Substation"

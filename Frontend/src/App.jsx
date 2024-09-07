@@ -46,10 +46,6 @@ const IncomingFeederMasterData = React.lazy(() =>
   )
 );
 
-// Start Login
-
-const Login = React.lazy(() => import("./pages/public/Login"));
-
 const AddIncomingFeederMasterData = React.lazy(() =>
   import(
     "./pages/private/Distribution/IncomingFeederData/AddIncomingFeederMasterData"
@@ -77,6 +73,10 @@ const AddKV33ConsumerFeederData = React.lazy(() =>
   )
 );
 
+// Start Login
+
+const Login = React.lazy(() => import("./pages/public/Login"));
+
 // Distribution Trasaction route here
 
 const AddTransactionStatusByAdmin = React.lazy(() =>
@@ -101,6 +101,38 @@ const Edit33KVStatusByAdmin = React.lazy(() =>
 
 const AddFeederBayData = React.lazy(() =>
   import("./pages/private/Transmission/FeederBay/AddFeederBayData")
+);
+
+const ZoneTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/Zone/zoneTranmissionList")
+);
+
+const CircleTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/Circle/circleList")
+);
+
+const DivisionTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/Division/divisionList")
+);
+
+const AddDivisionTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/Division/addDivision")
+);
+
+const AddDistrictTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/District/addDistrict")
+);
+
+const DistrictTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/District/districtList")
+);
+
+const AddCircleTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/Circle/addCircle")
+);
+
+const AddZoneTransmission = React.lazy(() =>
+  import("./pages/private/Transmission/Zone/AddZoneTransmission")
 );
 
 const FeederBayDataList = React.lazy(() =>
@@ -307,6 +339,108 @@ function App() {
                 </Suspense>
               }
             />
+
+            {/* Distribution Transaction Route Here */}
+            <Route
+              path="/AddTransactionStatusByAdmin"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <AddTransactionStatusByAdmin />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/EditTransactionStatusByAdmin"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <EditTransactionStatusByAdmin />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/Add33KVStatusByAdmin"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <Add33KVStatusByAdmin />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/Edit33KVStatusByAdmin"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <Edit33KVStatusByAdmin />
+                </Suspense>
+              }
+            />
+
+            {/* Transmission master */}
+            <Route
+              path="/zoneTranmissionList"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <ZoneTransmission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/zoneTransmissionAction/:pageName"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <AddZoneTransmission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/circleTransmission"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <CircleTransmission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/circleTransmissionAction/:pageName"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <AddCircleTransmission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/divisionTransmission"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <DivisionTransmission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/divisionTransmissionAction/:pageName"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <AddDivisionTransmission />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/districtTransmission"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <DistrictTransmission />
+                </Suspense>
+              }
+            />
+
+            <Route
+              path="/districtTransmissionAction/:pageName"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <AddDistrictTransmission />
+                </Suspense>
+              }
+            />
+
             <Route
               path="/FeederBayDataList"
               element={
@@ -336,40 +470,6 @@ function App() {
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddSubstationData />
-                </Suspense>
-              }
-            />
-            {/* Distribution Transaction Route Here */}
-            <Route
-              path="/AddTransactionStatusByAdmin"
-              element={
-                <Suspense fallback={<Shimmer />}>
-                  <AddTransactionStatusByAdmin />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/EditTransactionStatusByAdmin"
-              element={
-                <Suspense fallback={<Shimmer />}>
-                  <EditTransactionStatusByAdmin />
-                </Suspense>
-              }
-            />
-
-            <Route
-              path="/Add33KVStatusByAdmin"
-              element={
-                <Suspense fallback={<Shimmer />}>
-                  <Add33KVStatusByAdmin />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/Edit33KVStatusByAdmin"
-              element={
-                <Suspense fallback={<Shimmer />}>
-                  <Edit33KVStatusByAdmin />
                 </Suspense>
               }
             />

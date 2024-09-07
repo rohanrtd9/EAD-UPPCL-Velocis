@@ -19,7 +19,6 @@ function AddDistrict() {
   const [districtData, setDistrictData] = useState({
     id: "",
     districtName: "",
-    districtCode: "",
   });
   const navigate = useNavigate();
 
@@ -31,7 +30,6 @@ function AddDistrict() {
         setDistrictData({
           id: data._id,
           districtName: data.districtName,
-          districtCode: data.districtCode,
         });
       } else {
         setIsEdit(false);
@@ -48,11 +46,10 @@ function AddDistrict() {
     setError(""); // Clear any existing errors
     const data = {
       districtName: districtData.districtName,
-      districtCode: districtData.districtCode,
     };
     try {
       const response = await axios.post(
-        `${apiUrl}distribution/add-district`,
+        `${apiUrl}transmission/add-district`,
         data,
         {
           headers: {
@@ -68,7 +65,7 @@ function AddDistrict() {
         confirmButtonText: "Ok",
         confirmButtonColor: "#3085d6",
       }).then(() => {
-        navigate("/district");
+        navigate("/districtTransmission");
       });
       resetForm();
     } catch (error) {
@@ -84,12 +81,11 @@ function AddDistrict() {
     const data = {
       id: districtData.id,
       districtName: districtData.districtName,
-      districtCode: districtData.districtCode,
     };
 
     try {
       const response = await axios.put(
-        `${apiUrl}distribution/edit-district`,
+        `${apiUrl}transmission/edit-district`,
         data,
         {
           headers: {
@@ -104,7 +100,7 @@ function AddDistrict() {
         confirmButtonText: "Ok",
         confirmButtonColor: "#3085d6",
       }).then(() => {
-        navigate("/district");
+        navigate("/districtTransmission");
       });
       resetForm();
     } catch (error) {
@@ -118,7 +114,6 @@ function AddDistrict() {
     setDistrictData({
       id: "",
       districtName: "",
-      districtCode: "",
     });
     setIsEdit(false);
     setError("");
@@ -171,7 +166,7 @@ function AddDistrict() {
               District List
             </div>
           ),
-          path: "/district",
+          path: "/districtTransmission",
         }}
       />
 
@@ -187,19 +182,6 @@ function AddDistrict() {
               placeholder=" "
             />
             <label className={label}>District Name</label>
-          </div>
-        </div>
-        <div className="col-span-1">
-          <div className="relative z-0 w-full group">
-            <input
-              name="districtCode"
-              value={districtData.districtCode}
-              onChange={handleInputChange}
-              className={input}
-              autoComplete="off"
-              placeholder=" "
-            />
-            <label className={label}>District Code</label>
           </div>
         </div>
         <div className="col-span-3 justify-between space-x-4">
