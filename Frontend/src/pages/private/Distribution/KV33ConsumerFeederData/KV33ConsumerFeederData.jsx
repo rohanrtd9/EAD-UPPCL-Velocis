@@ -19,6 +19,7 @@ function KV33ConsumerFeederData() {
   const [totalPages, setTotalPages] = useState(1);
   const [itemsPerPage] = useState(10);
   const { token } = useUserContext();
+  const navigate = useNavigate();
 
   const list33KV = async (page) => {
     try {
@@ -97,6 +98,42 @@ function KV33ConsumerFeederData() {
     }
   };
 
+  const handleStatusToggle = async (feeder) => {
+    const updatedStatus = feeder.status === "Active" ? "Inactive" : "Active";
+    try {
+      setLoading(true);
+      await axios.post(
+        `${apiUrl}update-33KV-feeder-status`,
+        { id: feeder._id, status: updatedStatus },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setFeeders((prev) =>
+        prev.map((item) =>
+          item._id === feeder._id ? { ...item, status: updatedStatus } : item
+        )
+      );
+      setLoading(false);
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to update status.",
+        icon: "error",
+        confirmButtonText: "Ok",
+        connfirmButtonColor: "#3085d6",
+      });
+    }
+  };
+
+  const handleEdit = (data) => {
+    const encodedData = encodeURIComponent(JSON.stringify(data));
+    navigate(`/outgoingFeeder33KVAction/${encodedData}`);
+  };
+
   const pagesToShow = 4; // Number of page buttons to show
   const startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
   const endPage = Math.min(totalPages, startPage + pagesToShow - 1);
@@ -127,7 +164,7 @@ function KV33ConsumerFeederData() {
               Add 33 KV Consumer
             </div>
           ),
-          path: "/AddKV33ConsumerFeederData",
+          path: "/outgoingFeeder33KVAction/AddKV33ConsumerFeederData",
         }}
       />
       <Table>
@@ -161,12 +198,26 @@ function KV33ConsumerFeederData() {
                   <TrashIcon className="h-5 w-5" />
                 </button>
                 <button
-                  onClick={() => navigate(`/edit-33KV-feeder/${feeder._id}`)}
+                  onClick={() => handleEdit(feeder)}
                   className="text-indigo-600 hover:text-indigo-900 w-6 h-7 p-1 flex items-center justify-center"
                 >
                   <PencilSquareIcon className="h-5 w-5" />
                 </button>
               </Td>
+              <Td>
+                <label className="inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    value=""
+                    checked={feeder.status === "Active"}
+                    onChange={() => handleStatusToggle(feeder)}
+                    className="sr-only peer"
+                  />
+                  <div className="relative w-11 h-6 bg-red-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 rounded-full peer dark:bg-red-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-red-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-red-600 peer-checked:bg-green-600"></div>
+                </label>
+              </Td>
+
+              <Td>{feeder.status === "Active" ? "ACTIVE" : "INACTIVE"}</Td>
             </Tr>
           ))}
         </Tbody>

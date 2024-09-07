@@ -1,9 +1,11 @@
+import  mongoose from "mongoose";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import csvParser from 'csv-parser';
 import zonesModel from "../models/transmissionZones.js";
 import circlesModel from "../models/transmissionCircleModel.js";
+import divisionModel from "../models/transmissioDivision.js";
 
 export const exportCircleController = async (req,res,next) => {
 
@@ -140,6 +142,29 @@ export const  getCircles = async (req, res) => {
     };
     const result = await circlesModel.paginate(query, options);
     return res.status(200).json({status:200,result:result});
+  } catch (error) {
+      return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
+  }
+}
+
+
+export const getCirclesDivisions = async (req, res) => {
+  try {
+      const { page = 1, limit = 10,circle_ID  } = req.body;
+     
+      const aggregateQuery = divisionModel.aggregate([
+        { $match: { isDeleted: 0, circle_ID: new mongoose.Types.ObjectId(circle_ID) } },     
+        { $sort: { _id: -1 } }
+    ]);
+
+    const options = {
+        page: Number(page),
+        limit: Number(limit)
+    };
+
+    const result = await divisionModel.aggregatePaginate(aggregateQuery, options);
+    return res.status(200).json({ statusCode: 200, result });
+
   } catch (error) {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
   }

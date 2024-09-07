@@ -300,7 +300,7 @@ function App() {
               }
             />
             <Route
-              path="/AddKV33ConsumerFeederData"
+              path="/outgoingFeeder33KVAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddKV33ConsumerFeederData />

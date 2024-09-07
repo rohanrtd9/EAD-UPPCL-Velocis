@@ -7,9 +7,9 @@ import {exportZonesController,createZone,updateZone,deleteZone,getZones,getDisco
 import {exportCircleController,createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle,exportCircleToCsv} from "../controllers/DMCircleController.js";
 import {exportDiscomController,addDiscom,editDiscom,listDiscoms,softDeleteDiscom} from "../controllers/DiscomController.js";
 import {exportDivisionController,createDivision,updateDivision,getDivisions,getCircleDivisions,deleteDivision,exportDivisionToCsv} from "../controllers/DMDivisionController.js";
-import { importIncomingFeederController,createIncommingFeeder, deleteIncommingFeeder, getIncommingFeeders, updateIncommingFeeder } from "../controllers/DMIncommingFeederController.js";
+import { importIncomingFeederController,createIncommingFeeder, deleteIncommingFeeder, getIncommingFeeders, updateIncommingFeeder,updateIncommingFeedersStatus } from "../controllers/DMIncommingFeederController.js";
 import { importTempOutGoingFeederController,importOutGoingFeederController,createOutgoingFeeder, deleteOutgoingFeeder, getOutgoingFeeders, updateOutgoingFeeder,importTempBaypointController,importBayspointController } from "../controllers/DMOutgoingFeederController.js";
-import { import33kvIndependentController,createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder } from "../controllers/DM33KVIndependentFeederController.js";
+import { import33kvIndependentController,createIndependentFeeder, deleteIndependentFeeder, getIndependentFeeders, updateIndependentFeeder,update33kvFeedersStatus } from "../controllers/DM33KVIndependentFeederController.js";
 import { addTransformer, editTransformer, softDeleteTransformer, listTransformer } from "../controllers/DMTransformerController.js";
  
 import {loginController,changePasswordController} from "../controllers/userController.js";
@@ -90,6 +90,7 @@ router.post("/add-33KVIndependent-feeder",  createIndependentFeeder);
 router.put("/edit-33KVIndependent-feeder",  updateIndependentFeeder);
 router.delete("/delete-33KVIndependent-feeder",  deleteIndependentFeeder);
 router.post("/list-33KVIndependent-feeder",  getIndependentFeeders);
+router.post("/update-33KV-feeder-status",  update33kvFeedersStatus);
 
 router.post("/add-transformer",  addTransformer);
 router.put("/edit-transformer",  editTransformer);
@@ -101,6 +102,7 @@ router.post("/add-year",  addYear);
 router.post("/monthList",  listMonth);
 router.post("/yearList",  listYear);
 
+router.post("/update-incoming-feeder-status",  updateIncommingFeedersStatus);
 router.post("/import-temp-bay-point",  importTempBaypointController);
 router.post("/import-bay-point",  importBayspointController);
 
