@@ -25,7 +25,7 @@ function KV33ConsumerFeederData() {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${apiUrl}/list-33KVIndependent-feeder`,
+        `${apiUrl}distribution/list-33KVIndependent-feeder`,
         {
           page,
           limit: itemsPerPage,
@@ -70,7 +70,7 @@ function KV33ConsumerFeederData() {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}/delete-33KV-feeder`, {
+        await axios.delete(`${apiUrl}distribution/delete-33KV-feeder`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -103,7 +103,7 @@ function KV33ConsumerFeederData() {
     try {
       setLoading(true);
       await axios.post(
-        `${apiUrl}update-33KV-feeder-status`,
+        `${apiUrl}distribution/update-33KV-feeder-status`,
         { id: feeder._id, status: updatedStatus },
         {
           headers: {

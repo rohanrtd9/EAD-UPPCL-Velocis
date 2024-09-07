@@ -43,7 +43,7 @@ function AddDivision() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-division`,
+        `${apiUrl}distribution/list-division`,
         {},
         {
           headers: {
@@ -64,7 +64,7 @@ function AddDivision() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-substation`,
+        `${apiUrl}distribution/list-substation`,
         { divisionName },
         {
           headers: {
@@ -138,7 +138,7 @@ function AddDivision() {
 
     try {
       const response = await axios.post(
-        `${apiUrl}/add-incomming-feeder`,
+        `${apiUrl}distribution/add-incomming-feeder`,
         data,
         {
           headers: {
@@ -192,12 +192,16 @@ function AddDivision() {
     };
 
     try {
-      const response = await axios.put(`${apiUrl}edit-incomming-feeder`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.put(
+        `${apiUrl}distribution/edit-incomming-feeder`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Response:", response);
       Swal.fire({
         text: "Record updated successfully.",

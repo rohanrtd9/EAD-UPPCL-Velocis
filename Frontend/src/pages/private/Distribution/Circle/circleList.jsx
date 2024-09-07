@@ -24,7 +24,7 @@ function CircleList() {
   const fetchCircle = async (page) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${apiUrl}/list-circle`, {
+      const response = await axios.post(`${apiUrl}distribution/list-circle`, {
         page,
         limit: itemsPerPage,
       });
@@ -61,7 +61,7 @@ function CircleList() {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}/delete-circle`, {
+        await axios.delete(`${apiUrl}distribution/delete-circle`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

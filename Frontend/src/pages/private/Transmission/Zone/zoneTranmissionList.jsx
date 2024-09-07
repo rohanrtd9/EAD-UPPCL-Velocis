@@ -11,9 +11,9 @@ import Loader from "../../../../component/Loader";
 import "./../../../../component/pagination.css";
 import { IoAddCircleSharp } from "react-icons/io5";
 
-function IncomingFeederMasterData() {
+function zoneTranmissionList() {
   const navigate = useNavigate();
-  const [incoming, setIncoming] = useState([]);
+  const [zones, setZones] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,43 +21,30 @@ function IncomingFeederMasterData() {
   const [itemsPerPage] = useState(10);
   const { token } = useUserContext();
 
-  const fetchIncomingFeeder = async (page) => {
+  const fetchZones = async (page) => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        `${apiUrl}distribution/list-incomming-feeder`,
-        {
-          page,
-          limit: itemsPerPage,
-        }
-      );
-
-      if (
-        response.data &&
-        response.data.result &&
-        Array.isArray(response.data.result.docs)
-      ) {
-        setIncoming(response.data.result.docs);
-        setTotalPages(response.data.result.totalPages || 1);
-      } else {
-        throw new Error("Unexpected API response structure");
-      }
-
+      const response = await axios.post(`${apiUrl}transmission/list-zone`, {
+        page,
+        limit: itemsPerPage,
+      });
+      setZones(response.data.result.docs);
+      setTotalPages(response.data.result.totalPages);
       setLoading(false);
     } catch (err) {
-      setError("Failed to fetch incoming feeder details.");
+      setError("Failed to fetch zones.");
       setLoading(false);
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to fetch incoming feeder details!",
+        text: "Failed to fetch zone details!",
         confirmButtonColor: "#3085d6",
       });
     }
   };
 
   useEffect(() => {
-    fetchIncomingFeeder(currentPage);
+    fetchZones(currentPage);
   }, [currentPage]);
 
   const handleDelete = async (id) => {
@@ -74,7 +61,7 @@ function IncomingFeederMasterData() {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}distribution/delete-incomming-feeder`, {
+        await axios.delete(`${apiUrl}transmission/delete-zone`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -84,12 +71,12 @@ function IncomingFeederMasterData() {
 
         Swal.fire({
           title: "Deleted!",
-          text: "The incoming feeder has been deleted.",
+          text: "The zone has been deleted.",
           icon: "success",
           confirmButtonColor: "#3085d6",
         });
 
-        await fetchIncomingFeeder(currentPage);
+        await fetchZones(currentPage);
       }
     } catch (error) {
       setLoading(false);
@@ -102,43 +89,14 @@ function IncomingFeederMasterData() {
     }
   };
 
-  const handleStatusToggle = async (feeder) => {
-    const updatedStatus = feeder.status === "Active" ? "Inactive" : "Active";
-    try {
-      setLoading(true);
-      await axios.post(
-        `${apiUrl}distribution/update-incoming-feeder-status`,
-        { id: feeder._id, status: updatedStatus },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setIncoming((prev) =>
-        prev.map((item) =>
-          item._id === feeder._id ? { ...item, status: updatedStatus } : item
-        )
-      );
-      setLoading(false);
-    } catch (error) {
-      Swal.fire({
-        title: "Error!",
-        text: "Failed to update status.",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-    }
-  };
-
   const editConnection = (data) => {
     const obj = encodeURIComponent(JSON.stringify(data));
-    console.log(data);
-    navigate(`/incomingFeederAction/${obj}`);
+    navigate(`/zoneTransmissionAction/${obj}`);
   };
 
-  const pagesToShow = 4;
+  const pagesToShow = 4; // Number of page buttons to show
+
+  // Calculate the range of pages to show
   const startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
   const endPage = Math.min(totalPages, startPage + pagesToShow - 1);
 
@@ -148,7 +106,7 @@ function IncomingFeederMasterData() {
   return (
     <>
       <Header
-        title="Distribution Incoming Feeder Master Data"
+        title="Zone (Transmission)"
         action={{
           button: (
             <div
@@ -165,61 +123,43 @@ function IncomingFeederMasterData() {
                   marginRight: "8px",
                 }}
               />
-              Add Incoming Feeder
+              Add Zone
             </div>
           ),
-          path: "/incomingFeederAction/AddIncomingFeederMasterData",
+          path: "/zoneTransmissionAction/addZoneTransmission",
         }}
       />
+
       <Table>
         <Thead>
           <Tr>
             <Th>S.No.</Th>
-            <Th>Division</Th>
-            <Th>Distribution Sub-Station Name</Th>
-            <Th>Feeder Name</Th>
-            <Th>Feeder Voltage</Th>
+            <Th>Zone</Th>
+            <Th>Zone Code</Th>
             <Th>Action</Th>
-            <Th>Status</Th>
-            <Th>Active / InActive</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {incoming.map((feeder, index) => (
-            <Tr key={feeder._id}>
+          {zones.map((zone, index) => (
+            <Tr key={zone._id}>
               <Td>{(currentPage - 1) * itemsPerPage + index + 1}</Td>
-              <Td>{feeder.divisionName}</Td>
-              <Td>{feeder.substationName}</Td>
-              <Td>{feeder.feederName}</Td>
-              <Td>{feeder.feederVoltage}</Td>
+              <Td>{zone.zoneName}</Td>
+              <Td>{zone.zoneCode || "-"}</Td>
               <Td flex={true}>
                 <button
-                  onClick={() => handleDelete(feeder._id)}
-                  className="text-red-600 hover:text-red-800 w-6 h-7 p-1 flex items-center justify-center"
+                  onClick={() => handleDelete(zone._id)}
+                  className="text-red-600 hover:text-red-800 w-6 h-7 p-1 flex items-center justify-center" // Updated styles
                 >
-                  <TrashIcon className="h-5 w-5" />
+                  <TrashIcon className="h-5 w-5" /> {/* Smaller icon size */}
                 </button>
                 <button
-                  onClick={() => editConnection(feeder)}
-                  className="text-indigo-600 hover:text-indigo-900 w-6 h-7 p-1 flex items-center justify-center"
+                  onClick={() => editConnection(zone)}
+                  className="text-indigo-600 hover:text-indigo-900 w-6 h-7 p-1 flex items-center justify-center" // Updated styles
                 >
-                  <PencilSquareIcon className="h-5 w-5" />
+                  <PencilSquareIcon className="h-5 w-5" />{" "}
+                  {/* Smaller icon size */}
                 </button>
               </Td>
-              <Td>
-                <label className="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    value=""
-                    checked={feeder.status === "Active"}
-                    onChange={() => handleStatusToggle(feeder)}
-                    className="sr-only peer"
-                  />
-                  <div className="relative w-11 h-6 bg-red-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 rounded-full peer dark:bg-red-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-red-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-red-600 peer-checked:bg-green-600"></div>
-                </label>
-              </Td>
-
-              <Td>{feeder.status === "Active" ? "ACTIVE" : "INACTIVE"}</Td>
             </Tr>
           ))}
         </Tbody>
@@ -256,4 +196,4 @@ function IncomingFeederMasterData() {
   );
 }
 
-export default IncomingFeederMasterData;
+export default zoneTranmissionList;

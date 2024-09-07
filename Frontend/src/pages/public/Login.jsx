@@ -69,7 +69,7 @@ function Login() {
     };
 
     try {
-      const response = await axios.post(`${apiUrl}login`, data);
+      const response = await axios.post(`${apiUrl}distribution/login`, data);
       const userData = response?.data?.user;
 
       if (userData) {

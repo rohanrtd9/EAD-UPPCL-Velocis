@@ -58,7 +58,7 @@ function AddDivision() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-discom`,
+        `${apiUrl}distribution/list-discom`,
         {},
         {
           headers: {
@@ -84,7 +84,7 @@ function AddDivision() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-discom-zone`,
+        `${apiUrl}distribution/list-discom-zone`,
         { discom_ID: discomId },
         {
           headers: {
@@ -110,7 +110,7 @@ function AddDivision() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${apiUrl}list-zone-circle`,
+        `${apiUrl}distribution/list-zone-circle`,
         { zone_ID: zoneId },
         {
           headers: {
@@ -142,12 +142,16 @@ function AddDivision() {
       divisionCode: localBodyData.divisionCode,
     };
     try {
-      const response = await axios.post(`${apiUrl}/add-division`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${apiUrl}distribution/add-division`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       Swal.fire({
         title: "Success!",
         text: "Division Saved Successfully",
@@ -187,12 +191,16 @@ function AddDivision() {
     };
 
     try {
-      const response = await axios.put(`${apiUrl}/edit-division`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.put(
+        `${apiUrl}distribution/edit-division`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       Swal.fire({
         text: "Record updated successfully.",
         icon: "success",

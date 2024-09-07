@@ -11,9 +11,9 @@ import Loader from "../../../../component/Loader";
 import "./../../../../component/pagination.css";
 import { IoAddCircleSharp } from "react-icons/io5";
 
-function IncomingFeederMasterData() {
+function DistrictList() {
   const navigate = useNavigate();
-  const [incoming, setIncoming] = useState([]);
+  const [districts, setDistricts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,43 +21,39 @@ function IncomingFeederMasterData() {
   const [itemsPerPage] = useState(10);
   const { token } = useUserContext();
 
-  const fetchIncomingFeeder = async (page) => {
+  const fetchDistrict = async (page) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${apiUrl}distribution/list-incomming-feeder`,
+        `${apiUrl}transmission/list-districts`,
         {
           page,
           limit: itemsPerPage,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
-
-      if (
-        response.data &&
-        response.data.result &&
-        Array.isArray(response.data.result.docs)
-      ) {
-        setIncoming(response.data.result.docs);
-        setTotalPages(response.data.result.totalPages || 1);
-      } else {
-        throw new Error("Unexpected API response structure");
-      }
-
+      const { docs, totalPages } = response.data.result;
+      setDistricts(docs);
+      setTotalPages(totalPages);
       setLoading(false);
     } catch (err) {
-      setError("Failed to fetch incoming feeder details.");
+      setError("Failed to fetch district details.");
       setLoading(false);
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Failed to fetch incoming feeder details!",
+        text: "Failed to fetch district details!",
         confirmButtonColor: "#3085d6",
       });
     }
   };
 
   useEffect(() => {
-    fetchIncomingFeeder(currentPage);
+    fetchDistrict(currentPage);
   }, [currentPage]);
 
   const handleDelete = async (id) => {
@@ -74,7 +70,7 @@ function IncomingFeederMasterData() {
 
       if (result.isConfirmed) {
         setLoading(true);
-        await axios.delete(`${apiUrl}distribution/delete-incomming-feeder`, {
+        await axios.delete(`${apiUrl}transmission/delete-district`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -84,12 +80,12 @@ function IncomingFeederMasterData() {
 
         Swal.fire({
           title: "Deleted!",
-          text: "The incoming feeder has been deleted.",
+          text: "The district has been deleted.",
           icon: "success",
           confirmButtonColor: "#3085d6",
         });
 
-        await fetchIncomingFeeder(currentPage);
+        await fetchDistrict(currentPage);
       }
     } catch (error) {
       setLoading(false);
@@ -102,40 +98,9 @@ function IncomingFeederMasterData() {
     }
   };
 
-  const handleStatusToggle = async (feeder) => {
-    const updatedStatus = feeder.status === "Active" ? "Inactive" : "Active";
-    try {
-      setLoading(true);
-      await axios.post(
-        `${apiUrl}distribution/update-incoming-feeder-status`,
-        { id: feeder._id, status: updatedStatus },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setIncoming((prev) =>
-        prev.map((item) =>
-          item._id === feeder._id ? { ...item, status: updatedStatus } : item
-        )
-      );
-      setLoading(false);
-    } catch (error) {
-      Swal.fire({
-        title: "Error!",
-        text: "Failed to update status.",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-    }
-  };
-
-  const editConnection = (data) => {
+  const editDistrict = (data) => {
     const obj = encodeURIComponent(JSON.stringify(data));
-    console.log(data);
-    navigate(`/incomingFeederAction/${obj}`);
+    navigate(`/districtTransmissionAction/${obj}`);
   };
 
   const pagesToShow = 4;
@@ -148,7 +113,7 @@ function IncomingFeederMasterData() {
   return (
     <>
       <Header
-        title="Distribution Incoming Feeder Master Data"
+        title="District (Transmission)"
         action={{
           button: (
             <div
@@ -165,61 +130,39 @@ function IncomingFeederMasterData() {
                   marginRight: "8px",
                 }}
               />
-              Add Incoming Feeder
+              Add District
             </div>
           ),
-          path: "/incomingFeederAction/AddIncomingFeederMasterData",
+          path: "/districtTransmissionAction/addDistrict",
         }}
       />
       <Table>
         <Thead>
           <Tr>
             <Th>S.No.</Th>
-            <Th>Division</Th>
-            <Th>Distribution Sub-Station Name</Th>
-            <Th>Feeder Name</Th>
-            <Th>Feeder Voltage</Th>
+            <Th>District</Th>
             <Th>Action</Th>
-            <Th>Status</Th>
-            <Th>Active / InActive</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {incoming.map((feeder, index) => (
-            <Tr key={feeder._id}>
-              <Td>{(currentPage - 1) * itemsPerPage + index + 1}</Td>
-              <Td>{feeder.divisionName}</Td>
-              <Td>{feeder.substationName}</Td>
-              <Td>{feeder.feederName}</Td>
-              <Td>{feeder.feederVoltage}</Td>
+          {districts.map((district, index) => (
+            <Tr key={district._id}>
+              <Td>{index + 1 + (currentPage - 1) * itemsPerPage}</Td>
+              <Td>{district.districtName}</Td>
               <Td flex={true}>
                 <button
-                  onClick={() => handleDelete(feeder._id)}
+                  onClick={() => handleDelete(district._id)}
                   className="text-red-600 hover:text-red-800 w-6 h-7 p-1 flex items-center justify-center"
                 >
                   <TrashIcon className="h-5 w-5" />
                 </button>
                 <button
-                  onClick={() => editConnection(feeder)}
+                  onClick={() => editDistrict(district)}
                   className="text-indigo-600 hover:text-indigo-900 w-6 h-7 p-1 flex items-center justify-center"
                 >
                   <PencilSquareIcon className="h-5 w-5" />
                 </button>
               </Td>
-              <Td>
-                <label className="inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    value=""
-                    checked={feeder.status === "Active"}
-                    onChange={() => handleStatusToggle(feeder)}
-                    className="sr-only peer"
-                  />
-                  <div className="relative w-11 h-6 bg-red-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 rounded-full peer dark:bg-red-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-red-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-red-600 peer-checked:bg-green-600"></div>
-                </label>
-              </Td>
-
-              <Td>{feeder.status === "Active" ? "ACTIVE" : "INACTIVE"}</Td>
             </Tr>
           ))}
         </Tbody>
@@ -256,4 +199,4 @@ function IncomingFeederMasterData() {
   );
 }
 
-export default IncomingFeederMasterData;
+export default DistrictList;
