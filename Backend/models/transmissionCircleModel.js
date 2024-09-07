@@ -9,6 +9,7 @@ const circleSchema = new mongoose.Schema({
         ref: "tm-zones"
     },     
     circleName: String,
+    circleCode:String,
     isDeleted:{
         type: Number,
         default: 0

@@ -104,10 +104,14 @@ export const deleteCircle = async (req, res) => {
 
 export const getZoneCircles = async (req, res) => {
   try {
-      const { page = 1, limit = 10 } = req.body;
-     
+      const { page = 1, limit = 10,zone_ID } = req.body;
+      var filterVar = {isDeleted: 0}
+      if(zone_ID) {
+        filterVar =  { isDeleted: 0, zone_ID: new mongoose.Types.ObjectId(zone_ID) }
+      }
+
       const aggregateQuery = circlesModel.aggregate([
-        { $match: { isDeleted: 0 } },
+        { $match: filterVar },
         { $lookup: {
             from: 'tm-zones',
             localField: 'zone_ID',
@@ -115,7 +119,7 @@ export const getZoneCircles = async (req, res) => {
             as: 'zoneDetails'
         }},
         { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
-        { $sort: { circleName: 1 } }
+        { $sort: { _id: -1 } }
     ]);
 
     const options = {

@@ -121,7 +121,7 @@ export const getDivisions = async (req, res) => {
       }},      
         { $unwind: { path: '$circleDetails', preserveNullAndEmptyArrays: true } },
         { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
-        { $sort: { divisionName: 1 } }
+        { $sort: { _id: -1 } }
     ]);
 
     const options = {

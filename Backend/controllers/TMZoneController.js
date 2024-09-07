@@ -39,7 +39,7 @@ export const exportZoneController = async (req,res,next) => {
 
 export const createZone = async (req, res) => {
   try {
-      const { zoneName } = req.body;
+      const { zoneName,zoneCode } = req.body;
       if ( !zoneName) {
           return res.status(400).send({ result: {}, statusCode: '400', message: 'Zone Name are required' });
       }

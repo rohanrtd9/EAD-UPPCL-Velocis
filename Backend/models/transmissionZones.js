@@ -4,6 +4,7 @@ import aggregatePaginate from 'mongoose-aggregate-paginate-v2';
 
 const zoneSchema = new mongoose.Schema({     
     zoneName: String,
+    zoneCode:String,
     isDeleted:{
         type: Number,
         default: 0
