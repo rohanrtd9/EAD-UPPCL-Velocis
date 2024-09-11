@@ -63,8 +63,8 @@ export const exportSubstationsController = async (req,res,next) => {
 
 export const createSubstation = async (req, res) => {
   try {
-      const { zone_ID, circle_ID, division_ID, divisionName, substationName, districtName } = req.body;
-      if (!zone_ID || !circle_ID || !division_ID || !divisionName || !substationName || !districtName ) {
+      const { zone_ID, circle_ID, division_ID, divisionName, substationName, districtName,voltageLevel } = req.body;
+      if (!zone_ID || !circle_ID || !division_ID || !divisionName || !substationName || !districtName || !voltageLevel ) {
           return res.status(400).send({ result: {}, statusCode: '400', message: '* marked fields are required' });
       }
       const result = await substationsModel.create(req.body);
@@ -76,8 +76,8 @@ export const createSubstation = async (req, res) => {
 
 export const updateSubstation = async (req, res) => {
   try {
-    const { id, zone_ID, circle_ID, division_ID, divisionName, substationName, districtName  } = req.body;
-    if (!id || !zone_ID || !circle_ID || !division_ID || !divisionName || !substationName || !districtName ) {
+    const { id, zone_ID, circle_ID, division_ID, divisionName, substationName, districtName,voltageLevel  } = req.body;
+    if (!id || !zone_ID || !circle_ID || !division_ID || !divisionName || !substationName || !districtName || !voltageLevel ) {
       return res.status(400).send({ result: {}, statusCode: '400', message: '* marked fields are required' });
     }
       const resultCheck = await substationsModel.findById(id);
@@ -136,7 +136,7 @@ export const getSubstations = async (req, res) => {
     }},      
         { $unwind: { path: '$circleDetails', preserveNullAndEmptyArrays: true } },
         { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
-        { $sort: { divisionName: 1 } }
+        { $sort: { _id: -1 } }
     ]);
 
     const options = {

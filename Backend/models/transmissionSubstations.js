@@ -22,6 +22,7 @@ const circleSchema = new mongoose.Schema({
     divisionName: String,
     substationName: String,
     districtName: String,
+    voltageLevel: String,
     isDeleted:{
         type: Number,
         default: 0
