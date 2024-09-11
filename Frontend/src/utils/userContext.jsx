@@ -10,6 +10,7 @@ export const AppProvider = ({ children }) => {
   const [userType, setUserType] = useState("");
   const [userData, setUserData] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [role, setRole] = useState("");
   const [hirerchy, setHirerchy] = useState(null);
   const [year, setYear] = useState([]);
 
@@ -25,6 +26,8 @@ export const AppProvider = ({ children }) => {
         hirerchy,
         setHirerchy,
         year,
+        role,
+        setRole,
       }}
     >
       {children}
