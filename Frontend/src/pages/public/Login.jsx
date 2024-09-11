@@ -6,6 +6,7 @@ import { apiUrl } from "../../utils/constant";
 import Swal from "sweetalert2";
 import Loader from "../../component/Loader";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../utils/userContext";
 
 function Login() {
   const [credential, setCredential] = useState({
@@ -18,7 +19,18 @@ function Login() {
   const [captcha, setCaptcha] = useState("");
   const [captchaInput, setCaptchaInput] = useState("");
   const navigate = useNavigate();
-
+  const { setToken, setRole } = useUserContext();
+  useEffect(() => {
+    const userData = localStorage.getItem("userData");
+    const role = localStorage.getItem("role");
+    if (userData && role) {
+      if (role === "DIVISION") {
+        navigate("/", { replace: true });
+      } else if (role === "subStation") {
+        navigate("/TransMisstionDashboard", { replace: true });
+      }
+    }
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredential((prev) => ({ ...prev, [name]: value }));
@@ -74,9 +86,11 @@ function Login() {
 
       if (userData) {
         userData.role = response?.data?.role;
+        localStorage.setItem("role", userData.role);
         localStorage.setItem("userData", JSON.stringify(userData));
         localStorage.setItem("token", response.data.token);
-
+        setToken(response.data.token);
+        setRole(userData.role);
         // Redirect based on user role
         if (userData.role === "DIVISION") {
           navigate("/", { replace: true });
