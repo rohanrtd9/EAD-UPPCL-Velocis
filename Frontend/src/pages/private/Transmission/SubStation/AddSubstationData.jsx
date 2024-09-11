@@ -24,7 +24,7 @@ function AddSubstationData() {
     zone_ID: "",
     circle_ID: "",
     division_ID: "",
-    divisionName: "", // Store divisionName as well
+    divisionName: "",
     districtName: "",
     substationName: "",
     voltageLevel: "",
@@ -44,7 +44,7 @@ function AddSubstationData() {
           zone_ID: data.zone_ID,
           circle_ID: data.circle_ID,
           division_ID: data.division_ID,
-          divisionName: data.divisionName, // Set the division name
+          divisionName: data.divisionName,
           districtName: data.districtName,
           substationName: data.substationName,
           voltageLevel: data.voltageLevel,
@@ -146,7 +146,7 @@ function AddSubstationData() {
       zone_ID: localBodyData.zone_ID,
       circle_ID: localBodyData.circle_ID,
       division_ID: localBodyData.division_ID,
-      divisionName: localBodyData.divisionName, // Include division name
+      divisionName: localBodyData.divisionName,
       districtName: localBodyData.districtName,
       substationName: localBodyData.substationName,
       voltageLevel: localBodyData.voltageLevel,
@@ -166,7 +166,7 @@ function AddSubstationData() {
         text: "Substation saved successfully.",
         icon: "success",
         confirmButtonText: "Ok",
-        confirmButtonColor: "#007bff", // Blue color
+        confirmButtonColor: "#007bff",
       }).then(() => {
         navigate("/SubstationDataList");
       });
@@ -192,7 +192,7 @@ function AddSubstationData() {
       zone_ID: localBodyData.zone_ID,
       circle_ID: localBodyData.circle_ID,
       division_ID: localBodyData.division_ID,
-      divisionName: localBodyData.divisionName, // Include division name
+      divisionName: localBodyData.divisionName,
       districtName: localBodyData.districtName,
       substationName: localBodyData.substationName,
       voltageLevel: localBodyData.voltageLevel,
@@ -207,7 +207,7 @@ function AddSubstationData() {
         text: "Substation updated successfully.",
         icon: "success",
         confirmButtonText: "Ok",
-        confirmButtonColor: "#007bff", // Blue color
+        confirmButtonColor: "#007bff",
       }).then(() => {
         navigate("/SubstationDataList");
       });
@@ -228,7 +228,7 @@ function AddSubstationData() {
       zone_ID: "",
       circle_ID: "",
       division_ID: "",
-      divisionName: "", // Reset divisionName
+      divisionName: "",
       districtName: "",
       substationName: "",
       voltageLevel: "",
@@ -249,7 +249,7 @@ function AddSubstationData() {
       setLocalBodyData((prevData) => ({
         ...prevData,
         circle_ID: "",
-        division_ID: "", // Reset Division on Zone change
+        division_ID: "",
       }));
       fetchCircles(value);
     } else if (name === "circle_ID") {
@@ -265,7 +265,7 @@ function AddSubstationData() {
       setLocalBodyData((prevData) => ({
         ...prevData,
         division_ID: value,
-        divisionName: selectedDivision ? selectedDivision.divisionName : "", // Set division name
+        divisionName: selectedDivision ? selectedDivision.divisionName : "",
       }));
     }
   };
