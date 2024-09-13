@@ -450,7 +450,7 @@ function App() {
               }
             />
             <Route
-              path="/AddFeederBayData"
+              path="/feederBayTransmissionAction/:pageName"
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddFeederBayData />
