@@ -153,7 +153,7 @@ export const getbaylist = async (req, res) => {
         { $unwind: { path: '$zoneDetails', preserveNullAndEmptyArrays: true } },
         { $unwind: { path: '$divisionDetails', preserveNullAndEmptyArrays: true } },
         { $unwind: { path: '$substationDetails', preserveNullAndEmptyArrays: true } },
-        { $sort: { divisionName: 1 } }
+        { $sort: { _id: -1 } }
     ]);
 
     const options = {

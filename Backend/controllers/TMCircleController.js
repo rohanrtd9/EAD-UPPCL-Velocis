@@ -6,6 +6,8 @@ import csvParser from 'csv-parser';
 import zonesModel from "../models/transmissionZones.js";
 import circlesModel from "../models/transmissionCircleModel.js";
 import divisionModel from "../models/transmissioDivision.js";
+import substationModel from "../models/transmissionSubstations.js";
+import crypto from 'crypto';
 
 export const exportCircleController = async (req,res,next) => {
 
@@ -172,4 +174,38 @@ export const getCirclesDivisions = async (req, res) => {
   } catch (error) {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+ error, error });
   }
+}
+
+
+export const getDivisionSubstations = async (req, res) => {
+  try {
+    const { page = 1, limit = 10,division_ID } = req.body;
+    const aggregateQuery = substationModel.aggregate([
+      { $match: { isDeleted: 0, division_ID: new mongoose.Types.ObjectId(division_ID) } },    
+    { $sort: { divisionName: 1 } }
+]);
+
+const options = {
+    page: Number(page),
+    limit: Number(limit)
+};
+
+const result = await substationModel.aggregatePaginate(aggregateQuery, options);
+
+  return res.status(200).json({ statusCode: 200, result });
+
+} catch (error) {
+    return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones'+error });
+}
+}
+
+
+export const generateRandoxTxIbd = async (req, res) => {
+//   try {
+//     const txnId = crypto.randomBytes(8).toString('hex'); // Generate a random transaction ID
+//   return res.status(200).json({ statusCode: 200, txnId });
+
+// } catch (error) {
+//     return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones'+error });
+// }
 }

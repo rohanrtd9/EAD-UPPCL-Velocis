@@ -1,5 +1,6 @@
 import  mongoose from "mongoose";
 import mongoosePaginate  from 'mongoose-paginate-v2';
+import aggregatePaginate from 'mongoose-aggregate-paginate-v2';
 const subStationSchema = new mongoose.Schema({   
     discom_ID: {
         type: mongoose.ObjectId,
@@ -44,5 +45,6 @@ const subStationSchema = new mongoose.Schema({
 });
 
 subStationSchema.plugin(mongoosePaginate);
+subStationSchema.plugin(aggregatePaginate);
 
 export default mongoose.model('dm-substations', subStationSchema);
