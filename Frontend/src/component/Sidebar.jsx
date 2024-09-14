@@ -312,7 +312,7 @@ const Sidebar = () => {
                 />
                 <CustomLink
                   to="/FeederBayDataList"
-                  activeLink="/AddFeederBayData"
+                  activeLink="/subStationTransmissionAction/AddFeederBayData"
                   title="Name Of Feeder/Bay"
                 />
               </List>

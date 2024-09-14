@@ -100,6 +100,7 @@ function FeederBayDataList() {
 
   const editFeederBay = (feederBay) => {
     const feederBayData = encodeURIComponent(JSON.stringify(feederBay));
+    console.log(feederBayData);
     navigate(`/feederBayTransmissionAction/${feederBayData}`);
   };
 
@@ -133,7 +134,7 @@ function FeederBayDataList() {
               Add Feeder/Bay
             </div>
           ),
-          path: "/AddFeederBayData",
+          path: "/feederBayTransmissionAction/AddFeederBayData",
         }}
       />
       <Table>
