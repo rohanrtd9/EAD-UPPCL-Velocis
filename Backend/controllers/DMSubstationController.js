@@ -168,7 +168,8 @@ export const getDivisionSubstations = async (req, res) => {
         localField: 'discom_ID',
         foreignField: '_id',
         as: 'discomDetails'
-    }},      
+    }},  
+        
     { $lookup: {
         from: 'dm-zones',
         localField: 'zone_ID',
