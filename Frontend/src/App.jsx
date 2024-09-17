@@ -150,6 +150,21 @@ const SubstationDataList = React.lazy(() =>
 const SubstationMeteringStatusReport = React.lazy(() =>
   import("./pages/private/Distribution/Report/SubstationMeteringStatusReport")
 );
+
+// Transmission Report Route Here BY ADARSH
+
+const MasterDataReport = React.lazy(() =>
+  import("./pages/private/Transmission/Report/MasterDataReport")
+);
+
+const MonthlyEnergyReport = React.lazy(() =>
+  import("./pages/private/Transmission/Report/MonthlyEnergyReport")
+);
+
+const MonthlyEnergyReportTD = React.lazy(() =>
+  import("./pages/private/Transmission/Report/MonthlyEnergyReportTD")
+);
+
 const MonthlyLineLossReport = React.lazy(() =>
   import("./pages/private/Distribution/Report/MonthlyLineLossReport")
 );
@@ -339,7 +354,6 @@ function App() {
                 </Suspense>
               }
             />
-
             {/* Distribution Transaction Route Here */}
             <Route
               path="/AddTransactionStatusByAdmin"
@@ -373,7 +387,6 @@ function App() {
                 </Suspense>
               }
             />
-
             {/* Transmission master */}
             <Route
               path="/zoneTranmissionList"
@@ -431,7 +444,6 @@ function App() {
                 </Suspense>
               }
             />
-
             <Route
               path="/districtTransmissionAction/:pageName"
               element={
@@ -440,7 +452,6 @@ function App() {
                 </Suspense>
               }
             />
-
             <Route
               path="/FeederBayDataList"
               element={
@@ -470,6 +481,31 @@ function App() {
               element={
                 <Suspense fallback={<Shimmer />}>
                   <AddSubstationData />
+                </Suspense>
+              }
+            />
+            {/* Transmission Report */}
+            <Route
+              path="/MasterDataReport"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <MasterDataReport />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/MonthlyEnergyReport"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <MonthlyEnergyReport />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/MonthlyEnergyReportTD"
+              element={
+                <Suspense fallback={<Shimmer />}>
+                  <MonthlyEnergyReportTD />
                 </Suspense>
               }
             />
