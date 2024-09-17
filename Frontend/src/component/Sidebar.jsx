@@ -385,9 +385,18 @@ const Sidebar = () => {
             </ListItem>
             <AccordionBody className="py-1">
               <List className="p-0">
+                <CustomLink to="/MasterDataReport" title="Master Data Report" />
+              </List>
+              <List className="p-0">
                 <CustomLink
-                  to="/SubstationFeederMeteringReport"
-                  title="Substation Feeder Metering Report"
+                  to="/MonthlyEnergyReport"
+                  title="Monthly Energy Report"
+                />
+              </List>
+              <List className="p-0">
+                <CustomLink
+                  to="/MonthlyEnergyReportTD"
+                  title="Monthly Energy Report (T-D)"
                 />
               </List>
             </AccordionBody>
