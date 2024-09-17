@@ -1,3 +1,4 @@
+import  mongoose from "mongoose";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
@@ -7,7 +8,7 @@ import zoneModel from "../models/distributionZoneModel.js";
 import circleModel from "../models/distributionCirclesModel.js";
 import divisionModel from "../models/distributionDivisionModel.js";
 import { Parser } from 'json2csv';
-import  mongoose from "mongoose";
+
 
 export const exportDivisionController = async (req,res,next) => {
 

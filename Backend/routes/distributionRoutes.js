@@ -1,6 +1,6 @@
 import express from "express";
 import { isAuth } from "../middleware/isAuth.js";
-import {exportController,createSubstation,updateSubstation,getSubstations,deleteSubstation} from "../controllers/DMSubstationController.js";
+import {exportController,createSubstation,updateSubstation,getSubstations,getDivisionSubstations,deleteSubstation} from "../controllers/DMSubstationController.js";
 import {listDMSubdivisionController} from "../controllers/DMSubdivisionController.js";
 import {exportDistrictController,createDistrict,updateDistrict,getDistricts,deleteDistricts} from "../controllers/DMDistrictsController.js";
 import {exportZonesController,createZone,updateZone,deleteZone,getZones,getDiscomZones,exportZoneToCsv} from "../controllers/DMZonesController.js";
@@ -70,6 +70,7 @@ router.delete("/delete-district",  deleteDistricts);
 router.post("/add-substation",  createSubstation);
 router.put("/edit-substation",  updateSubstation);
 router.post("/list-substation",  getSubstations);
+router.post("/list-division-substation",  getDivisionSubstations);
 router.delete("/delete-substation",  deleteSubstation);
 
 

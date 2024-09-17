@@ -1,7 +1,7 @@
 import express from "express";
 import { isAuth } from "../middleware/isAuth.js";
 import {createZone,updateZone,deleteZone,getZones,exportZoneController} from "../controllers/TMZoneController.js";
-import {createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle,exportCircleController,getCirclesDivisions} from "../controllers/TMCircleController.js";
+import {createCircle,updateCircle,getCircles,getZoneCircles,deleteCircle,exportCircleController,getCirclesDivisions,getDivisionSubstations,generateRandoxTxIbd} from "../controllers/TMCircleController.js";
 import {createDivision,updateDivision,getDivisions,deleteDivision,exportDivisionController} from "../controllers/TMDivisionController.js";
 import {createDistrict,updateDistrict,getDistricts,deleteDistricts,exportDistrictController} from "../controllers/TMDistrictController.js";
 import {createSubstation,updateSubstation,getSubstations,deleteSubstation,exportSubstationsController} from "../controllers/TMSubstationController.js";
@@ -30,6 +30,8 @@ router.post("/list-circle",  getCircles);
 router.post("/list-zone-circle",  getZoneCircles);
 router.delete("/delete-circle",  deleteCircle);
 router.post("/list-division-circle",  getCirclesDivisions)
+router.post("/list-division-substation",  getDivisionSubstations);
+//router.post("/txn-randomid",  generateRandoxTxIbd);
 
 //Division route
 //router.post("/export-division",  exportDivisionController);

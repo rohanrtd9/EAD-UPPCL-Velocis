@@ -1,3 +1,4 @@
+import  mongoose from "mongoose";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
@@ -146,7 +147,7 @@ export const getSubstations = async (req, res) => {
     }
       const options = {
           page: page,
-          limit: limit,
+          limit: limit, 
           sort: { _id: -1 } // Sort by discomName in ascending order
       };
       const result = await substationModel.paginate(query, options);
@@ -155,6 +156,47 @@ export const getSubstations = async (req, res) => {
   } catch (error) {
       return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones '+error, error });
   }
+}
+
+export const getDivisionSubstations = async (req, res) => {
+  try {
+    const { page = 1, limit = 10,division_ID } = req.body;
+    const aggregateQuery = substationModel.aggregate([
+      { $match: { isDeleted: 0, division_ID: new mongoose.Types.ObjectId(division_ID) } },
+      { $lookup: {
+        from: 'discoms',
+        localField: 'discom_ID',
+        foreignField: '_id',
+        as: 'discomDetails'
+    }},      
+    { $lookup: {
+        from: 'dm-zones',
+        localField: 'zone_ID',
+        foreignField: '_id',
+        as: 'zoneDetails'
+    }},
+      { $lookup: {
+        from: 'dm-circles',
+        localField: 'circle_ID',
+        foreignField: '_id',
+        as: 'circleDetails'
+    }},
+    { $unwind: '$circleDetails' },
+    { $sort: { divisionName: 1 } }
+]);
+
+const options = {
+    page: Number(page),
+    limit: Number(limit)
+};
+
+const result = await substationModel.aggregatePaginate(aggregateQuery, options);
+
+  return res.status(200).json({ statusCode: 200, result });
+
+} catch (error) {
+    return res.status(500).send({ result: {}, statusCode: '500', message: 'Error occurred in listing zones'+error });
+}
 }
 
 
