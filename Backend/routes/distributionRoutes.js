@@ -15,6 +15,8 @@ import { addTransformer, editTransformer, softDeleteTransformer, listTransformer
 import {loginController,changePasswordController} from "../controllers/userController.js";
 import {addMonth,listMonth,addYear,listYear} from "../controllers/monthYearController.js";
 
+import {SubstionMeteringStatusReport} from "../controllers/DMSubstionMeteringStatusReport.js";
+
 
 
 const router = express.Router();
@@ -106,5 +108,9 @@ router.post("/yearList",  listYear);
 router.post("/update-incoming-feeder-status",  updateIncommingFeedersStatus);
 router.post("/import-temp-bay-point",  importTempBaypointController);
 router.post("/import-bay-point",  importBayspointController);
+
+router.post("/report/_SubstionMeteringStatusReport",  SubstionMeteringStatusReport);
+
+
 
 export default router;
