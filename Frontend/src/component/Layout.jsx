@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <>
       {pathname !== "/login" ? (
         <div className="flex h-screen">
-          <div className="w-1/4 bg-gray-200">
+          <div className="w-1/4">
             <Sidebar />
           </div>
           <div className="w-3/4 bg-white">
@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
                 </div>
               </nav>
             </header>
-            <div className="px-4">{children}</div>
+            <div>{children}</div>
           </div>
         </div>
       ) : (

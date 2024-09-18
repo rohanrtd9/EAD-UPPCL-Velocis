@@ -25,7 +25,7 @@ function Header({ title, action }) {
   };
 
   return (
-    <div className="mb-3 bg-gray-200 mt-3">
+    <div className="bg-gray-200 mt-3">
       <div className="flex justify-between items-center p-4">
         <p className="font-semibold">{title}</p>
         <div className="flex">
