@@ -6,6 +6,9 @@ import { useUserContext } from "../../../../utils/userContext";
 import FormPanel from "../../../../component/FormPanel";
 import Header from "../../../../component/Header";
 import Loader from "../../../../component/Loader";
+import Table, { Tbody, Td, Th, Thead, Tr } from "../../../../component/Table";
+import * as XLSX from "xlsx";
+
 import {
   btn,
   input,
@@ -25,9 +28,11 @@ function SubstationMeteringStatusReport() {
   const [substations, setSubstations] = useState([]);
   const [months, setMonths] = useState([]);
   const [years, setYears] = useState([]);
+  const [reports, setSubstationReports] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [tableVisible, setTableVisible] = useState(false); // New state to control table visibility
   const [localBodyData, setLocalBodyData] = useState({
     discom_ID: "",
     zone_ID: "",
@@ -36,6 +41,13 @@ function SubstationMeteringStatusReport() {
     subStationName: "",
     month: "",
     year: "",
+  });
+  const [selectedData, setSelectedData] = useState({
+    discomName: "",
+    zoneName: "",
+    circleName: "",
+    divisionName: "",
+    substationName: "",
   });
   const navigate = useNavigate();
 
@@ -195,6 +207,105 @@ function SubstationMeteringStatusReport() {
     }
   };
 
+  const substionMeteringStatusReport = async () => {
+    const {
+      discomName,
+      zoneName,
+      circleName,
+      divisionName,
+      subStationName,
+      month,
+      year,
+    } = selectedData;
+
+    // Validation for mandatory fields
+    if (
+      !selectedData.discomName ||
+      !selectedData.zoneName ||
+      !selectedData.circleName ||
+      !selectedData.divisionName ||
+      !selectedData.substationName
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Please fill all required fields.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#3085d6",
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${apiUrl}distribution/report/substionMeteringStatusReport`,
+        selectedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data.result);
+      if (response.data && response.data.result && response.data.result.docs) {
+        const reports = response.data.result.docs.map((doc) => ({
+          discomName: doc.discomName,
+          zoneName: doc.zoneName,
+          circleName: doc.circleName,
+          divisionName: doc.divisionName,
+          substationName: doc.substationName,
+          month: month,
+          year: year,
+          incomingFeeder: doc.incomingFeederDetails.feederName,
+          outgoingFeeders: doc.incomingFeederDetails.outgoingFeederDetails.map(
+            (outgoing) => outgoing.feederDetails
+          ),
+          meterMakeType: doc.incomingFeederDetails.meterMake,
+          meterSLNo: doc.incomingFeederDetails.meterSLNo,
+          previousReading: doc.incomingFeederDetails.previousReading,
+          presentReading: doc.incomingFeederDetails.presentReading,
+          difference: doc.incomingFeederDetails.difference,
+          feederNature: doc.incomingFeederDetails.feederNature,
+          overallMF: doc.incomingFeederDetails.overallMF,
+          energyConsumption: doc.incomingFeederDetails.energyConsumption,
+          energyAssessed: doc.incomingFeederDetails.energyAssessed,
+          totalEnergyConsumption:
+            doc.incomingFeederDetails.totalEnergyConsumption,
+          meterStatus: doc.incomingFeederDetails.meterStatus,
+          dateOfDefect: doc.incomingFeederDetails.dateOfDefect,
+          remark: doc.incomingFeederDetails.remark,
+          entryDateTime: doc.incomingFeederDetails.entryDateTime,
+        }));
+        setSubstationReports(reports);
+        setTableVisible(true);
+      }
+    } catch (error) {
+      console.error("Error fetching report:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const exportToExcel = () => {
+    if (reports.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No data to export.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#3085d6",
+      });
+      return;
+    }
+    const worksheet = XLSX.utils.json_to_sheet(reports);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "SubstationReports");
+
+    XLSX.writeFile(workbook, "SubstationMeteringStatusReport.xlsx");
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLocalBodyData((prevData) => ({
@@ -255,6 +366,7 @@ function SubstationMeteringStatusReport() {
     setCircles([]);
     setDivisions([]);
     setSubstations([]);
+    setTableVisible(false);
   };
 
   useEffect(() => {
@@ -262,7 +374,6 @@ function SubstationMeteringStatusReport() {
     fetchMonth();
     fetchYear();
   }, []);
-
   return (
     <>
       <Header
@@ -273,16 +384,31 @@ function SubstationMeteringStatusReport() {
         }}
       />
 
+      {loading && <Loader />}
       <FormPanel>
-        {loading && <Loader />}
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Discom Name</label>
+            <label className={label}>
+              Discom Name
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select
               name="discom_ID"
               className={select}
               value={localBodyData.discom_ID}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                const selectedDiscomId = e.target.value;
+                const selectedDiscom = discoms.find(
+                  (discom) => discom._id === selectedDiscomId
+                );
+                handleInputChange(e);
+                setSelectedData((prevData) => ({
+                  ...prevData,
+                  discomName: selectedDiscom ? selectedDiscom.discomName : "",
+                }));
+              }}
             >
               <option value="">--Select--</option>
               {discoms.map((discom) => (
@@ -296,12 +422,27 @@ function SubstationMeteringStatusReport() {
 
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Zone</label>
+            <label className={label}>
+              Zone
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select
               name="zone_ID"
               className={select}
               value={localBodyData.zone_ID}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                const selectedZoneId = e.target.value;
+                const selectedZone = zones.find(
+                  (zone) => zone._id === selectedZoneId
+                );
+                handleInputChange(e);
+                setSelectedData((prevData) => ({
+                  ...prevData,
+                  zoneName: selectedZone ? selectedZone.zoneName : "",
+                }));
+              }}
             >
               <option value="">--Select--</option>
               {zones.map((zone) => (
@@ -315,12 +456,27 @@ function SubstationMeteringStatusReport() {
 
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Circle</label>
+            <label className={label}>
+              Circle
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select
               name="circle_ID"
               className={select}
               value={localBodyData.circle_ID}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                const selectedCircleId = e.target.value;
+                const selectedCircle = circles.find(
+                  (circle) => circle._id === selectedCircleId
+                );
+                handleInputChange(e);
+                setSelectedData((prevData) => ({
+                  ...prevData,
+                  circleName: selectedCircle ? selectedCircle.circleName : "",
+                }));
+              }}
             >
               <option value="">--Select--</option>
               {circles.map((circle) => (
@@ -334,12 +490,29 @@ function SubstationMeteringStatusReport() {
 
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Division</label>
+            <label className={label}>
+              Division
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select
               name="division_ID"
               className={select}
               value={localBodyData.division_ID}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                const selectedDivisionId = e.target.value;
+                const selectedDivision = divisions.find(
+                  (division) => division._id === selectedDivisionId
+                );
+                handleInputChange(e);
+                setSelectedData((prevData) => ({
+                  ...prevData,
+                  divisionName: selectedDivision
+                    ? selectedDivision.divisionName
+                    : "",
+                }));
+              }}
             >
               <option value="">--Select--</option>
               {divisions.map((division) => (
@@ -353,12 +526,29 @@ function SubstationMeteringStatusReport() {
 
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Name of Substation</label>
+            <label className={label}>
+              Name of Substation
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select
               name="subStationName"
               className={select}
               value={localBodyData.subStationName}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                const selectedSubstationId = e.target.value;
+                const selectedSubstation = substations.find(
+                  (substation) => substation._id === selectedSubstationId
+                );
+                handleInputChange(e);
+                setSelectedData((prevData) => ({
+                  ...prevData,
+                  substationName: selectedSubstation
+                    ? selectedSubstation.substationName
+                    : "",
+                }));
+              }}
             >
               <option value="">--Select--</option>
               {substations.map((substation) => (
@@ -372,7 +562,12 @@ function SubstationMeteringStatusReport() {
 
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Month</label>
+            <label className={label}>
+              Month
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select
               name="month"
               className={select}
@@ -391,7 +586,12 @@ function SubstationMeteringStatusReport() {
 
         <div className="col-span-1">
           <div className="relative z-0 w-full group">
-            <label className={label}>Year</label>
+            <label className={label}>
+              Year
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
             <select
               name="year"
               className={select}
@@ -407,9 +607,17 @@ function SubstationMeteringStatusReport() {
             </select>
           </div>
         </div>
-
         <div className="col-span-3 justify-between space-x-4">
-          <button className={btn}>Submit</button>
+          <button className={btn} onClick={substionMeteringStatusReport}>
+            Submit
+          </button>
+          <button
+            className={btn}
+            style={{ backgroundColor: "green" }}
+            onClick={exportToExcel}
+          >
+            Export to Excel
+          </button>
           <button
             className={removebtn}
             style={{ backgroundColor: "red" }}
@@ -419,6 +627,74 @@ function SubstationMeteringStatusReport() {
           </button>
         </div>
       </FormPanel>
+
+      {loading && <Loader />}
+      {/* {console.log(
+        reports.length > 0 &&
+          reports[0].outgoingFeeders[0][0].outgoingFeederName
+      )} */}
+      {tableVisible && (
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>S.No.</Th>
+              <Th>Discom</Th>
+              <Th>Zone</Th>
+              <Th>Circle</Th>
+              <Th>Division</Th>
+              <Th>Substation</Th>
+              <Th>Month</Th>
+              <Th>Year</Th>
+              <Th>Incoming Feeder</Th>
+              <Th>Outgoing Feeder</Th>
+              <Th>Meter Make Type</Th>
+              <Th>Meter SL No</Th>
+              <Th>Previous Reading</Th>
+              <Th>Present Reading</Th>
+              <Th>Difference</Th>
+              <Th>Feeder Nature</Th>
+              <Th>Overall MF</Th>
+              <Th>Energy Consumption</Th>
+              <Th>Energy Assessed</Th>
+              <Th>Total Energy Consumption</Th>
+              <Th>Meter Status</Th>
+              <Th>Date Of Defect</Th>
+              <Th>Remark</Th>
+              <Th>Entry Date & Time</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {reports.map((report, index) => (
+              <Tr key={index}>
+                <Td>{index + 1}</Td>
+                <Td>{report.discomName}</Td>
+                <Td>{report.zoneName}</Td>
+                <Td>{report.circleName}</Td>
+                <Td>{report.divisionName}</Td>
+                <Td>{report.substationName}</Td>
+                <Td>{report.month}</Td>
+                <Td>{report.year}</Td>
+                <Td>{report.incomingFeeder}</Td>
+                <Td>{report.outgoingFeeders[0][0].outgoingFeederName}</Td>
+                <Td>{report.meterMakeType}</Td>
+                <Td>{report.meterSLNo}</Td>
+                <Td>{report.previousReading}</Td>
+                <Td>{report.presentReading}</Td>
+                <Td>{report.difference}</Td>
+                <Td>{report.feederNature}</Td>
+                <Td>{report.overallMF}</Td>
+                <Td>{report.energyConsumption}</Td>
+                <Td>{report.energyAssessed}</Td>
+                <Td>{report.totalEnergyConsumption}</Td>
+                <Td>{report.meterStatus}</Td>
+                <Td>{report.dateOfDefect}</Td>
+                <Td>{report.remark}</Td>
+                <Td>{report.entryDateTime}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      )}
     </>
   );
 }
