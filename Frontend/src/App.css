@@ -1,13 +1,17 @@
-.mainContainer{
+.mainContainer {
   min-height: 100dvh;
 }
-.sideBar a{
+.sideBar a {
   font-size: 13px;
 }
-.sideBar .active, .sideBar a:hover{ 
-  background-color: #3b71ca; 
-  color: #FFF;
+.sideBar .active,
+.sideBar a:hover {
+  background-color: #3b71ca;
+  color: #fff;
 }
-/* .sideBar .active:hover{
-
-} */
+.fixed-nav {
+  position: fixed;
+  right: 14px;
+  top: 0px;
+  width: 75%;
+}

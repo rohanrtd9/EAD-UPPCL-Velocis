@@ -1,6 +1,9 @@
 export default function FormPanel({ children }) {
   return (
-    <div className="mt-10 w-full p-6 bg-gray-200 border border-gray-200 rounded-lg shadow mx-auto grid grid-cols-3 gap-6">
+    <div
+      style={{ backgroundColor: "#f7f7f7" }}
+      className="mt-2 w-full max-w-4x2 p-8 border border-gray-300 rounded-xl shadow-lg mx-auto grid gap-6 lg:grid-cols-3"
+    >
       {children}
     </div>
   );

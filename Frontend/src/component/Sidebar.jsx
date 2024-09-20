@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   Typography,
@@ -11,6 +11,9 @@ import {
 } from "@material-tailwind/react";
 import { RiDashboard3Line } from "react-icons/ri";
 import { GrTransaction } from "react-icons/gr";
+import { IoIosLogOut } from "react-icons/io";
+
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   PresentationChartBarIcon,
@@ -41,24 +44,40 @@ const CustomLink = ({ to, title, activeLink }) => {
 
 const Sidebar = () => {
   const [open, setOpen] = useState(0);
-
+  const [activeLink, setActiveLink] = useState("/"); // Default active link
+  const navigate = useNavigate();
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  };
+  useEffect(() => {
+    // Set active link based on current pathname
+    setActiveLink(window.location.pathname);
+  }, []);
+
   const { role } = useUserContext();
   return (
-    <Card className="min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 sideBar">
+    <Card
+      className="min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 sideBar"
+      style={{ backgroundColor: "#f7f7f7" }}
+    >
       <div className="mb-2 p-2">
-        <img className="mx-auto w-60" src={uppclLogo} alt="logo" />
+        <img className="mx-auto w-100" src={uppclLogo} alt="logo" />
       </div>
+
       {role === "DIVISION" ? (
         <>
           <NavLink to="/">
-            <ListItem>
+            <ListItem className="border-b border-gray-300">
               <ListItemPrefix>
                 <RiDashboard3Line className="h-5 w-5" />
               </ListItemPrefix>
-              Dashboard
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Dashboard
+              </Typography>
             </ListItem>
           </NavLink>
 
@@ -72,6 +91,7 @@ const Sidebar = () => {
                 }`}
               />
             }
+            className="border-b border-gray-300"
           >
             <ListItem className="p-0" selected={open === 1}>
               <AccordionHeader
@@ -143,6 +163,7 @@ const Sidebar = () => {
                 }`}
               />
             }
+            className="border-b border-gray-300"
           >
             <ListItem className="p-0" selected={open === 4}>
               <AccordionHeader
@@ -182,6 +203,7 @@ const Sidebar = () => {
           {/* Distribution Report */}
           <Accordion
             open={open === 2}
+            className="border-b border-gray-300"
             icon={
               <ChevronDownIcon
                 strokeWidth={2.5}
@@ -250,15 +272,17 @@ const Sidebar = () => {
         <>
           {/* Transmission Dashboard */}
           <NavLink to="/TransMisstionDashboard">
-            <ListItem>
+            <ListItem className="border-b border-gray-300">
               <ListItemPrefix>
                 <RiDashboard3Line className="h-5 w-5" />
               </ListItemPrefix>
-              Dashboard
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Dashboard
+              </Typography>
             </ListItem>
           </NavLink>
 
-          {/* Transmission Master */}
+          {/* Transmission Master Accordion */}
           <Accordion
             open={open === 3}
             icon={
@@ -269,6 +293,7 @@ const Sidebar = () => {
                 }`}
               />
             }
+            className="border-b border-gray-300"
           >
             <ListItem className="p-0" selected={open === 3}>
               <AccordionHeader
@@ -319,9 +344,9 @@ const Sidebar = () => {
             </AccordionBody>
           </Accordion>
 
-          {/* Transmission Transaction */}
           <Accordion
             open={open === 6}
+            className="border-b border-gray-300"
             icon={
               <ChevronDownIcon
                 strokeWidth={2.5}
@@ -358,9 +383,9 @@ const Sidebar = () => {
             </AccordionBody>
           </Accordion>
 
-          {/* Transmission Report */}
           <Accordion
             open={open === 7}
+            className="border-b border-gray-300"
             icon={
               <ChevronDownIcon
                 strokeWidth={2.5}
@@ -403,6 +428,16 @@ const Sidebar = () => {
           </Accordion>
         </>
       )}
+      <NavLink onClick={() => logout()} to={"/login"}>
+        <ListItem className="border-b border-gray-300 cursor-pointer">
+          <ListItemPrefix>
+            <IoIosLogOut className="h-5 w-5" />
+          </ListItemPrefix>
+          <Typography color="blue-gray" className="mr-auto font-normal">
+            Logout
+          </Typography>
+        </ListItem>
+      </NavLink>
     </Card>
   );
 };

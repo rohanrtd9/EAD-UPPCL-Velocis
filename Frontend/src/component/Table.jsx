@@ -3,7 +3,8 @@ export default function Table({ children }) {
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table
         border="1"
-        className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+        className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-f7f7f7"
+        style={{ borderColor: "#f7f7f7" }}
       >
         {children}
       </table>
@@ -26,7 +27,8 @@ export function Tr({ children }) {
 export function Th({ children, rowSpan, colSpan }) {
   return (
     <th
-      className="px-3 py-2" // Reduced padding
+      className="px-3 py-2 border border-f7f7f7" // Reduced padding, border color applied
+      style={{ borderColor: "#f7f7f7" }}
       {...(rowSpan && { rowSpan })}
       {...(colSpan && { colSpan })}
     >
@@ -42,7 +44,12 @@ export function Tbody({ children }) {
 export function Td({ children, flex, colspan }) {
   return (
     <td
-      className={flex ? "flex px-3 py-2" : "px-3 py-2"} // Reduced padding
+      className={
+        flex
+          ? "flex px-3 py-2 border border-f7f7f7"
+          : "px-3 py-2 border border-f7f7f7"
+      } // Reduced padding, border color applied
+      style={{ borderColor: "#f7f7f7" }}
       colSpan={colspan ? colspan : 1}
     >
       {children}

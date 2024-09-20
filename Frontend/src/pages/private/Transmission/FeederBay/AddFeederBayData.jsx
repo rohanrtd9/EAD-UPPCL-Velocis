@@ -755,7 +755,7 @@ function AddFeederBayData() {
                       onClick={() => handleRemoveRow(row.id)}
                       className={`${removebtn} bg-red-500`}
                     >
-                      <FaMinus />
+                      <FaMinus className="h-4 w-4" />{" "}
                     </button>
                   </Td>
                 </Tr>
@@ -766,9 +766,10 @@ function AddFeederBayData() {
           <button
             type="button"
             onClick={handleAddRow}
-            className={`${btn} mt-4`}
+            className={`${btn} mt-4 ml-auto flex items-center justify-center`}
           >
-            <IoAddCircleSharp />
+            <IoAddCircleSharp className="h-4 w-4" />{" "}
+            {/* Adjust size as needed */}
           </button>
         </div>
         <div className="col-span-3 justify-between space-x-4">
