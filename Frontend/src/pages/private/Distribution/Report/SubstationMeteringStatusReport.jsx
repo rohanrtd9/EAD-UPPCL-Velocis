@@ -32,7 +32,7 @@ function SubstationMeteringStatusReport() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [tableVisible, setTableVisible] = useState(false); // New state to control table visibility
+  const [tableVisible, setTableVisible] = useState(false);
   const [localBodyData, setLocalBodyData] = useState({
     discom_ID: "",
     zone_ID: "",
@@ -49,6 +49,7 @@ function SubstationMeteringStatusReport() {
     divisionName: "",
     substationName: "",
   });
+
   const navigate = useNavigate();
 
   const listDiscoms = async () => {
