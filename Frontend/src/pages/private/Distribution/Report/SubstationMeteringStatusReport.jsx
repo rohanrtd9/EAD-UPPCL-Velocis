@@ -52,6 +52,8 @@ function SubstationMeteringStatusReport() {
 
   const navigate = useNavigate();
 
+  // List Discome Here
+
   const listDiscoms = async () => {
     setLoading(true);
     try {
@@ -78,6 +80,8 @@ function SubstationMeteringStatusReport() {
     }
   };
 
+  // List Zone Here
+
   const fetchZones = async (discom_ID) => {
     if (!discom_ID) return;
     setLoading(true);
@@ -99,6 +103,8 @@ function SubstationMeteringStatusReport() {
       setLoading(false);
     }
   };
+
+  // List Circle Here
 
   const fetchCircles = async (zone_ID) => {
     if (!zone_ID) return;
@@ -122,6 +128,8 @@ function SubstationMeteringStatusReport() {
     }
   };
 
+  // List Divison Here
+
   const fetchDivisions = async (circle_ID) => {
     if (!circle_ID) return;
     setLoading(true);
@@ -143,6 +151,8 @@ function SubstationMeteringStatusReport() {
       setLoading(false);
     }
   };
+
+  // List Substation Here
 
   const fetchSubstations = async (division_ID) => {
     if (!division_ID) return;
@@ -166,6 +176,8 @@ function SubstationMeteringStatusReport() {
     }
   };
 
+  // List Month Here
+
   const fetchMonth = async () => {
     setLoading(true);
     try {
@@ -186,6 +198,8 @@ function SubstationMeteringStatusReport() {
       setLoading(false);
     }
   };
+
+  // List Year Here
 
   const fetchYear = async () => {
     setLoading(true);

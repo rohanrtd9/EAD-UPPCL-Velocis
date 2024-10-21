@@ -12,6 +12,7 @@ export default function Table({ children }) {
   );
 }
 
+// Thead Component Changes
 export function Thead({ children }) {
   return (
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -20,10 +21,12 @@ export function Thead({ children }) {
   );
 }
 
+// Tr Component Changes
 export function Tr({ children }) {
   return <tr>{children}</tr>;
 }
 
+// Th Component Changes
 export function Th({ children, rowSpan, colSpan }) {
   return (
     <th
@@ -37,10 +40,12 @@ export function Th({ children, rowSpan, colSpan }) {
   );
 }
 
+// Tbody Component Changes
 export function Tbody({ children }) {
   return <tbody>{children}</tbody>;
 }
 
+// Td Component Changes
 export function Td({ children, flex, colspan }) {
   return (
     <td

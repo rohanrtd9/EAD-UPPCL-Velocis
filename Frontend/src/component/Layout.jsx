@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { useLocation } from "react-router-dom";
 
+// Layout Content Here
 const Layout = ({ children }) => {
   const { pathname } = useLocation();
 

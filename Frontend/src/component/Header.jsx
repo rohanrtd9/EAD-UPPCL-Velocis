@@ -10,7 +10,6 @@ function Header({ title, action }) {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    // Trigger live search here, e.g., API call to filter data
   };
 
   const handleEntriesChange = (event) => {
@@ -51,5 +50,4 @@ function Header({ title, action }) {
     </>
   );
 }
-
 export default Header;

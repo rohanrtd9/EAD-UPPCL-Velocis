@@ -85,8 +85,6 @@ function SubstationEnergyReceipt() {
         </div>
         <div className="col-span-3 flex justify-between">
           <button className={btn + " w-1/5"}>Submit</button>
-          <button className={btnSuccess + " w-1/5"}>Export</button>
-          <button className={btnGrey + " w-1/5"}>Reset</button>
         </div>
       </FormPanel>
     </>
