@@ -151,6 +151,10 @@ const SubstationMeteringStatusReport = React.lazy(() =>
   import("./pages/private/Distribution/Report/SubstationMeteringStatusReport")
 );
 
+const SubstationMeteringStatus = React.lazy(() =>
+  import("./pages/private/Distribution/Report/SubstationMeteringStatus")
+);
+
 // Transmission Report Route Here BY ADARSH
 
 const MasterDataReport = React.lazy(() =>
@@ -515,7 +519,7 @@ function App() {
               path="/substation-metering-status-report"
               element={
                 <Suspense fallback={<Shimmer />}>
-                  <SubstationMeteringStatusReport />
+                  <SubstationMeteringStatus />
                 </Suspense>
               }
             />

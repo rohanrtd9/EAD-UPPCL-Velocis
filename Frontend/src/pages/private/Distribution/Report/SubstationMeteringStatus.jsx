@@ -18,7 +18,7 @@ import {
 } from "../../../../utils/tailwindClasses";
 import { apiUrl } from "../../../../utils/constant";
 
-function SubstationMeteringStatusReport() {
+function SubstationMeteringStatus() {
   const { pageName } = useParams();
   const { token } = useUserContext();
   const [discoms, setDiscoms] = useState([]);
@@ -318,7 +318,7 @@ function SubstationMeteringStatusReport() {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "SubstationReports");
 
-    XLSX.writeFile(workbook, "SubstationMeteringStatusReport.xlsx");
+    XLSX.writeFile(workbook, "SubstationMeteringStatus.xlsx");
   };
 
   const handleInputChange = (e) => {
@@ -575,6 +575,53 @@ function SubstationMeteringStatusReport() {
           </div>
         </div>
 
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label}>
+              Month
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
+            <select
+              name="month"
+              className={select}
+              value={localBodyData.month}
+              onChange={handleInputChange}
+            >
+              <option value="">--Select--</option>
+              {months.map((month) => (
+                <option key={month._id} value={month._id}>
+                  {month.monthName}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="col-span-1">
+          <div className="relative z-0 w-full group">
+            <label className={label}>
+              Year
+              <span className="text-red-500" style={{ fontSize: "1.30rem" }}>
+                *
+              </span>
+            </label>
+            <select
+              name="year"
+              className={select}
+              value={localBodyData.year}
+              onChange={handleInputChange}
+            >
+              <option value="">--Select--</option>
+              {years.map((year) => (
+                <option key={year._id} value={year._id}>
+                  {year.yearName}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <div className="col-span-3 justify-between space-x-4">
           <button className={btn} onClick={substionMeteringStatusReport}>
             Submit
@@ -667,4 +714,4 @@ function SubstationMeteringStatusReport() {
   );
 }
 
-export default SubstationMeteringStatusReport;
+export default SubstationMeteringStatus;
